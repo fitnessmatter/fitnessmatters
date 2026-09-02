@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Matters | Goal Tracking</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            padding-bottom: 4rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: #121212 !important;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: #ffffff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1rem;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 1.15rem;
+            color: #ffffff;
+        }
+
+        .brand-name span {
+            color: #f59e0b;
+            margin-left: 0.35rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-item {
+            color: #888888;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover, .nav-item.active { color: #ffffff; }
+
+        .user-profile-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            background: #222222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        .dashboard-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 3rem 0 2.5rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #a0a0a0;
+            font-size: 1rem;
+        }
+
+        .goals-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .summary-card {
+            background: #1e1e24;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .summary-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f59e0b;
+            font-size: 1.25rem;
+        }
+
+        .summary-info h4 {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .summary-info span {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .goal-card {
+            background: #1e1e24;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .goal-title h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+
+        .goal-category {
+            color: #a0a0a0;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .goal-badge {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+        }
+
+        .goal-metrics {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.25rem 0 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .metric-label {
+            color: #a0a0a0;
+        }
+
+        .metric-value {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #2a2a32;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #f59e0b;
+            border-radius: 4px;
+        }
+
+        .goal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #2a2a32;
+            padding-top: 1rem;
+        }
+
+        .deadline {
+            color: #a0a0a0;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .update-btn {
+            background: transparent;
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .update-btn:hover {
+            background: #f59e0b;
+            color: #000000;
+        }
+
+        .add-goal-card {
+            background: transparent;
+            border: 2px dashed #333333;
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-height: 250px;
+        }
+
+        .add-goal-card:hover {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.02);
+        }
+
+        .add-icon {
+            width: 48px;
+            height: 48px;
+            background: #1e1e24;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f59e0b;
+            font-size: 1.2rem;
+        }
+
+        .add-goal-card span {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+            <span class="brand-name">FITNESS<span>MATTERS</span></span>
+        </div>
+
+        <div class="nav-menu">
+            <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+            <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+            <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+            <a href="goals.html" class="nav-item active"><i class="fa-solid fa-bullseye"></i> Goals</a>
+        </div>
+
+        <div class="user-profile-nav">
+            <div class="avatar">A</div>
+        </div>
+    </nav>
+
+    <main class="dashboard-wrapper">
+        <div class="page-header">
+            <h1>Fitness Targets & Milestones</h1>
+            <p>Set, track, and crush your personal performance goals.</p>
+        </div>
+
+        <!-- Metric Summary Bar -->
+        <div class="goals-summary">
+            <div class="summary-card">
+                <div class="summary-icon"><i class="fa-solid fa-bullseye"></i></div>
+                <div class="summary-info">
+                    <h4>Active Goals</h4>
+                    <span>5 Active</span>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-icon"><i class="fa-solid fa-trophy"></i></div>
+                <div class="summary-info">
+                    <h4>Completed</h4>
+                    <span>12 Goals</span>
+                </div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-icon"><i class="fa-solid fa-fire"></i></div>
+                <div class="summary-info">
+                    <h4>Current Streak</h4>
+                    <span>14 Days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Goals Grid -->
+        <div class="goals-grid">
+            <!-- Goal 1 -->
+            <div class="goal-card">
+                <div>
+                    <div class="goal-header">
+                        <div class="goal-title">
+                            <h3>Target Body Fat %</h3>
+                            <span class="goal-category">Fat Loss</span>
+                        </div>
+                        <span class="goal-badge">In Progress</span>
+                    </div>
+                    <div class="goal-metrics">
+                        <span class="metric-label">Current: 18%</span>
+                        <span class="metric-value">Target: 12%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-fill" style="width: 65%;"></div>
+                    </div>
+                </div>
+                <div class="goal-footer">
+                    <span class="deadline"><i class="fa-regular fa-calendar"></i> Target: Oct 30</span>
+                    <button class="update-btn">Log Progress</button>
+                </div>
+            </div>
+
+            <!-- Goal 2 -->
+            <div class="goal-card">
+                <div>
+                    <div class="goal-header">
+                        <div class="goal-title">
+                            <h3>Bench Press 100kg</h3>
+                            <span class="goal-category">Strength</span>
+                        </div>
+                        <span class="goal-badge">On Track</span>
+                    </div>
+                    <div class="goal-metrics">
+                        <span class="metric-label">Current: 85kg</span>
+                        <span class="metric-value">Target: 100kg</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="goal-footer">
+                    <span class="deadline"><i class="fa-regular fa-calendar"></i> Target: Nov 15</span>
+                    <button class="update-btn">Log Progress</button>
+                </div>
+            </div>
+
+            <!-- Goal 3 -->
+            <div class="goal-card">
+                <div>
+                    <div class="goal-header">
+                        <div class="goal-title">
+                            <h3>5K Run Duration</h3>
+                            <span class="goal-category">Endurance</span>
+                        </div>
+                        <span class="goal-badge">In Progress</span>
+                    </div>
+                    <div class="goal-metrics">
+                        <span class="metric-label">Current: 27 mins</span>
+                        <span class="metric-value">Target: 22 mins</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-fill" style="width: 45%;"></div>
+                    </div>
+                </div>
+                <div class="goal-footer">
+                    <span class="deadline"><i class="fa-regular fa-calendar"></i> Target: Dec 01</span>
+                    <button class="update-btn">Log Progress</button>
+                </div>
+            </div>
+
+            <!-- Goal 4 -->
+            <div class="goal-card">
+                <div>
+                    <div class="goal-header">
+                        <div class="goal-title">
+                            <h3>Daily Water Intake</h3>
+                            <span class="goal-category">Habit</span>
+                        </div>
+                        <span class="goal-badge">Daily Goal</span>
+                    </div>
+                    <div class="goal-metrics">
+                        <span class="metric-label">Current: 2.5L</span>
+                        <span class="metric-value">Target: 3.5L</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="goal-footer">
+                    <span class="deadline"><i class="fa-solid fa-rotate-right"></i> Resets Daily</span>
+                    <button class="update-btn">Log Progress</button>
+                </div>
+            </div>
+
+            <!-- Goal 5 -->
+            <div class="goal-card">
+                <div>
+                    <div class="goal-header">
+                        <div class="goal-title">
+                            <h3>Monthly Workouts</h3>
+                            <span class="goal-category">Consistency</span>
+                        </div>
+                        <span class="goal-badge">On Track</span>
+                    </div>
+                    <div class="goal-metrics">
+                        <span class="metric-label">Current: 16 Sessions</span>
+                        <span class="metric-value">Target: 20</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+                </div>
+                <div class="goal-footer">
+                    <span class="deadline"><i class="fa-regular fa-calendar"></i> Target: End of Month</span>
+                    <button class="update-btn">Log Progress</button>
+                </div>
+            </div>
+
+            <!-- Goal Action Card -->
+            <div class="add-goal-card">
+                <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
+                <span>Create New Target Goal</span>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

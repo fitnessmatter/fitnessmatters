@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Matters | Workout Plans</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Force complete pitch black overrides */
+        html, body {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .navbar {
+            background-color: #000000 !important;
+            border-bottom: 1px solid #1c1c1c !important;
+        }
+
+        /* Hero Text */
+        .workout-header h1 {
+            color: #ffffff !important;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .workout-header p {
+            color: #888888 !important;
+        }
+
+        /* Filter Pills */
+        .filter-btn {
+            background: #0a0a0a !important;
+            border: 1px solid #222222 !important;
+            color: #888888 !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: #04a8c9 !important;
+            color: #000000 !important;
+            border-color: #ffffff !important;
+        }
+
+        /* Cards */
+        .plan-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222 !important;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: border-color 0.2s;
+        }
+
+        .plan-card:hover {
+            border-color: #444444 !important;
+        }
+
+        .plan-title {
+            color: #ffffff !important;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .plan-desc {
+            color: #888888 !important;
+            font-size: 0.85rem;
+        }
+
+        /* Tags & Badges */
+        .tag {
+            background: #141414 !important;
+            border: 1px solid #262626 !important;
+            color: #aaaaaa !important;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+        }
+
+        .badge-popular {
+            background: #ffffff !important;
+            color: #000000 !important;
+            font-weight: 700;
+        }
+
+        /* Pricing & Buttons */
+        .price {
+            color: #ffffff !important;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .price-original {
+            color: #555555 !important;
+            text-decoration: line-through;
+        }
+
+        .btn-outline {
+            background: #000000 !important;
+            border: 1px solid #333333 !important;
+            color: #ffffff !important;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-solid {
+            background: #04aac7 !important;
+            color: #000000 !important;
+            border: 1px solid #ffffff !important;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .btn-solid:hover {
+            background: #e5e5e5 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+            <span class="brand-name">FITNESS<span>MATTERS</span></span>
+        </div>
+
+        <div class="nav-menu">
+            <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+            <a href="workouts.html" class="nav-item active"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+        </div>
+
+        <div class="user-profile-nav">
+            <div class="avatar">A</div>
+            <button id="logoutBtn" class="logout-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="dashboard-wrapper">
+        <div class="workout-header" style="text-align: center; margin: 2rem 0;">
+            <h1>Choose Your Workout Plan</h1>
+            <p>Professionally designed workout programs to help you build muscle, lose fat, and achieve your fitness goals.</p>
+        </div>
+
+        <!-- Filters -->
+        <div style="display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+            <button class="filter-btn active">All Plans</button>
+            <button class="filter-btn">Muscle Building</button>
+            <button class="filter-btn">Fat Loss</button>
+            <button class="filter-btn">Beginner</button>
+            <button class="filter-btn">Advanced</button>
+        </div>
+
+        <!-- Cards Container -->
+        <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            
+            <!-- Plan 1 -->
+            <div class="plan-card">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span class="tag">BEGINNER</span>
+                    <i class="fa-solid fa-lock" style="color: #444;"></i>
+                </div>
+                <div style="text-align: center; font-size: 3rem; margin: 1rem 0;">🏆</div>
+                <h2 class="plan-title">Beginner Transformation</h2>
+                <p class="plan-desc" style="margin: 0.5rem 0 1rem;">A perfect starting program for beginners who want to build strength and improve overall fitness.</p>
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    <span class="tag">8 Weeks</span>
+                    <span class="tag">5 Days / Week</span>
+                    <span class="tag">Home & Gym</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <span class="price">₹499</span>
+                        <span class="price-original">₹799</span>
+                    </div>
+                    <span class="tag" style="border-color: #444; color: #fff;">38% OFF</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                    <button class="btn-outline">View Details</button>
+                    <button class="btn-solid">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Plan 2 -->
+            <div class="plan-card" style="border-color: #ffffff !important;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span class="tag badge-popular">⭐ MOST POPULAR</span>
+                    <i class="fa-solid fa-lock" style="color: #444;"></i>
+                </div>
+                <div style="text-align: center; font-size: 3rem; margin: 1rem 0;">💪</div>
+                <h2 class="plan-title">Muscle Builder Pro</h2>
+                <p class="plan-desc" style="margin: 0.5rem 0 1rem;">A structured muscle-building program designed to maximize strength, size, and muscular development.</p>
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    <span class="tag">12 Weeks</span>
+                    <span class="tag">6 Days / Week</span>
+                    <span class="tag">Gym</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <span class="price">₹999</span>
+                        <span class="price-original">₹1,499</span>
+                    </div>
+                    <span class="tag" style="border-color: #444; color: #fff;">33% OFF</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                    <button class="btn-outline">View Details</button>
+                    <button class="btn-solid">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Plan 3 -->
+            <div class="plan-card">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span class="tag">FAT LOSS</span>
+                    <i class="fa-solid fa-lock" style="color: #444;"></i>
+                </div>
+                <div style="text-align: center; font-size: 3rem; margin: 1rem 0;">🔥</div>
+                <h2 class="plan-title">Fat Loss & Shred</h2>
+                <p class="plan-desc" style="margin: 0.5rem 0 1rem;">A focused fat-loss program combining resistance training and cardio for a leaner physique.</p>
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    <span class="tag">10 Weeks</span>
+                    <span class="tag">5 Days / Week</span>
+                    <span class="tag">Gym</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <span class="price">₹799</span>
+                        <span class="price-original">₹1,199</span>
+                    </div>
+                    <span class="tag" style="border-color: #444; color: #fff;">33% OFF</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                    <button class="btn-outline">View Details</button>
+                    <button class="btn-solid">Buy Now</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
+/* --- CONTACT PAGE STYLES --- */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.info-card {
+    background: #1e1e24;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.info-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.info-text h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.2rem;
+}
+
+.info-text p {
+    color: #a0a0a0;
+    font-size: 0.85rem;
+}
+
+.form-card {
+    background: #1e1e24;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    background: #121212;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus, .form-textarea:focus {
+    border-color: #f59e0b;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #f59e0b;
+    color: #000000;
+    border: none;
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #d97706;
+}

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Matters | Home Overview</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            padding-bottom: 3rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: #000000 !important;
+            border-bottom: 1px solid #1c1c1c !important;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: #ffffff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1.1rem;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 1.25rem;
+            color: #ffffff;
+        }
+
+        .brand-name span {
+            color: #f59e0b;
+            margin-left: 0.35rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            color: #888888;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover, .nav-item.active { color: #ffffff; }
+
+        .user-profile-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            background: #111111;
+            border: 1px solid #333333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .logout-btn {
+            background: #111111;
+            border: 1px solid #333333;
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .dashboard-wrapper {
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .page-header p {
+            color: #888888;
+            margin-top: 0.4rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #0a0a0a;
+            border: 1px solid #222222;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #f59e0b;
+        }
+
+        .stat-card span {
+            font-size: 0.85rem;
+            color: #888888;
+            font-weight: 500;
+        }
+
+        .stat-card h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-top: 0.4rem;
+            color: #ffffff;
+        }
+
+        .highlight-text {
+            color: #f59e0b;
+        }
+
+        .banner-box {
+            background: #0a0a0a;
+            border: 1px solid #222222;
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .banner-box h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .banner-box p {
+            color: #888888;
+            font-size: 0.9rem;
+        }
+
+        .cta-btn {
+            background: #f59e0b;
+            color: #000000;
+            border: none;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .cta-btn:hover {
+            background: #d97706;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-brand">
+        <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+        <span class="brand-name">FITNESS<span>MATTERS</span></span>
+    </div>
+
+    <div class="nav-menu">
+        <a href="home.html" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+        <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+        <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+        <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+        <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+        <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </div>
+
+    <div class="user-profile-nav">
+        <div class="avatar">A</div>
+        <button id="logoutBtn" class="logout-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-right-from-bracket"></i></button>
+    </div>
+</nav>
+
+        <div class="user-profile-nav">
+            <div class="avatar">A</div>
+            <button id="logoutBtn" class="logout-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+    </nav>
+
+    <main class="dashboard-wrapper">
+        <div class="page-header">
+            <h1>Welcome Back, Aditya</h1>
+            <p>Here is your daily fitness breakdown and progress overview.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span>Calories Burned</span>
+                <h2>640 <span class="highlight-text">kcal</span></h2>
+            </div>
+            <div class="stat-card">
+                <span>Workouts Completed</span>
+                <h2>12 <span class="highlight-text">Sessions</span></h2>
+            </div>
+            <div class="stat-card">
+                <span>Active Streak</span>
+                <h2>5 <span class="highlight-text">Days</span></h2>
+            </div>
+            <div class="stat-card">
+                <span>Goal Completion</span>
+                <h2>78<span class="highlight-text">%</span></h2>
+            </div>
+        </div>
+
+        <div class="banner-box">
+            <div>
+                <h3>Ready for today's session?</h3>
+                <p>Check out your custom workout program or update your dietary plan.</p>
+            </div>
+            <a href="workouts.html" class="cta-btn">View Workouts</a>
+        </div>
+    </main>
+
+</body>
+</html>

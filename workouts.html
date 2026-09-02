@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Matters | Workout Plans</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: #121212 !important; /* Slightly lighter black matching the screenshot background */
+            color: #ffffff !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            padding-bottom: 4rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: #121212 !important;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: #ffffff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1rem;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 1.15rem;
+            color: #ffffff;
+        }
+
+        .brand-name span {
+            color: #f59e0b;
+            margin-left: 0.35rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-item {
+            color: #888888;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover, .nav-item.active { color: #ffffff; }
+
+        .user-profile-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            background: #222222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        .dashboard-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 3rem 0 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #a0a0a0;
+            font-size: 1rem;
+        }
+
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .plan-card {
+            background: #1e1e24; /* Matching the card background from the image */
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .plan-card.popular {
+            border: 2px solid #f59e0b;
+        }
+
+        .badge {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: #f59e0b;
+            color: #000000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .plan-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.4rem;
+            padding-right: 4rem; /* space for badge */
+        }
+
+        .plan-card p.desc {
+            color: #a0a0a0;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            min-height: 40px;
+        }
+
+        .price-wrap {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .period {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin-left: 0.3rem;
+        }
+
+        .features {
+            list-style: none;
+            flex-grow: 1;
+            margin-bottom: 2rem;
+        }
+
+        .features li {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .features li i {
+            color: #f59e0b;
+            font-size: 0.9rem;
+        }
+
+        .subscribe-btn {
+            width: 100%;
+            background: #fff8d6; /* Pale yellow from the screenshot */
+            color: #000000;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .plan-card.popular .subscribe-btn {
+            background: #f59e0b; /* Vibrant yellow for popular */
+        }
+
+        .subscribe-btn:hover {
+            opacity: 0.9;
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+            <span class="brand-name">FITNESS<span>MATTERS</span></span>
+        </div>
+
+        <div class="nav-menu">
+            <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+            <a href="workouts.html" class="nav-item active"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+            <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+        </div>
+
+        <div class="user-profile-nav">
+            <div class="avatar">A</div>
+        </div>
+    </nav>
+
+    <main class="dashboard-wrapper">
+        <div class="page-header">
+            <h1>Premium Workout Plans</h1>
+            <p>Choose a tailored training protocol designed by certified coaches.</p>
+        </div>
+
+        <div class="plan-grid">
+            <!-- Plan 1 -->
+            <div class="plan-card">
+                <h3>Lean Muscle Hypertrophy</h3>
+                <p class="desc">High-volume weight training optimized for lean muscle gains.</p>
+                <div class="price-wrap">
+                    <span class="price">$29</span><span class="period">/ month</span>
+                </div>
+                <ul class="features">
+                    <li><i class="fa-solid fa-check"></i> 4-Day Upper/Lower Split</li>
+                    <li><i class="fa-solid fa-check"></i> Form Correction Videos</li>
+                    <li><i class="fa-solid fa-check"></i> Progressive Overload Tracker</li>
+                </ul>
+                <button class="subscribe-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 2 (Popular) -->
+            <div class="plan-card popular">
+                <span class="badge">Popular</span>
+                <h3>HIIT Shred Protocol</h3>
+                <p class="desc">High-intensity interval training aimed at rapid body fat reduction.</p>
+                <div class="price-wrap">
+                    <span class="price">$34</span><span class="period">/ month</span>
+                </div>
+                <ul class="features">
+                    <li><i class="fa-solid fa-check"></i> 5-Day Fast Paced Circuits</li>
+                    <li><i class="fa-solid fa-check"></i> No Equipment Required</li>
+                    <li><i class="fa-solid fa-check"></i> Daily Cardio Finishers</li>
+                </ul>
+                <button class="subscribe-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 3 -->
+            <div class="plan-card">
+                <h3>Powerlifting Basics</h3>
+                <p class="desc">Heavy compound lifting focused entirely on raw strength output.</p>
+                <div class="price-wrap">
+                    <span class="price">$25</span><span class="period">/ month</span>
+                </div>
+                <ul class="features">
+                    <li><i class="fa-solid fa-check"></i> Squat, Bench, Deadlift Focus</li>
+                    <li><i class="fa-solid fa-check"></i> 1RM (Max Rep) Tracking</li>
+                    <li><i class="fa-solid fa-check"></i> Custom Peaking Blocks</li>
+                </ul>
+                <button class="subscribe-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 4 -->
+            <div class="plan-card">
+                <h3>Calisthenics Mastery</h3>
+                <p class="desc">Bodyweight mechanics, advanced holds, and core domination.</p>
+                <div class="price-wrap">
+                    <span class="price">$22</span><span class="period">/ month</span>
+                </div>
+                <ul class="features">
+                    <li><i class="fa-solid fa-check"></i> Step-by-Step Skill Progressions</li>
+                    <li><i class="fa-solid fa-check"></i> Handstand & Muscle-Up Guides</li>
+                    <li><i class="fa-solid fa-check"></i> Core Stability Routines</li>
+                </ul>
+                <button class="subscribe-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 5 -->
+            <div class="plan-card">
+                <h3>Hybrid Athlete</h3>
+                <p class="desc">Combining endurance cardio built for high performance and lifting.</p>
+                <div class="price-wrap">
+                    <span class="price">$39</span><span class="period">/ month</span>
+                </div>
+                <ul class="features">
+                    <li><i class="fa-solid fa-check"></i> 5K to Marathon Prep</li>
+                    <li><i class="fa-solid fa-check"></i> Tactical Cross-Training</li>
+                    <li><i class="fa-solid fa-check"></i> Advanced Injury Prevention</li>
+                </ul>
+                <button class="subscribe-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 6 -->
+            <div class="plan-card">
+                <h3>Mobility & Recovery</h3>
+                <p class="desc">Active recovery systems, joint health, and posture correction.</p>
+                <div class="price-wrap">
+                    <span class="price">$19</span><span class="period">/ month</span>
+                </div>
+                <ul class="features">
+                    <li><i class="fa-solid fa-check"></i> Daily 15-Min Stretching</li>
+                    <li><i class="fa-solid fa-check"></i> Restorative Yoga Flows</li>
+                    <li><i class="fa-solid fa-check"></i> Breathwork Exercises</li>
+                </ul>
+                <button class="subscribe-btn">Subscribe Plan</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

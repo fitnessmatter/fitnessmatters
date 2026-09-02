@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Matters | Nutrition Plans</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            padding-bottom: 3rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: #000000 !important;
+            border-bottom: 1px solid #1c1c1c !important;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: #ffffff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1.1rem;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 1.25rem;
+            color: #ffffff;
+        }
+
+        .brand-name span {
+            color: #f59e0b; /* Accent Color for MATTERS */
+            margin-left: 0.35rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            color: #888888;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover, .nav-item.active { color: #ffffff; }
+
+        .user-profile-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            background: #111111;
+            border: 1px solid #333333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .logout-btn {
+            background: #111111;
+            border: 1px solid #333333;
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .dashboard-wrapper {
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .page-header p {
+            color: #888888;
+            margin-top: 0.4rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 3rem 0 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 1px solid #1f1f1f;
+            padding-bottom: 0.75rem;
+        }
+
+        /* Paid Plans Grid */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .plan-card {
+            background: #0a0a0a;
+            border: 1px solid #222222;
+            border-radius: 16px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.25s ease;
+        }
+
+        .plan-card:hover {
+            border-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .featured-plan {
+            border-color: #f59e0b !important;
+            background: #0f0d06;
+        }
+
+        .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f59e0b;
+            color: #000000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .plan-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+        }
+
+        .plan-header p {
+            font-size: 0.85rem;
+            color: #888888;
+            min-height: 2.5rem;
+        }
+
+        .plan-price {
+            margin: 1.25rem 0;
+            display: flex;
+            align-items: baseline;
+            gap: 0.2rem;
+        }
+
+        .plan-price .amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .plan-price .duration {
+            font-size: 0.85rem;
+            color: #777777;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 1rem;
+        }
+
+        .plan-features li {
+            font-size: 0.85rem;
+            color: #cccccc;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .plan-features li i {
+            color: #f59e0b;
+            font-size: 0.8rem;
+        }
+
+        .buy-btn {
+            width: 100%;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .buy-btn:hover {
+            background: #e5e5e5;
+        }
+
+        .featured-btn {
+            background: #f59e0b;
+            color: #000000;
+        }
+
+        .featured-btn:hover {
+            background: #d97706;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+            <span class="brand-name">FITNESS<span>MATTERS</span></span>
+        </div>
+
+        <div class="nav-menu">
+            <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+            <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+            <a href="nutrition.html" class="nav-item active"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+        </div>
+
+        <div class="user-profile-nav">
+            <div class="avatar">A</div>
+            <button id="logoutBtn" class="logout-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+    </nav>
+
+    <main class="dashboard-wrapper">
+        <div class="page-header">
+            <h1>Premium Nutrition Plans</h1>
+            <p>Choose a tailored dietary protocol designed by certified nutritionists.</p>
+        </div>
+
+        <div class="plans-grid">
+            <!-- Plan 1 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Lean Muscle Hypertrophy</h3>
+                    <p>High-protein macro distribution optimized for lean muscle gains.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$29</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> 2,800 kcal / Daily Target</li>
+                    <li><i class="fa-solid fa-check"></i> High Protein (200g target)</li>
+                    <li><i class="fa-solid fa-check"></i> Post-workout Shake Matrix</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 2 -->
+            <div class="plan-card featured-plan">
+                <span class="badge">Popular</span>
+                <div class="plan-header">
+                    <h3>Keto Shred Protocol</h3>
+                    <p>Ultra low-carb diet aimed at rapid body fat reduction.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$34</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> 70% Healthy Fats ratio</li>
+                    <li><i class="fa-solid fa-check"></i> Under 30g Net Carbs</li>
+                    <li><i class="fa-solid fa-check"></i> Ketone Tracking Guide</li>
+                </ul>
+                <button class="buy-btn featured-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 3 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Plant-Based Power</h3>
+                    <p>100% Vegan plan packed with complete plant proteins.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$25</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Amino Acid Balanced Meals</li>
+                    <li><i class="fa-solid fa-check"></i> Micro-Nutrient Rich</li>
+                    <li><i class="fa-solid fa-check"></i> Soy-Free Alternatives</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 4 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Intermittent Fasting 16:8</h3>
+                    <p>Meal timing blueprint paired with nutrient-dense eating windows.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$19</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Fasting Window Schedules</li>
+                    <li><i class="fa-solid fa-check"></i> Autophagy Optimization</li>
+                    <li><i class="fa-solid fa-check"></i> Electrolyte Strategy</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 5 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Pro Athletic Performance</h3>
+                    <p>Carb-cycling plan built for high endurance and intense training.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$49</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Intra-workout Carb Timings</li>
+                    <li><i class="fa-solid fa-check"></i> Rapid Recovery Protocols</li>
+                    <li><i class="fa-solid fa-check"></i> Custom Hydration Specs</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 6 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Caloric Deficit Cut</h3>
+                    <p>Sustainable, non-restrictive fat loss system with zero energy crashes.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$29</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> High Volume Low Calorie</li>
+                    <li><i class="fa-solid fa-check"></i> Craving Management System</li>
+                    <li><i class="fa-solid fa-check"></i> Weekly Refeed Meals</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 7 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Clean Mass Gainer</h3>
+                    <p>High-calorie eating structure without excessive fat accumulation.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$39</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> 3,500+ Daily kcal Blueprint</li>
+                    <li><i class="fa-solid fa-check"></i> Enzyme Digestibility Support</li>
+                    <li><i class="fa-solid fa-check"></i> Easy Prep Liquid Meals</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 8 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Mediterranean Wellness</h3>
+                    <p>Heart-healthy dietary plan focused on long-term sustainability.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$22</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Rich in Omega-3 Fats</li>
+                    <li><i class="fa-solid fa-check"></i> Anti-Inflammatory Foods</li>
+                    <li><i class="fa-solid fa-check"></i> Unprocessed Whole Foods</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 9 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Paleo Ancestral Diet</h3>
+                    <p>Grain-free, dairy-free diet modeled on unprocessed nutrition.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$27</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Grass-fed Meats & Seeds</li>
+                    <li><i class="fa-solid fa-check"></i> Zero Refined Sugars</li>
+                    <li><i class="fa-solid fa-check"></i> Gut Health Focus</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 10 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Diabetic-Friendly Prep</h3>
+                    <p>Low Glycemic Index foods engineered for stable insulin response.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$32</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Low GI Meal Charts</li>
+                    <li><i class="fa-solid fa-check"></i> Blood Sugar Control</li>
+                    <li><i class="fa-solid fa-check"></i> Complex Fiber Focus</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 11 -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>Gluten & Dairy Free</h3>
+                    <p>Designed specifically for gut sensitivities and auto-immune focus.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$28</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> 100% Allergen Safe</li>
+                    <li><i class="fa-solid fa-check"></i> Bloat Reduction Guide</li>
+                    <li><i class="fa-solid fa-check"></i> Substitutes Replacement List</li>
+                </ul>
+                <button class="buy-btn">Subscribe Plan</button>
+            </div>
+
+            <!-- Plan 12 -->
+            <div class="plan-card featured-plan">
+                <span class="badge">VIP</span>
+                <div class="plan-header">
+                    <h3>1-on-1 Elite Concierge</h3>
+                    <p>Fully bespoke meal design tailored directly by a dedicated dietitian.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="amount">$99</span><span class="duration">/ month</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Weekly Call Consultations</li>
+                    <li><i class="fa-solid fa-check"></i> Real-time Meal Adjustments</li>
+                    <li><i class="fa-solid fa-check"></i> Direct WhatsApp Support</li>
+                </ul>
+                <button class="buy-btn featured-btn">Subscribe Plan</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

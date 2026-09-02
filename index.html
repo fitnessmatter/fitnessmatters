@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Matters | Registration</title>
+    <!-- Link External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">FITNESS <span>MATTERS</span></div>
+        <nav>
+            <a href="index.html" class="active">Register</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="auth-container">
+            <div class="auth-card">
+                <h2>Create Account</h2>
+                <p class="auth-sub">Enter your details to register via phone verification</p>
+
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter Your Full Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobileNo">Mobile Number</label>
+                        <input type="tel" id="mobileNo" placeholder="Enter Your Contact Number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Create Password" required>
+                    </div>
+
+                    <button type="submit" class="main-btn full-width">Request OTP</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- OTP Verification Modal -->
+        <div id="otpModal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <h3>Verify Phone Number</h3>
+                <p>Enter the 6-digit code sent to your mobile device.</p>
+                <div class="otp-inputs">
+                    <input type="text" maxlength="6" id="otpCode" placeholder="123456" required>
+                </div>
+                <button id="verifyOtpBtn" class="main-btn full-width">Verify & Register</button>
+                <button id="closeModalBtn" class="close-btn">Cancel</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p class="copyright">&copy; 2026 Fitness Matters. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Invisible Recaptcha Container required by Firebase -->
+    <div id="recaptcha-container"></div>
+
+    <!-- Firebase App & Auth SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

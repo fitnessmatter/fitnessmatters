@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Matters | About Us</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            padding-bottom: 4rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: #121212 !important;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: #ffffff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1rem;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 1.15rem;
+            color: #ffffff;
+        }
+
+        .brand-name span {
+            color: #f59e0b;
+            margin-left: 0.35rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-item {
+            color: #888888;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover, .nav-item.active { color: #ffffff; }
+
+        .user-profile-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            background: #222222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: #111111;
+            border: 1px solid #333333;
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .dashboard-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 3rem 0 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #a0a0a0;
+            font-size: 1rem;
+        }
+
+        .hero-banner {
+            background: #1e1e24;
+            border: 1px solid #333333;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .hero-banner h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .hero-banner p {
+            color: #a0a0a0;
+            line-height: 1.6;
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: #1e1e24;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #f59e0b;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-card p {
+            color: #a0a0a0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: #1e1e24;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #a0a0a0;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+            <span class="brand-name">FITNESS<span>MATTERS</span></span>
+        </div>
+
+        <div class="nav-menu">
+            <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+            <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+            <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+            <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+            <a href="about.html" class="nav-item active"><i class="fa-solid fa-circle-info"></i> About</a>
+            <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+        </div>
+
+        <div class="user-profile-nav">
+            <div class="avatar">A</div>
+            <button id="logoutBtn" class="logout-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+    </nav>
+
+    <main class="dashboard-wrapper">
+        <div class="page-header">
+            <h1>About Fitness Matters</h1>
+            <p>Empowering individuals to reach peak performance through science-backed training.</p>
+        </div>
+
+        <div class="hero-banner">
+            <h2>Our Mission</h2>
+            <p>At Fitness Matters, we believe optimal fitness requires an integrated approach. By combining custom workout protocols, precision nutrition planning, and realistic goal tracking, we equip athletes and everyday fitness enthusiasts with the tools they need to succeed.</p>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <h3>1200+</h3>
+                <p>Active Members</p>
+            </div>
+            <div class="stat-card">
+                <h3>5+</h3>
+                <p>Expert Coaches</p>
+            </div>
+            <div class="stat-card">
+                <h3>98%</h3>
+                <p>Success Rate</p>
+            </div>
+        </div>
+
+        <h3 class="section-title">Why Choose Us</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                <h4>Tailored Workouts</h4>
+                <p>Every training plan is structured by certified strength coaches to target hypertrophy, endurance, or functional strength.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-utensils"></i></div>
+                <h4>Precision Nutrition</h4>
+                <p>Macro-balanced diets engineered to support fat loss, muscle growth, or specialized dietary requirements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h4>Data-Driven Progress</h4>
+                <p>Track metrics, body composition changes, and personal records seamlessly using our goals dashboard.</p>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
