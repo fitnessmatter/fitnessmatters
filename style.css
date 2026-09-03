@@ -1,13 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Matters | Workout Plans</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
+/* Core Page Theme & Pure Black Background */
+html, body {
+  background-color: #0d0d0e !important;
+  color: #ffffff !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Dashboard Wrapper */
+.dashboard-wrapper {
+  padding: 24px 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Gold/Amber Brand Highlight */
+.brand-name span {
+  color: #f59e0b !important; /* Gold / Amber Highlight */
+}
+
+/* Card Styling (Exact match to Workout cards) */
+.stats-grid, .dashboard-card, .metric-card, .card {
+  background: #18181b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  margin-top: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Headers & Amber Stat Highlights */
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff !important;
+  margin-bottom: 6px;
+}
+
+.page-header p {
+  color: #a1a1aa !important;
+  font-size: 0.95rem;
+}
+
+.stat-value, .stat-number {
+  color: #f59e0b !important; /* Amber Highlight */
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+}
+
+.stat-label {
+  color: #a1a1aa !important;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Active Nav Link Styling */
+.nav-item.active {
+  color: #ffffff !important;
+  background: rgba(245, 158, 11, 0.15) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 8px;
+}
+
+.dashboard-wrapper {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.page-header p {
+  color: #a0a0a0;
+  font-size: 14px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: #000000 !important;
+  border-bottom: 1px solid #1c1c1c !important;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 1.1rem;
+}
+
+.brand-name {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-item {
+  color: #a0a0a0;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+}
+
+.nav-item:hover, .nav-item.active {
+  color: #ffffff;
+}
         /* Force complete pitch black overrides */
         html, body {
             background-color: #000000 !important;
@@ -85,7 +215,7 @@
         }
 
         .badge-popular {
-            background: #ffffff !important;
+            background: #fdbe12 !important;
             color: #000000 !important;
             font-weight: 700;
         }
@@ -361,86 +491,107 @@
 
 .submit-btn:hover {
     background: #d97706;
-@media (max-width: 768px) {
-  /* Stack navbar elements vertically */
+}
+/* --- Base Grid & Card Styles --- */
+.stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 12px !important;
+  margin-top: 20px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.stat-card {
+  background: #18181b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 14px !important;
+  padding: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+.stat-label {
+  color: #a1a1aa !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.stat-number {
+  color: #f59e0b !important;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  margin: 6px 0 0 0 !important;
+}
+
+.stat-number small {
+  font-size: 0.85rem !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+.page-header {
+  text-align: center !important;
+  margin-bottom: 24px !important;
+}
+
+.page-header h1 {
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin-bottom: 6px !important;
+}
+
+.page-header p {
+  color: #a1a1aa !important;
+  font-size: 0.9rem !important;
+  margin: 0 auto !important;
+}
+/* Page Header Accent Highlight */
+.page-header h1 span {
+  color: #f59e0b !important; /* Gold/Amber highlight matching MATTERS */
+}
+/* --- Mobile Media Queries (ALWAYS KEEP AT THE VERY BOTTOM) --- */
+@media screen and (max-width: 768px) {
+  /* Mobile navbar overrides here... */
+}
+/* Mobile Layout Overrides */
+@media screen and (max-width: 768px) {
   .navbar {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    padding: 10px 5px !important;
+    padding: 12px 8px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
 
-  /* Center brand logo and avatar profile */
   .nav-brand, .user-profile-nav {
     margin-bottom: 8px !important;
     justify-content: center !important;
   }
 
-  /* Wrap menu items into a clean compact grid */
   .nav-menu {
     display: flex !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
     width: 100% !important;
-    gap: 6px 8px !important;
+    gap: 8px 12px !important;
     overflow: visible !important;
     white-space: normal !important;
   }
 
-  /* Reduce padding and font sizes for mobile view */
   .nav-menu .nav-item {
-    font-size: 11px !important;
-    padding: 4px 6px !important;
+    font-size: 0.82rem !important;
+    padding: 6px 10px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 6px !important;
     white-space: nowrap !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 4px !important;
-  }
-
-  /* Shrink icon sizes so text fits */
-  .nav-menu .nav-item i {
-    font-size: 12px !important;
-  }
-}
-  /*Make header stack vertically */
-  header {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    width: 100% !important;
-    padding: 10px 5px !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Make logo full width & centered */
-  header .logo {
-    margin-bottom: 8px !important;
-    text-align: center !important;
-  }
-
-  /* Wrap links container so options go to next row */
-  header nav {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    width: 100% !important;
-    gap: 6px 12px !important;
-  }
-
-  /* Individual link sizing */
-  header nav a {
-    font-size: 13px !important;
-    padding: 4px 8px !important;
-    white-space: nowrap !important;
-  }
-
-  /* Scale registration card to full mobile width */
-  .auth-container, .auth-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 15px !important;
-    box-sizing: border-box !important;
   }
 }
