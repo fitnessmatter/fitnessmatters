@@ -361,34 +361,86 @@
 
 .submit-btn:hover {
     background: #d97706;
-}
 @media (max-width: 768px) {
-  /* Main navigation container */
+  /* Stack navbar elements vertically */
   .navbar {
     display: flex !important;
-    flex-direction: column !important; /* Stack logo above links */
+    flex-direction: column !important;
     align-items: center !important;
-    padding: 10px 8px !important;
+    padding: 10px 5px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
 
-  /* Nav links container */
-  .nav-links {
-    display: flex !important;
-    flex-wrap: wrap !important; /* Wrap items onto the next line */
-    justify-content: center !important; /* Center align all links */
-    gap: 6px 10px !important; /* Tight spacing between items */
-    width: 100% !important;
-    overflow-x: visible !important; /* Disable horizontal swipe/scroll */
-    white-space: normal !important;
-    padding: 8px 0 0 0 !important;
+  /* Center brand logo and avatar profile */
+  .nav-brand, .user-profile-nav {
+    margin-bottom: 8px !important;
+    justify-content: center !important;
   }
 
-  /* Individual nav link styling */
-  .nav-links a {
-    font-size: 12px !important; /* Compact text size */
+  /* Wrap menu items into a clean compact grid */
+  .nav-menu {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    width: 100% !important;
+    gap: 6px 8px !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+
+  /* Reduce padding and font sizes for mobile view */
+  .nav-menu .nav-item {
+    font-size: 11px !important;
+    padding: 4px 6px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+
+  /* Shrink icon sizes so text fits */
+  .nav-menu .nav-item i {
+    font-size: 12px !important;
+  }
+}
+  /*Make header stack vertically */
+  header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 10px 5px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Make logo full width & centered */
+  header .logo {
+    margin-bottom: 8px !important;
+    text-align: center !important;
+  }
+
+  /* Wrap links container so options go to next row */
+  header nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    width: 100% !important;
+    gap: 6px 12px !important;
+  }
+
+  /* Individual link sizing */
+  header nav a {
+    font-size: 13px !important;
     padding: 4px 8px !important;
     white-space: nowrap !important;
+  }
+
+  /* Scale registration card to full mobile width */
+  .auth-container, .auth-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
   }
 }
