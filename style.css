@@ -363,29 +363,32 @@
     background: #d97706;
 }
 @media (max-width: 768px) {
-  /* Prevent horizontal scrolling */
-  body {
-    overflow-x: hidden;
-  }
-
-  /* Make navigation wrap or scroll cleanly */
+  /* Main navigation container */
   .navbar {
-    flex-wrap: wrap;
-    padding: 10px 15px;
-    gap: 10px;
-  }
-
-  .nav-links {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    width: 100%;
-    padding-bottom: 5px;
-  }
-
-  /* Scale cards to full mobile width */
-  .card, .stat-card {
+    display: flex !important;
+    flex-direction: column !important; /* Stack logo above links */
+    align-items: center !important;
+    padding: 10px 8px !important;
     width: 100% !important;
-    max-width: 100%;
+    box-sizing: border-box !important;
+  }
+
+  /* Nav links container */
+  .nav-links {
+    display: flex !important;
+    flex-wrap: wrap !important; /* Wrap items onto the next line */
+    justify-content: center !important; /* Center align all links */
+    gap: 6px 10px !important; /* Tight spacing between items */
+    width: 100% !important;
+    overflow-x: visible !important; /* Disable horizontal swipe/scroll */
+    white-space: normal !important;
+    padding: 8px 0 0 0 !important;
+  }
+
+  /* Individual nav link styling */
+  .nav-links a {
+    font-size: 12px !important; /* Compact text size */
+    padding: 4px 8px !important;
+    white-space: nowrap !important;
   }
 }
