@@ -555,6 +555,33 @@ html, body {
 .page-header h1 span {
   color: #f59e0b !important; /* Gold/Amber highlight matching MATTERS */
 }
+/* CENTERING FOOTER STYLES */
+.app-footer {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 20px 0 !important;
+  margin: 40px auto 0 auto !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #0d0d0e !important;
+  box-sizing: border-box !important;
+}
+
+.app-footer p {
+  color: #fdfdfd !important;
+  font-size: 0.85rem !important;
+  margin: 0 !important;
+  padding: 0 15px !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.app-footer p span {
+  color: #f59e0b !important;
+  font-weight: 600 !important;
+}
 /* --- Mobile Media Queries (ALWAYS KEEP AT THE VERY BOTTOM) --- */
 @media screen and (max-width: 768px) {
   /* Mobile navbar overrides here... */
