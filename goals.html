@@ -1,195 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Matters | Goal Tracking</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Fitness Matters | Goals</title>
+  
+  <!-- FontAwesome CDN (Loads the lightning bolt and icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=7.0" />
 </head>
-<body></body>
+<body class="app-body">
 
-   <nav class="navbar">
-    <div class="nav-brand">
-        <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-        <span class="brand-name">FITNESS<span>MATTERS</span></span>
+  <!-- GLOBAL NAVBAR WITH HAMBURGER -->
+  <nav class="navbar">
+    <div class="nav-header">
+      <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="nav-brand">
+  <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+  <h1 class="brand-name">FITNESS<span>MATTERS</span></h1>
+</div>
     </div>
-    <div class="nav-menu">
-        <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-        <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-        <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-        <a href="goals.html" class="nav-item active"><i class="fa-solid fa-bullseye"></i> Goals</a>
-        <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
-        <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
-    </div>
-    <div class="user-profile-nav">
-        <div class="avatar">A</div>
-        <button id="logoutBtn" class="logout-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-right-from-bracket"></i></button>
-    </div>
+  <!-- MENU LINKS (Update the "active" class per page) -->
+  <div class="nav-menu">
+    <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+    <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+    <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+    <a href="goals.html" class="nav-item active"><i class="fa-solid fa-bullseye"></i> Goals</a>
+    <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+    <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+  </div>
 </nav>
-    <main class="dashboard-wrapper">
-       <div class="page-header">
-    <h1 style="color: #f59e0b !important;">Fitness Targets & Milestones</h1>
-    <p>Track your personal records, weight goals, and overall progress.</p>
+
+<!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h3>User Profile</h3>
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+  </div>
+  
+  <div class="user-profile-summary">
+    <div class="avatar-circle">A</div>
+    <div class="user-info">
+      <h4>Aditya</h4>
+      <p>Pro Member</p>
+    </div>
+  </div>
+
+  <div class="sidebar-menu">
+    <a href="#" class="sidebar-item"><i class="fa-solid fa-user"></i> My Profile</a>
+    <a href="#" class="sidebar-item"><i class="fa-solid fa-gear"></i> Account Settings</a>
+    <a href="#" class="sidebar-item"><i class="fa-solid fa-bell"></i> Notifications</a>
+    <a href="#" class="sidebar-item logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </div>
+</aside>   
+    </nav>
+  </div>
+</header>
+  <!-- MAIN DASHBOARD CONTENT -->
+  <!-- PAGE HEADER -->
+<div class="page-header">
+  <h1 class="page-title">
+    <span class="gold-text">Fitness Targets<br>
+    <span class="ampersand">&</span><br>
+    Milestones
+  </h1>
+  <p class="page-subtitle">Track your personal records, weight goals, and overall progress.</p>
 </div>
 
-        <!-- Metric Summary Bar -->
-        <div class="goals-summary">
-            <div class="summary-card">
-                <div class="summary-icon"><i class="fa-solid fa-bullseye"></i></div>
-                <div class="summary-info">
-                    <h4>Active Goals</h4>
-                    <span>5 Active</span>
-                </div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-icon"><i class="fa-solid fa-trophy"></i></div>
-                <div class="summary-info">
-                    <h4>Completed</h4>
-                    <span>12 Goals</span>
-                </div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-icon"><i class="fa-solid fa-fire"></i></div>
-                <div class="summary-info">
-                    <h4>Current Streak</h4>
-                    <span>14 Days</span>
-                </div>
-            </div>
+<!-- STATS OVERVIEW (WITH BACKGROUND CARDS) -->
+<div class="stats-overview-grid">
+  <div class="stat-card">
+    <span class="stat-number">5</span>
+    <span class="stat-label">ACTIVE GOALS</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-number">12</span>
+    <span class="stat-label">COMPLETED</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-number">14</span>
+    <span class="stat-label">DAY STREAK</span>
+  </div>
+</div>
+
+<!-- ACTIVE MILESTONES -->
+<h3 class="section-heading">Active Milestones</h3>
+
+<div class="milestones-list">
+  <!-- Goal 1 -->
+  <div class="goal-card">
+    <div class="goal-header">
+      <div class="goal-title-group">
+        <i class="fa-solid fa-chart-line goal-icon"></i>
+        <div>
+          <h4>Target Body Fat %</h4>
+          <p class="goal-sub">Fat Loss Milestone</p>
         </div>
+      </div>
+      <span class="badge in-progress">In Progress</span>
+    </div>
+    <div class="goal-metrics">
+      <div><span>Current</span><strong>18%</strong></div>
+      <div><span>Target</span><strong>12%</strong></div>
+      <div><span>Target Date</span><strong>Oct 30</strong></div>
+    </div>
+  </div>
 
-        <!-- Active Goals Grid -->
-        <div class="goals-grid">
-            <!-- Goal 1 -->
-            <div class="goal-card">
-                <div>
-                    <div class="goal-header">
-                        <div class="goal-title">
-                            <h3>Target Body Fat %</h3>
-                            <span class="goal-category">Fat Loss</span>
-                        </div>
-                        <span class="goal-badge">In Progress</span>
-                    </div>
-                    <div class="goal-metrics">
-                        <span class="metric-label">Current: 18%</span>
-                        <span class="metric-value">Target: 12%</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-fill" style="width: 65%;"></div>
-                    </div>
-                </div>
-                <div class="goal-footer">
-                    <span class="deadline"><i class="fa-regular fa-calendar"></i> Target: Oct 30</span>
-                    <button class="update-btn">Log Progress</button>
-                </div>
-            </div>
-
-            <!-- Goal 2 -->
-            <div class="goal-card">
-                <div>
-                    <div class="goal-header">
-                        <div class="goal-title">
-                            <h3>Bench Press 100kg</h3>
-                            <span class="goal-category">Strength</span>
-                        </div>
-                        <span class="goal-badge">On Track</span>
-                    </div>
-                    <div class="goal-metrics">
-                        <span class="metric-label">Current: 85kg</span>
-                        <span class="metric-value">Target: 100kg</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-fill" style="width: 85%;"></div>
-                    </div>
-                </div>
-                <div class="goal-footer">
-                    <span class="deadline"><i class="fa-regular fa-calendar"></i> Target: Nov 15</span>
-                    <button class="update-btn">Log Progress</button>
-                </div>
-            </div>
-
-            <!-- Goal 3 -->
-            <div class="goal-card">
-                <div>
-                    <div class="goal-header">
-                        <div class="goal-title">
-                            <h3>5K Run Duration</h3>
-                            <span class="goal-category">Endurance</span>
-                        </div>
-                        <span class="goal-badge">In Progress</span>
-                    </div>
-                    <div class="goal-metrics">
-                        <span class="metric-label">Current: 27 mins</span>
-                        <span class="metric-value">Target: 22 mins</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-fill" style="width: 45%;"></div>
-                    </div>
-                </div>
-                <div class="goal-footer">
-                    <span class="deadline"><i class="fa-regular fa-calendar"></i> Target: Dec 01</span>
-                    <button class="update-btn">Log Progress</button>
-                </div>
-            </div>
-
-            <!-- Goal 4 -->
-            <div class="goal-card">
-                <div>
-                    <div class="goal-header">
-                        <div class="goal-title">
-                            <h3>Daily Water Intake</h3>
-                            <span class="goal-category">Habit</span>
-                        </div>
-                        <span class="goal-badge">Daily Goal</span>
-                    </div>
-                    <div class="goal-metrics">
-                        <span class="metric-label">Current: 2.5L</span>
-                        <span class="metric-value">Target: 3.5L</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-fill" style="width: 70%;"></div>
-                    </div>
-                </div>
-                <div class="goal-footer">
-                    <span class="deadline"><i class="fa-solid fa-rotate-right"></i> Resets Daily</span>
-                    <button class="update-btn">Log Progress</button>
-                </div>
-            </div>
-
-            <!-- Goal 5 -->
-            <div class="goal-card">
-                <div>
-                    <div class="goal-header">
-                        <div class="goal-title">
-                            <h3>Monthly Workouts</h3>
-                            <span class="goal-category">Consistency</span>
-                        </div>
-                        <span class="goal-badge">On Track</span>
-                    </div>
-                    <div class="goal-metrics">
-                        <span class="metric-label">Current: 16 Sessions</span>
-                        <span class="metric-value">Target: 20</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-fill" style="width: 80%;"></div>
-                    </div>
-                </div>
-                <div class="goal-footer">
-                    <span class="deadline"><i class="fa-regular fa-calendar"></i> Target: End of Month</span>
-                    <button class="update-btn">Log Progress</button>
-                </div>
-            </div>
-
-            <!-- Goal Action Card -->
-            <div class="add-goal-card">
-                <div class="add-icon"><i class="fa-solid fa-plus"></i></div>
-                <span>Create New Target Goal</span>
-            </div>
+  <!-- Goal 2 -->
+  <div class="goal-card">
+    <div class="goal-header">
+      <div class="goal-title-group">
+        <i class="fa-solid fa-dumbbell goal-icon"></i>
+        <div>
+          <h4>Bench Press 100kg</h4>
+          <p class="goal-sub">Strength Goal</p>
         </div>
-    </main>
-<footer class="app-footer">
-    <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
+      </div>
+      <span class="badge in-progress">In Progress</span>
+    </div>
+    <div class="goal-metrics">
+      <div><span>Current</span><strong>85 kg</strong></div>
+      <div><span>Target</span><strong>100 kg</strong></div>
+      <div><span>Target Date</span><strong>Dec 15</strong></div>
+    </div>
+  </div>
+
+  <!-- Goal 3: SET A NEW GOAL CARD -->
+  <button class="add-goal-card" onclick="alert('Set a new custom goal feature clicked!')">
+    <i class="fa-solid fa-circle-plus"></i>
+    <span>Set a New Goal</span>
+  </button>
+</div>
+</div>
+
+<!-- GUARANTEED FOOTER -->
+<footer class="site-footer">
+  <p>&copy; 2026 Fitness Matters. All rights reserved.</p>
 </footer>
-</body>
-</html>

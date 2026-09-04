@@ -11,43 +11,76 @@
 </head>
 <body>
 
-    <nav class="navbar">
+    <!-- GLOBAL NAVBAR WITH HAMBURGER -->
+<nav class="navbar">
+  <div class="nav-header">
+    <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
     <div class="nav-brand">
-        <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-        <span class="brand-name">FITNESS<span>MATTERS</span></span>
+      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+      <span class="brand-name">FITNESS<span>MATTERS</span></span>
     </div>
-    <div class="nav-menu">
-        <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-        <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-        <a href="nutrition.html" class="nav-item active"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-        <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
-        <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
-        <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+  </div>
+
+  <!-- MENU LINKS (Update the "active" class per page) -->
+  <div class="nav-menu">
+    <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+    <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+    <a href="nutrition.html" class="nav-item active"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+    <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+    <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+    <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+  </div>
+</nav>
+
+<!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h3>User Profile</h3>
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+  </div>
+  
+  <div class="user-profile-summary">
+    <div class="avatar-circle">A</div>
+    <div class="user-info">
+      <h4>Aditya</h4>
+      <p>Pro Member</p>
     </div>
-    <div class="user-profile-nav">
-        <div class="avatar">A</div>
-        <button id="logoutBtn" class="logout-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-right-from-bracket"></i></button>
-    </div>
+  </div>
+
+  <div class="sidebar-menu">
+    <a href="#" class="sidebar-item"><i class="fa-solid fa-user"></i> My Profile</a>
+    <a href="#" class="sidebar-item"><i class="fa-solid fa-gear"></i> Account Settings</a>
+    <a href="#" class="sidebar-item"><i class="fa-solid fa-bell"></i> Notifications</a>
+    <a href="#" class="sidebar-item logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </div>
+</aside>
+    
 </nav>
     <main class="dashboard-wrapper">
         <div class="page-header">
     <h1><span style="color: #f59e0b !important;">Premium Nutrition Plans</span></h1>
-    <p>Fuel your body with customized meal protocols and macro strategies.</p>
+    <p><span style="color: #f6f5f2 !important;">Fuel your body with customized meal protocols and macro strategies.</p>
 </div>
 
         <div class="plans-grid">
             <!-- Plan 1 -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <h3>Bulking Diet Plan</h3>
-                    <p>High-protein macro distribution optimized for lean muscle gains.</p>
+                    <h3><span style="color: #f59e0b !important;">Bulking Diet Plan</h3>
+                    <p>Caloric Surplus Protocol for Serious Mass & Muscle Gains.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="amount">₹699</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> 2,800 kcal / Daily Target</li>
-                    <li><i class="fa-solid fa-check"></i> High Protein (200g target)</li>
+                    <li><i class="fa-solid fa-check"></i> High Carbs & Protein (200g target)</li>
                     <li><i class="fa-solid fa-check"></i> Post-workout Shake Matrix</li>
                 </ul>
                 <button class="buy-btn">Subscribe Plan</button>
@@ -55,9 +88,9 @@
 
             <!-- Plan 2 -->
             <div class="plan-card featured-plan">
-                <span class="badge">Popular</span>
+                <span class="badge">Most Popular</span>
                 <div class="plan-header">
-                    <h3>Keto Shred Protocol</h3>
+                    <h3><span style="color: #f59e0b !important;">Keto Shred Protocol</h3>
                     <p>Ultra low-carb diet aimed at rapid body fat reduction.</p>
                 </div>
                 <div class="plan-price">
@@ -74,11 +107,11 @@
             <!-- Plan 3 -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <h3>Carb Cycle Diet</h3>
+                    <h3><span style="color: #f59e0b !important;">Carb Cycle Diet</h3>
                     <p>100% Vegan plan packed with complete plant proteins.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="amount">₹699</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> Amino Acid Balanced Meals</li>
@@ -91,11 +124,11 @@
             <!-- Plan 4 -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <h3>Fat Loss Nutrition Plan</h3>
+                    <h3><span style="color: #f59e0b !important;">Fat Loss Nutrition Plan</h3>
                     <p>Meal timing blueprint paired with nutrient-dense eating windows.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="amount">₹699</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> Fasting Window Schedules</li>
@@ -106,13 +139,14 @@
             </div>
 
             <!-- Plan 5 -->
-            <div class="plan-card">
+            <div class="plan-card featured plan">
+                <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3>Diabetes Nutrition PLan</h3>
+                    <h3><span style="color: #f59e0b !important;">Diabetes Nutrition PLan</h3>
                     <p>Carb-cycling plan built for high endurance and intense training.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="amount">₹1499</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> Intra-workout Carb Timings</li>
@@ -123,13 +157,14 @@
             </div>
 
             <!-- Plan 6 -->
-            <div class="plan-card">
+            <div class="plan-card featured plan">
+                <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3>High Blood Pressure Nutrition Plan</h3>
+                    <h3><span style="color: #f59e0b !important;">High Blood Pressure Nutrition Plan</h3>
                     <p>Sustainable, non-restrictive fat loss system with zero energy crashes.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="amount">₹1499</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> High Volume Low Calorie</li>
@@ -140,13 +175,14 @@
             </div>
 
             <!-- Plan 7 -->
-            <div class="plan-card">
+            <div class="plan-card featured plan">
+                <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3>High Cholesterol Nutrition Plan</h3>
+                    <h3><span style="color: #f59e0b !important;">High Cholesterol Nutrition Plan</h3>
                     <p>High-calorie eating structure without excessive fat accumulation.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="amount">₹1499</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> 3,500+ Daily kcal Blueprint</li>
@@ -157,13 +193,14 @@
             </div>
 
             <!-- Plan 8 -->
-            <div class="plan-card">
+            <div class="plan-card featured plan">
+                <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3>PCOD Nutrition Plan</h3>
+                    <h3><span style="color: #f59e0b !important;">PCOD Nutrition Plan</h3>
                     <p>Heart-healthy dietary plan focused on long-term sustainability.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="amount">₹1499</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> Rich in Omega-3 Fats</li>
@@ -174,13 +211,14 @@
             </div>
 
             <!-- Plan 9 -->
-            <div class="plan-card">
+            <div class="plan-card featured plan">
+                <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3>Thyroid Nutrition Plan</h3>
+                    <h3><span style="color: #f59e0b !important;">Thyroid Nutrition Plan</h3>
                     <p>Grain-free, dairy-free diet modeled on unprocessed nutrition.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="amount">₹1499</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> Grass-fed Meats & Seeds</li>
@@ -191,13 +229,14 @@
             </div>
 
             <!-- Plan 10 -->
-            <div class="plan-card">
+            <div class="plan-card featured plan">
+                <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3>Liver Nutrition Plan</h3>
+                    <h3><span style="color: #f59e0b !important;">Liver Nutrition Plan</h3>
                     <p>Low Glycemic Index foods engineered for stable insulin response.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="amount">₹1499</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> Low GI Meal Charts</li>
@@ -210,7 +249,7 @@
             <!-- Plan 11 -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <h3>Peak Week Diet Plan</h3>
+                    <h3><span style="color: #f59e0b !important;">Peak Week Diet Plan</h3>
                     <p>Designed specifically for gut sensitivities and auto-immune focus.</p>
                 </div>
                 <div class="plan-price">
@@ -228,7 +267,7 @@
             <div class="plan-card featured-plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3>Calorie Deficit Nutrition PLan</h3>
+                    <h3><span style="color: #f59e0b !important;">Calorie Deficit Nutrition PLan</h3>
                     <p>Fully bespoke meal design tailored directly by a dedicated dietitian.</p>
                 </div>
                 <div class="plan-price">
@@ -242,14 +281,14 @@
                 <button class="buy-btn featured-btn">Subscribe Plan</button>
             </div>
             <!-- Plan 13 -->
-            <div class="plan-card featured-plan">
+            <div class="plan-card featured plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3>Drug Rehab Nutrition PLan</h3>
+                    <h3><span style="color: #f59e0b !important;">Drug Rehab Nutrition PLan</h3>
                     <p>Fully bespoke meal design tailored directly by a dedicated dietitian.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹1299</span><span class="duration">/ month</span>
+                    <span class="amount">₹1499</span><span class="duration">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> Weekly Call Consultations</li>
@@ -263,5 +302,7 @@
 <footer class="app-footer">
     <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
 </footer>
+<!-- Link external script file -->
+  <script src="script.js"></script>
 </body>
 </html>

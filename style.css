@@ -1,3 +1,22 @@
+/* ==========================================
+   PREVENT HEADER SHIFT ACROSS PAGES
+   ========================================== */
+
+/* Always reserve vertical scrollbar space */
+html {
+  overflow-y: scroll !important;
+}
+
+/* Force navbar and containers to calculate width identically */
+.navbar,
+.nav-header,
+.dashboard-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 /* Core Page Theme & Pure Black Background */
 html, body {
   background-color: #0d0d0e !important;
@@ -582,6 +601,79 @@ html, body {
   color: #f59e0b !important;
   font-weight: 600 !important;
 }
+/* GOLD SUBSCRIBE BUTTON STYLING */
+.plan-card button,
+.subscribe-btn,
+button.subscribe-btn {
+  background-color: #f59e0b !important;
+  color: #0d0d0e !important; /* Dark text for high contrast */
+  font-weight: 700 !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease-in-out !important;
+  width: 100% !important; /* Spans full card width for a cleaner mobile look */
+}
+
+.plan-card button:hover,
+.subscribe-btn:hover {
+  background-color: #d97706 !important; /* Slightly darker gold on hover */
+  transform: translateY(-1px) !important;
+}
+/* Center Align About Page Section Headings & Content */
+.about-section h2,
+.about-section h3,
+.feature-card h3,
+.feature-card p,
+.feature-card .icon {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.feature-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+/* SINGLE-ROW STATS GRID FOR MOBILE */
+.stats-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin-bottom: 24px !important;
+}
+
+.stats-row .stat-card {
+  flex: 1 !important;
+  background-color: #18181b !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 12px 6px !important;
+  text-align: center !important;
+  min-width: 0 !important; /* Prevents overflow */
+}
+
+.stats-row .stat-number {
+  color: #f59e0b !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 4px !important;
+}
+
+.stats-row .stat-label {
+  color: #f5f5f8 !important;
+  font-size: 0.68rem !important;
+  line-height: 1.1 !important;
+  white-space: normal !important;
+}
 /* --- Mobile Media Queries (ALWAYS KEEP AT THE VERY BOTTOM) --- */
 @media screen and (max-width: 768px) {
   /* Mobile navbar overrides here... */
@@ -615,10 +707,1698 @@ html, body {
   .nav-menu .nav-item {
     font-size: 0.82rem !important;
     padding: 6px 10px !important;
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(227, 212, 43, 0.08) !important;
     border-radius: 6px !important;
     white-space: nowrap !important;
     display: inline-flex !important;
     align-items: center !important;
   }
+}
+/* RESPONSIVE MOBILE CONTACT ROW */
+.contact-inline-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  flex-wrap: wrap !important; /* Allows items to wrap neatly on very narrow screens */
+  gap: 8px 12px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 15px auto 25px auto !important;
+  padding: 0 4px !important;
+  box-sizing: border-box !important;
+}
+
+.contact-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.65rem !important; /* Scaled down slightly to fit tight viewports */
+  font-weight: 500 !important;
+  transition: color 0.2s ease !important;
+}
+
+.social-logo {
+  width: 14px !important;
+  height: 14px !important;
+  filter: invert(1) brightness(2) !important;
+  flex-shrink: 0 !important;
+}
+
+.contact-link:hover {
+  color: #f59e0b !important;
+}}
+/* INLINE CONTACT LOGO ALIGNMENT */
+.contact-inline-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 16px !important;
+  width: 100% !important;
+  margin: 15px 0 25px 0 !important;
+  box-sizing: border-box !important;
+}
+
+.contact-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.social-logo {
+  width: 16px !important;
+  height: 16px !important;
+  /* Converts black CDN icons to crisp white */
+  filter: invert(1) brightness(2) !important; 
+}
+
+.contact-link:hover {
+  color: #f59e0b !important;
+  opacity: 0.85;
+}
+/* CONTACT FORM CONTAINER RESPONSIVE FIX */
+form,
+.contact-form,
+.contact-card,
+.contact-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 16px !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+}
+
+/* INPUTS & TEXTAREA RESPONSIVE SIZING */
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  font-size: 0.85rem !important;
+  padding: 10px 12px !important;
+  margin-bottom: 12px !important;
+}
+
+/* SUBMIT BUTTON FIT */
+form button,
+form button[type="submit"] {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 12px !important;
+  font-size: 0.9rem !important;
+  background-color: #f59e0b !important;
+  color: #0d0d0e !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+/* STICKY FOOTER TO BOTTOM OF VIEWPORT */
+html, body {
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+
+/* MAIN WRAPPER GROWS TO PUSH FOOTER DOWN */
+main, 
+.dashboard-wrapper, 
+.app-container {
+  flex: 1 0 auto !important;
+}
+
+/* FOOTER SNAPS TO BOTTOM */
+.app-footer {
+  flex-shrink: 0 !important;
+  margin-top: auto !important;
+}
+/* SEPARATE GOAL BLOCKS STYLING */
+.goals-blocks-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  margin: 0 auto !important;
+  padding: 0 12px 24px 12px !important;
+  box-sizing: border-box !important;
+}
+
+.goal-item-block {
+  background-color: #18181b !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  box-sizing: border-box !important;
+}
+
+/* Stat Blocks Row Align */
+.goal-item-block:has(.block-content) {
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+.block-icon {
+  font-size: 1.4rem !important;
+  background: rgba(245, 158, 11, 0.1) !important;
+  padding: 8px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.block-label {
+  font-size: 0.72rem !important;
+  color: #a1a1aa !important;
+}
+
+.block-value {
+  font-size: 1.1rem !important;
+  color: #f59e0b !important;
+  margin: 2px 0 0 0 !important;
+  font-weight: 700 !important;
+}
+
+/* Milestone Block Headers */
+.block-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.block-title-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.block-title {
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+  margin: 0 !important;
+  font-weight: 600 !important;
+}
+
+.block-sub {
+  color: #a1a1aa !important;
+  font-size: 0.7rem !important;
+}
+
+.block-details {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding-top: 6px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  font-size: 0.75rem !important;
+  color: #d4d4d8 !important;
+}
+
+.block-details p {
+  margin: 0 !important;
+}
+
+.block-date {
+  color: #a1a1aa !important;
+  font-size: 0.68rem !important;
+}
+
+.badge.yellow {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #f59e0b !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+}
+/* ==========================================
+   SEPARATE NAV-STYLE GOAL BLOCKS
+   ========================================== */
+
+.goals-list-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  margin: 0 auto !important;
+  padding: 0 12px 30px 12px !important;
+  box-sizing: border-box !important;
+}
+
+/* Base Block Styling - Matches Navbar Buttons */
+.goal-pill-block {
+  background-color: #1a1d24 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+  box-sizing: border-box !important;
+}
+
+.pill-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.pill-icon {
+  font-size: 1.2rem !important;
+}
+
+.pill-title {
+  color: #ffffff !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+}
+
+.pill-sub {
+  color: #a1a1aa !important;
+  font-size: 0.72rem !important;
+  margin: 2px 0 0 0 !important;
+}
+
+.pill-value {
+  color: #ffffff !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+}
+
+.pill-value.highlight {
+  color: #f59e0b !important;
+  font-weight: 700 !important;
+}
+
+/* Detailed Block Variant */
+.goal-pill-block.detailed {
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 10px !important;
+}
+
+.pill-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.pill-body {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding-top: 8px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  font-size: 0.78rem !important;
+  color: #d4d4d8 !important;
+}
+
+.pill-date {
+  color: #a1a1aa !important;
+  font-size: 0.72rem !important;
+}
+
+.badge.yellow {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #f59e0b !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, 
+  
+  <title>Fitness Matters | Goals</title>
+  <link rel="stylesheet" href="style.css?v=4.0" />
+</head>
+<body class="app-body">
+
+  <!-- TOP HEADER & NAVIGATION BAR -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">FITNESS<span class="highlight">MATTERS</span></span>
+      </div>
+      <nav class="nav-links">
+        <a href="home.html" class="nav-btn"> Overview</a>
+        <a href="workouts.html" class="nav-btn"> Workouts</a>
+        <a href="nutrition.html" class="nav-btn"> Nutrition</a>
+        <a href="goals.html" class="nav-btn active"> Goals</a>
+        <a href="about.html" class="nav-btn"> About</a>
+        <a href="contact.html" class="nav-btn"> Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN GOALS CONTAINER -->
+  <main class="dashboard-wrapper">
+    <section class="page-title-section">
+      <h1 class="page-title">Fitness Targets & Milestones</h1>
+      <p class="page-subtitle">Track your personal records, weight goals, and overall progress.</p>
+    </section>
+
+    <!-- SEPARATE NAV-STYLE OPTION BLOCKS -->
+    <div class="goals-list-container">
+      
+      <!-- Block 1 -->
+      <div class="goal-pill-block">
+        <div class="pill-left">
+          <span class="pill-icon">🎯</span>
+          <span class="pill-title">Active Goals</span>
+        </div>
+        <span class="pill-value highlight">5 Active</span>
+      </div>
+
+      <!-- Block 2 -->
+      <div class="goal-pill-block">
+        <div class="pill-left">
+          <span class="pill-icon">🏆</span>
+          <span class="pill-title">Completed</span>
+        </div>
+        <span class="pill-value">12 Goals</span>
+      </div>
+
+      <!-- Block 3 -->
+      <div class="goal-pill-block">
+        <div class="pill-left">
+          <span class="pill-icon">🔥</span>
+          <span class="pill-title">Current Streak</span>
+        </div>
+        <span class="pill-value highlight">14 Days</span>
+      </div>
+
+      <!-- Block 4 -->
+      <div class="goal-pill-block detailed">
+        <div class="pill-header">
+          <div class="pill-left">
+            <span class="pill-icon">📊</span>
+            <div>
+              <span class="pill-title">Target Body Fat %</span>
+              <p class="pill-sub">Fat Loss</p>
+            </div>
+          </div>
+          <span class="badge yellow">In Progress</span>
+        </div>
+        <div class="pill-body">
+          <span>Current: <strong>18%</strong> | Target: <strong>12%</strong></span>
+          <span class="pill-date">📅 Target: Oct 30</span>
+        </div>
+      </div>
+
+      <!-- Block 5 -->
+      <div class="goal-pill-block detailed">
+        <div class="pill-header">
+          <div class="pill-left">
+            <span class="pill-icon">🏋️</span>
+            <div>
+              <span class="pill-title">Bench Press 100kg</span>
+              <p class="pill-sub">Strength Milestone</p>
+            </div>
+          </div>
+          <span class="badge yellow">In Progress</span>
+        </div>
+        <div class="pill-body">
+          <span>Current: <strong>85kg</strong> | Target: <strong>100kg</strong></span>
+          <span class="pill-date">📅 Target: Dec 15</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- STICKY FOOTER -->
+  <footer class="app-footer">
+    <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
+/* ==========================================
+   ABOUT-PAGE MATCHING CARD STYLES
+   ========================================== */
+
+/* Top Stats Grid (3 Pills Row) */
+.stats-card-row {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  margin: 0 auto 20px auto !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 10px !important;
+  padding: 10px 4px !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.stat-number {
+  color: #ffffff !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+}
+
+.stat-label {
+  color: #9ca3af !important;
+  font-size: 0.58rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  margin-top: 2px !important;
+}
+
+/* Individual Card Styling */
+.goals-section-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  margin: 0 auto !important;
+  padding: 0 12px 30px 12px !important;
+  box-sizing: border-box !important;
+}
+
+.section-heading {
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 4px !important;
+  text-align: center !important;
+}
+
+.about-style-card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 14px !important;
+  padding: 14px 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+  box-sizing: border-box !important;
+}
+
+.card-header-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.card-title-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.card-icon {
+  font-size: 1.2rem !important;
+}
+
+.card-title {
+  color: #ffffff !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+}
+
+.card-subtitle {
+  color: #9ca3af !important;
+  font-size: 0.72rem !important;
+  margin: 1px 0 0 0 !important;
+}
+
+.status-pill.warning {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #f59e0b !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  padding: 3px 8px !important;
+  border-radius: 20px !important;
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+}
+
+.card-details-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.detail-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.detail-label {
+  color: #9ca3af !important;
+  font-size: 0.65rem !important;
+}
+
+.detail-value {
+  color: #ffffff !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  margin-top: 2px !important;
+}
+
+.detail-value.highlight {
+  color: #f59e0b !important;
+}
+/* ==========================================
+   HEADER & NAVBAR HORIZONTAL FLEX FIX
+   ========================================== */
+.app-header {
+  width: 100% !important;
+  background-color: #12141a !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 10px 12px !important;
+  box-sizing: border-box !important;
+}
+
+.header-container {
+  max-width: 440px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.logo {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+}
+
+.logo-text {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 1rem !important;
+}
+
+.logo-text .highlight {
+  color: #f59e0b !important;
+}
+
+.nav-links {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+}
+
+.nav-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #a1a1aa !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 5px 8px !important;
+  border-radius: 8px !important;
+  font-size: 0.7rem !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.nav-btn.active, .nav-btn:hover {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #f59e0b !important;
+  border-color: #f59e0b !important;
+}
+
+/* ==========================================
+   3 STAT BOXES HORIZONTAL ROW FIX
+   ========================================== */
+.stats-card-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  margin: 0 auto 16px auto !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+}
+
+.stat-box {
+  flex: 1 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 10px !important;
+  padding: 10px 4px !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.stat-number {
+  color: #ffffff !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+}
+
+.stat-label {
+  color: #9ca3af !important;
+  font-size: 0.58rem !important;
+  font-weight: 600 !important;
+  margin-top: 2px !important;
+}
+/* ==========================================
+   HEADER & NAVBAR HORIZONTAL FLEX FIX
+   ========================================== */
+.app-header {
+  width: 100% !important;
+  background-color: #12141a !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 10px 12px !important;
+  box-sizing: border-box !important;
+}
+
+.header-container {
+  max-width: 440px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.logo {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+}
+
+.logo-text {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 1rem !important;
+}
+
+.logo-text .highlight {
+  color: #f59e0b !important;
+}
+
+.nav-links {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+}
+
+.nav-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #a1a1aa !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 5px 8px !important;
+  border-radius: 8px !important;
+  font-size: 0.7rem !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.nav-btn.active, .nav-btn:hover {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #f59e0b !important;
+  border-color: #f59e0b !important;
+}
+
+/* ==========================================
+   3 STAT BOXES HORIZONTAL ROW FIX
+   ========================================== */
+.stats-card-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  margin: 0 auto 16px auto !important;
+  padding: 0 12px !important;
+  box-sizing: border-box !important;
+}
+
+.stat-box {
+  flex: 1 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 10px !important;
+  padding: 10px 4px !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.stat-number {
+  color: #ffffff !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+}
+
+.stat-label {
+  color: #9ca3af !important;
+  font-size: 0.58rem !important;
+  font-weight: 600 !important;
+  margin-top: 2px !important;
+}
+/* ==========================================
+   2ND IMAGE EXACT NAVBAR & LOGO MATCH
+   ========================================== */
+
+.logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.logo-box {
+  background: #ffffff !important;
+  color: #000000 !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.9rem !important;
+  font-weight: 800 !important;
+}
+
+.nav-links {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.nav-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+/* Active Highlight Pill (Exact Match to Image 2) */
+.nav-btn.active {
+  background: rgba(245, 158, 11, 0.1) !important;
+  color: #ffffff !important;
+  border: 1.5px solid #f59e0b !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2) !important;
+}
+
+.nav-icon {
+  width: 14px !important;
+  height: 14px !important;
+  fill: #ffffff !important;
+}
+/* ==========================================
+   VERTICAL SPACING BETWEEN PLAN CARDS
+   ========================================== */
+
+/* Spacing if cards are stacked inside a wrapper container */
+.plan-container,
+.plans-wrapper,
+.nutrition-plans-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important; /* Creates a clean 20px gap between each plan */
+  padding-bottom: 40px !important;
+}
+
+/* Fallback direct margin spacing for each plan card */
+.plan-card {
+  margin-bottom: 20px !important; /* Ensures vertical separation between stacked cards */
+  box-sizing: border-box !important;
+}
+
+/* Remove bottom margin from the last card to prevent layout overflow */
+.plan-card:last-child {
+  margin-bottom: 0 !important;
+}
+/* ==========================================
+   NAVBAR POSITIONING & BUTTON REMOVAL
+   ========================================== */
+
+/* Push top header/navbar down slightly */
+.app-header {
+  padding-top: 24px !important; /* Adjusts top spacing */
+  padding-bottom: 16px !important;
+}
+
+/* Force hide any remaining profile/logout elements */
+.user-profile,
+.user-avatar,
+.logout-btn,
+.profile-section,
+.user-menu,
+.header-container > div:last-child:not(.logo):not(.nav-links) {
+  display: none !important;
+}
+/* ==========================================
+   SPACE BETWEEN LOGO AND NAVBAR
+   ========================================== */
+
+/* Method 1: Using flex gap on container */
+.header-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 16px !important; /* Increases vertical gap between logo and navbar */
+}
+
+/* Method 2: Fallback margin directly on logo */
+.logo {
+  margin-bottom: 12px !important; /* Creates explicit separation */
+}
+/* ==========================================
+   FORCE SPACE BETWEEN LOGO AND NAVBAR
+   ========================================== */
+
+/* Structure header container as column with forced gap */
+.app-header .header-container,
+header .header-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 20px !important; /* Increase this value for more space */
+}
+
+/* Force bottom margin directly on the logo element */
+.app-header .logo,
+header .logo {
+  margin-bottom: 18px !important; /* Direct push away from navbar */
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Force top margin on the navigation links wrapper */
+.app-header .nav-links,
+header .nav-links {
+  margin-top: 6px !important;
+}
+/* ==========================================
+   EXACT HTML CLASS MATCH FOR SPACING
+   ========================================== */
+
+.navbar {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding-top: 20px !important;
+}
+
+.nav-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 22px !important; /* Forces the gap between logo & buttons */
+}
+
+.nav-menu {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 6px !important;
+}
+/* Header Layout Fix */
+.nav-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  width: 100% !important;
+  margin-bottom: 20px !important;
+}
+
+/* Hamburger Icon Positioning */
+.hamburger-btn {
+  position: absolute !important;
+  left: 12px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+  cursor: pointer !important;
+}
+
+/* Overlay Background */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+
+/* Sidebar Drawer */
+.sidebar {
+  position: fixed;
+  top: 0; left: -260px;
+  width: 250px; height: 100%;
+  background: #1c2029;
+  z-index: 1000;
+  transition: left 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar.open { left: 0; }
+.sidebar-overlay.open { display: block; }
+
+.sidebar-header {
+  display: flex; justify-content: space-between;
+  align-items: center; color: #fff; margin-bottom: 20px;
+}
+
+.close-btn { background: none; border: none; color: #fff; font-size: 1.5rem; }
+
+.user-profile-summary {
+  display: flex; align-items: center; gap: 12px;
+  padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.avatar-circle {
+  width: 40px; height: 40px; background: #f59e0b;
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-weight: 700; color: #000;
+}
+
+.sidebar-menu { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.sidebar-item { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; display: flex; gap: 10px; align-items: center; }
+.logout-link { color: #ef4444; margin-top: 20px; }
+/* ==========================================
+   STICKY FOOTER LAYOUT FIX
+   ========================================== */
+
+html, body {
+  height: 100% !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Force main content wrapper to expand and fill remaining space */
+.dashboard-wrapper,
+main {
+  flex: 1 0 auto !important;
+  width: 100% !important;
+}
+
+/* Pushes the footer directly to the bottom */
+.app-footer,
+footer {
+  flex-shrink: 0 !important;
+  width: 100% !important;
+  margin-top: auto !important; /* Forces footer to the bottom */
+  padding: 16px 0 !important;
+  text-align: center !important;
+  background: #1c2029 !important;
+}
+/* Header Layout Fix */
+.nav-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  width: 100% !important;
+  margin-bottom: 20px !important;
+}
+
+/* Hamburger Icon Positioning */
+.hamburger-btn {
+  position: absolute !important;
+  left: 12px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+  cursor: pointer !important;
+}
+
+/* Overlay Background */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+
+/* Sidebar Drawer */
+.sidebar {
+  position: fixed;
+  top: 0; left: -260px;
+  width: 250px; height: 100%;
+  background: #1c2029;
+  z-index: 1000;
+  transition: left 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar.open { left: 0; }
+.sidebar-overlay.open { display: block; }
+
+.sidebar-header {
+  display: flex; justify-content: space-between;
+  align-items: center; color: #fff; margin-bottom: 20px;
+}
+
+.close-btn { background: none; border: none; color: #fff; font-size: 1.5rem; }
+
+.user-profile-summary {
+  display: flex; align-items: center; gap: 12px;
+  padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.avatar-circle {
+  width: 40px; height: 40px; background: #f59e0b;
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-weight: 700; color: #000;
+}
+
+.sidebar-menu { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.sidebar-item { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; display: flex; gap: 10px; align-items: center; }
+.logout-link { color: #ef4444; margin-top: 20px; }
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  
+  if (sidebar && overlay) {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('open');
+  }
+}
+/* ==========================================
+   COMPACT NAV BUTTONS FOR MOBILE FIT
+   ========================================== */
+
+/* Reduce gap between items and container padding */
+.nav-menu {
+  gap: 4px !important;
+  padding: 0 4px !important;
+}
+
+/* Shrink button font size, padding, and icons */
+.nav-item {
+  font-size: 0.72rem !important;
+  padding: 5px 9px !important;
+  gap: 4px !important;
+  border-radius: 16px !important;
+  letter-spacing: -0.2px !important;
+}
+
+/* Scaled-down FontAwesome icons inside pills */
+.nav-item i {
+  font-size: 0.68rem !important;
+}
+/* ==========================================
+   PREVENT ACCIDENTAL ZOOMING & TOUCH SCALING
+   ========================================== */
+
+html, body {
+  /* Prevents pinch-zoom and double-tap zoom gestures */
+  touch-action: manipulation !important;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+}
+
+/* Ensure inputs, buttons, and links don't trigger automatic iOS focus zoom */
+input, select, textarea, button, a {
+  font-size: 16px !important; /* iOS zooms in automatically on fonts < 16px in inputs */
+  touch-action: manipulation !important;
+}
+/* ==========================================
+   STRICT BRAND LOGO & FONT UNIFICATION
+   ========================================== */
+
+.nav-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.brand-name {
+  font-size: 1.4rem !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.5px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  color: #ffffff !important;
+}
+
+.brand-name span {
+  color: #f59e0b !important; /* Gold/Amber highlight */
+}
+
+.brand-icon {
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 1.1rem !important;
+}
+/* FORCE EXACT BRAND LOGO DIMENSIONS ACROSS ALL PAGES */
+.nav-brand .brand-name,
+span.brand-name,
+h1.brand-name {
+  font-size: 1.1rem !important; /* Scaled down to match standard nav dimensions */
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.5px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+}
+
+/* Ensure inner amber highlight span inherits same sizing */
+.nav-brand .brand-name span {
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  color: #f59e0b !important;
+}
+/* ==========================================
+   EXACT DIMENSIONS FROM WORKOUTS / NUTRITION
+   ========================================== */
+
+/* Exact brand text size and spacing */
+.brand-name {
+  font-size: 1rem !important; /* Matches workout baseline */
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.3px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  color: #ffffff !important;
+  display: inline-block !important;
+}
+
+/* Exact gold highlight styling */
+.brand-name span {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #f59e0b !important;
+}
+
+/* Exact icon wrapper size */
+.brand-icon {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  font-size: 0.95rem !important;
+}
+/* ==========================================
+   STICKY FOOTER FIX FOR SHORT PAGES
+   ========================================== */
+
+/* Enable vertical flexbox on main body */
+body.app-body {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+}
+
+/* Allow main content container to take up remaining height */
+.dashboard-wrapper {
+  flex: 1 0 auto !important;
+}
+
+/* Force footer to the bottom and align styling */
+.site-footer {
+  margin-top: auto !important;
+  width: 100% !important;
+  padding: 20px 0 !important;
+  background-color: #111112 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  text-align: center !important;
+  color: #a1a1aa !important;
+  font-size: 0.85rem !important;
+}
+/* ==========================================
+   FORCE FOOTER VISIBILITY ON OVERVIEW / HOME
+   ========================================== */
+
+footer, 
+.site-footer {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 100 !important;
+  width: 100% !important;
+  padding: 20px 0 !important;
+  background-color: #111112 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  text-align: center !important;
+  color: #a1a1aa !important;
+  margin-top: 40px !important;
+}
+/* ==========================================
+   CENTERED HEADING WITH BRAND GOLD ACCENT
+   ========================================== */
+
+.page-header {
+  text-align: center !important;
+  margin-bottom: 24px !important;
+}
+
+.page-title {
+  color: #ffffff !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+.page-title span {
+  color: #f59e0b !important; /* Gold accent matching MATTERS */
+}
+
+.page-subtitle {
+  color: #a1a1aa !important;
+  font-size: 0.9rem !important;
+  text-align: center !important;
+  margin-top: 6px !important;
+}
+/* ==========================================
+   GOALS PAGE CUSTOMIZATION & SPACING
+   ========================================== */
+
+/* 1. Spacing between subtext and stats grid */
+.page-header {
+  margin-bottom: 28px !important;
+  text-align: center !important;
+}
+
+.page-subtitle {
+  margin-bottom: 0 !important;
+}
+
+/* 2. Stat Boxes without background */
+.stats-overview-grid {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-top: 24px !important; /* Adds vertical spacing below track subtext */
+  margin-bottom: 32px !important;
+}
+
+.stat-box-clean {
+  flex: 1 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-align: center !important;
+  padding: 8px 4px !important;
+}
+
+.stat-number {
+  display: block !important;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+}
+
+.stat-label {
+  display: block !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  color: #a1a1aa !important;
+  letter-spacing: 0.5px !important;
+  margin-top: 4px !important;
+}
+
+/* 3. Section Heading Spacing */
+.section-heading {
+  text-align: center !important;
+  color: #ffffff !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 16px !important;
+}
+
+/* 4. Interactive "Set a New Goal" Button Card */
+.add-goal-card {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 16px !important;
+  background: rgba(245, 158, 11, 0.05) !important;
+  border: 2px dashed rgba(245, 158, 11, 0.4) !important;
+  border-radius: 14px !important;
+  color: #f59e0b !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  margin-top: 14px !important;
+}
+
+.add-goal-card:hover {
+  background: rgba(245, 158, 11, 0.12) !important;
+  border-color: #f59e0b !important;
+  transform: translateY(-2px) !important;
+}
+
+.add-goal-card i {
+  font-size: 1.2rem !important;
+}
+/* ==========================================
+   CARD BACKGROUNDS & FOOTER STYLING
+   ========================================== */
+
+/* Stat Cards (Active Goals, Completed, Day Streak) */
+.stats-overview-grid {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  margin: 20px 0 28px 0 !important;
+}
+
+.stat-card {
+  flex: 1 !important;
+  background: #18181b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 14px 8px !important;
+  text-align: center !important;
+}
+
+.stat-number {
+  display: block !important;
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+}
+
+.stat-label {
+  display: block !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  color: #a1a1aa !important;
+  margin-top: 4px !important;
+}
+
+/* Milestone Cards (Body Fat & Bench Press) */
+.milestones-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  margin-bottom: 30px !important;
+}
+
+.goal-card {
+  background: #18181b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 14px !important;
+  padding: 16px !important;
+}
+
+.goal-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 12px !important;
+}
+
+.goal-title-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.goal-title-group h4 {
+  margin: 0 !important;
+  font-size: 0.95rem !important;
+  color: #ffffff !important;
+}
+
+.goal-sub {
+  margin: 2px 0 0 0 !important;
+  font-size: 0.75rem !important;
+  color: #a1a1aa !important;
+}
+
+.badge.in-progress {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #f59e0b !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  padding: 4px 8px !important;
+  border-radius: 20px !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+}
+
+.goal-metrics {
+  display: flex !important;
+  justify-content: space-between !important;
+  background: #111112 !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+}
+
+.goal-metrics div span {
+  display: block !important;
+  font-size: 0.68rem !important;
+  color: #a1a1aa !important;
+}
+
+.goal-metrics div strong {
+  display: block !important;
+  font-size: 0.85rem !important;
+  color: #ffffff !important;
+  margin-top: 2px !important;
+}
+
+/* Set New Goal Column Button */
+.add-goal-card {
+  width: 100 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 14px !important;
+  background: rgba(245, 158, 11, 0.08) !important;
+  border: 1.5px dashed #f59e0b !important;
+  border-radius: 12px !important;
+  color: #f59e0b !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+/* Sticky Footer Fixed */
+.site-footer {
+  margin-top: 30px !important;
+  padding: 18px 0 !important;
+  background: #111112 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  text-align: center !important;
+  color: #a1a1aa !important;
+  font-size: 0.8rem !important;
+  width: 100% !important;
+}
+/* ==========================================
+   MOBILE LAYOUT & CARD DIMENSION HARMONIZATION
+   ========================================== */
+
+/* Main Page Container Side Margins */
+.dashboard-wrapper {
+  padding: 16px 16px 24px 16px !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Stat Cards Sizing */
+.stats-overview-grid {
+  display: flex !important;
+  gap: 10px !important;
+  margin: 20px 0 24px 0 !important;
+}
+
+.stat-card {
+  flex: 1 !important;
+  background: #18181b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important; /* Exact match to workout cards */
+  padding: 12px 6px !important;
+  text-align: center !important;
+}
+
+/* Goal Cards Sizing & Internal Padding */
+.milestones-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  margin-bottom: 24px !important;
+}
+
+.goal-card {
+  background: #18181b !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important; /* Exact match to workout cards */
+  padding: 16px !important;
+  box-sizing: border-box !important;
+}
+
+.add-goal-card {
+  width: 100% !important;
+  border-radius: 16px !important;
+  padding: 14px !important;
+  box-sizing: border-box !important;
+}
+/* ==========================================
+   FORCE INNER CARD MARGINS & EDGE PADDING
+   ========================================== */
+
+/* Add spacing around the main app container */
+body.app-body, 
+.dashboard-wrapper {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+/* Ensure cards do not touch browser edges */
+.stats-overview-grid,
+.milestones-list,
+.goal-card,
+.add-goal-card,
+.page-header {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Fix grid overflow */
+.stats-overview-grid {
+  display: flex !important;
+  gap: 8px !important;
+}
+
+.stat-card {
+  min-width: 0 !important; /* Prevents flex items from overflowing side edges */
+}
+/* ==========================================
+   CENTERED MULTI-LINE HEADING WITH GOLD ACCENT
+   ========================================== */
+
+.page-header {
+  text-align: center !important;
+  margin-bottom: 24px !important;
+}
+
+.page-title {
+  color: #ffffff !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+  margin: 0 auto 10px auto !important;
+}
+
+/* Color Fitness Gold */
+.page-title .gold-text {
+  color: #f59e0b !important;
+}
+
+/* Style the Centered Ampersand */
+.page-title .ampersand {
+  color: #f59e0b !important;
+  font-size: 1.5rem !important;
+  display: inline-block !important;
+  margin: 4px 0 !important;
+}
+
+.page-subtitle {
+  color: #a1a1aa !important;
+  font-size: 0.85rem !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+/* ==========================================
+   HEADER TOP MARGIN (MATCHES NUTRITION & WORKOUTS)
+   ========================================== */
+
+.page-header {
+  margin-top: 32px !important; /* Creates clear vertical space below navbar border */
+  margin-bottom: 24px !important;
+  text-align: center !important;
+}
+
+.dashboard-wrapper {
+  padding-top: 12px !important;
 }

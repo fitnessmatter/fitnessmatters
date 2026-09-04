@@ -11,56 +11,82 @@
 </head>
 <body>
 
-    <nav class="navbar">
+    <!-- GLOBAL NAVBAR WITH HAMBURGER -->
+<nav class="navbar">
+  <div class="nav-header">
+    <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
     <div class="nav-brand">
-        <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-        <span class="brand-name">FITNESS<span>MATTERS</span></span>
+      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+      <span class="brand-name">FITNESS<span>MATTERS</span></span>
     </div>
-    <div class="nav-menu">
-        <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-        <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-        <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-        <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
-        <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
-        <a href="contact.html" class="nav-item active"><i class="fa-solid fa-envelope"></i> Contact</a>
+  </div>
+
+  <!-- MENU LINKS (Update the "active" class per page) -->
+  <div class="nav-menu">
+    <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+    <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+    <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+    <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+    <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+    <a href="contact.html" class="nav-item active"><i class="fa-solid fa-envelope"></i> Contact</a>
+  </div>
+</nav>
+
+<!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h3>User Profile</h3>
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+  </div>
+  
+  <div class="user-profile-summary">
+    <div class="avatar-circle">A</div>
+    <div class="user-info">
+      <h4>Aditya</h4>
+      <p>Pro Member</p>
     </div>
-    <div class="user-profile-nav">
-        <div class="avatar">A</div>
-        <button id="logoutBtn" class="logout-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-right-from-bracket"></i></button>
-    </div>
+  </div>
+
+  <div class="sidebar-menu">
+    <a href="#" class="sidebar-item"><i class="fa-solid fa-user"></i> My Profile</a>
+    <a href="#" class="sidebar-item"><i class="fa-solid fa-gear"></i> Account Settings</a>
+    <a href="#" class="sidebar-item"><i class="fa-solid fa-bell"></i> Notifications</a>
+    <a href="#" class="sidebar-item logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </div>
+</aside>
 </nav>
     <main class="dashboard-wrapper">
        <div class="page-header">
     <h1 style="color: #f59e0b !important;">Get In Touch</h1>
     <p>Have questions or feedback? Reach out to our team anytime.</p>
 </div>
+<div class="contact-inline-row">
+  <!-- Instagram -->
+  <a href="https://instagram.com/adi_6416" target="_blank" class="contact-link">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" class="social-logo" alt="Instagram">
+    <span>@adi_6416</span>
+  </a>
 
-        <div class="contact-layout">
-            <div class="info-card">
-                <div class="info-item">
-                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="info-text">
-                        <h4>Our Location</h4>
-                        <p>100 Fitness Way, Performance Suite 400</p>
-                    </div>
-                </div>
+  <!-- WhatsApp -->
+  <a href="https://wa.me/919405248583" target="_blank" class="contact-link">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/whatsapp.svg" class="social-logo" alt="WhatsApp">
+    <span>+91 9405248583</span>
+  </a>
 
-                <div class="info-item">
-                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
-                    <div class="info-text">
-                        <h4>Email Us</h4>
-                        <p>support@fitnessmatters.com</p>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
-                    <div class="info-text">
-                        <h4>Call Us</h4>
-                        <p>+1 (800) 555-3488</p>
-                    </div>
-                </div>
-            </div>
+  <!-- Gmail -->
+  <a href="mailto:support@fitnessmatters.com" class="contact-link">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" class="social-logo" alt="Gmail">
+    <span>support@fitnessmatters.com</span>
+  </a>
+</div>
+  </a>
+</div>
 
             <div class="form-card">
                 <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
@@ -87,5 +113,8 @@
 <footer class="app-footer">
     <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
 </footer>
+<!-- Link external script file -->
+  <script src="script.js"></script>
 </body>
 </html>
+
