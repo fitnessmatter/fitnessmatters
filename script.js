@@ -76,3 +76,55 @@ function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('sidebarOverlay').classList.toggle('open');
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const logoutBtn = document.querySelector('.logout-link');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Clear session token to lock dashboard access
+      localStorage.removeItem('user_authenticated');
+      localStorage.removeItem('user_profile');
+      window.location.href = 'register.html';
+    });
+  }
+});
+// ==========================================
+// SESSION MANAGEMENT & USER DYNAMICS
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // 1. DYNAMIC USER PROFILE LOADING
+  const savedProfile = localStorage.getItem('user_profile');
+  if (savedProfile) {
+    const user = JSON.parse(savedProfile);
+    
+    // Update name in sidebar drawer
+    const sidebarName = document.querySelector('.user-info h4');
+    if (sidebarName && user.name) {
+      sidebarName.textContent = user.name;
+    }
+
+    // Update initial in avatar circle
+    const avatarCircle = document.querySelector('.avatar-circle');
+    if (avatarCircle && user.name) {
+      avatarCircle.textContent = user.name.charAt(0).toUpperCase();
+    }
+  }
+
+  // 2. LOGOUT & SESSION CLEARING
+  const logoutBtn = document.querySelector('.logout-link');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Clear session locks and stored profile
+      localStorage.removeItem('user_authenticated');
+      localStorage.removeItem('user_profile');
+      
+      // Redirect to registration gate
+      window.location.href = 'register.html';
+    });
+  }
+
+});

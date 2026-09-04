@@ -2402,3 +2402,161 @@ body.app-body,
 .dashboard-wrapper {
   padding-top: 12px !important;
 }
+/* ==========================================
+   GOLD ACCENT FOR FOOTER BRAND NAME
+   ========================================== */
+
+.site-footer .footer-brand {
+  color: #f59e0b !important;
+  font-weight: 700 !important;
+}
+/* ==========================================
+   CONTACT METHOD LABELS STYLING
+   ========================================== */
+
+.contact-methods {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 20px !important;
+  flex-wrap: wrap !important;
+  margin-top: 16px !important;
+  margin-bottom: 32px !important;
+}
+
+.contact-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.85rem !important;
+}
+
+/* Gold label styling for prefix text */
+.contact-label {
+  color: #f59e0b !important; /* Gold accent */
+  font-weight: 600 !important;
+  margin-right: 2px !important;
+}
+/* ==========================================
+   UNIFIED GLOBAL PAGE HEADER STYLING
+   ========================================== */
+
+.page-header {
+  text-align: center !important;
+  margin-top: 32px !important;
+  margin-bottom: 24px !important;
+}
+
+.page-title {
+  color: #ffffff !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  line-height: 1.25 !important;
+  margin: 0 auto 8px auto !important;
+}
+
+/* Gold accent matching nutrition & workout titles */
+.page-title .gold-text {
+  color: #f59e0b !important;
+}
+
+.page-subtitle {
+  color: #a1a1aa !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+/* ==========================================
+   STACKED VERTICAL CONTACT METHODS (LEFT-ALIGNED)
+   ========================================== */
+
+.contact-methods {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* Left-aligns each item under text */
+  gap: 10px !important; /* Space between each row */
+  margin-top: 20px !important;
+  margin-bottom: 28px !important;
+  padding-left: 16px !important; /* Matches lateral padding */
+}
+
+.contact-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #ffffff !important;
+  font-size: 0.85rem !important;
+  text-decoration: none !important;
+}
+
+.contact-label {
+  color: #f59e0b !important; /* Gold accent */
+  font-weight: 600 !important;
+}
+/* ==========================================
+   CONTACT PAGE STACKED & CENTERED LAYOUT
+   ========================================== */
+
+.contact-methods {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  width: fit-content !important;
+  margin: 20px auto 32px auto !important; /* Centers the stacked list block */
+  gap: 12px !important;
+}
+
+.contact-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #ffffff !important;
+  font-size: 0.85rem !important;
+  text-decoration: none !important;
+}
+
+.contact-label {
+  color: #f59e0b !important;
+  font-weight: 600 !important;
+}
+/* ==========================================
+   SINGLE LINE HORIZONTAL CONTACT METHODS
+   ========================================== */
+
+.contact-methods {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  white-space: nowrap !important;
+  overflow-x: auto !important; /* Prevents text wrapping on small screens */
+  padding: 8px 16px !important;
+  margin: 16px auto 24px auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Hide scrollbar for a clean UI */
+.contact-methods::-webkit-scrollbar {
+  display: none !important;
+}
+
+.contact-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  color: #ffffff !important;
+  font-size: 0.75rem !important; /* Scaled down slightly to fit on one line */
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+
+.contact-label {
+  color: #f59e0b !important;
+  font-weight: 600 !important;
+}

@@ -7,21 +7,31 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<!-- PLACE THIS RIGHT ABOVE </body> 
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebarOverlay');
-      
-      if (sidebar && overlay) {
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('open');
-      }
+   <script>
+  // 1. Auth Guard: Redirect if not logged in
+  if (!localStorage.getItem('user_authenticated')) {
+    window.location.href = 'register.html';
+  }
+
+  // 2. Logout Button Event Listener
+  document.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.getElementById('logout-btn');
+    
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Clear saved login state
+        localStorage.removeItem('user_authenticated');
+        localStorage.removeItem('user_profile');
+        
+        // Redirect to register page
+        window.location.href = 'register.html';
+      });
     }
-  </script>
-</body>
-</html>
+  });
+</script>
+</head>
 <body>
 <nav class="navbar">
   <div class="nav-header">
@@ -48,39 +58,49 @@
   </div>
 </nav class="navbar"
 <div class="nav-header"
-<main class="dashboard-wrapper">
+</nav>
+<!-- MAIN DASHBOARD CONTENT -->
+  <main class="dashboard-wrapper">
     <div class="page-header">
-    <h1 style="color: #f59e0b !important;">Welcome To Fitness Matters</h1>
-    <p style="color:rgb(251, 251, 252) !important;">Here is your daily fitness breakdown and progress overview.
+  <h1 class="page-title">
+     <span class="gold-text">Welcome To Fitness Matters</span>
+  </h1>
+  <p class="page-subtitle">Here is your daily fitness breakdown and progress</p>
+</div>
+  <!-- CLOSE MAIN WRAPPER HERE -->
 
-
-<!-- SLIDE-OUT SIDEBAR DRAWER -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <h3>User Menu</h3>
-    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-  </div>
+  <!-- SLIDE-OUT SIDEBAR DRAWER -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
   
-  <div class="user-profile-summary">
-    <div class="avatar-circle">A</div>
-    <div class="user-info">
-      <h4>Aditya</h4>
-      <p>Pro Member</p>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3>User Menu</h3>
+      <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    </div>
+
+    <div class="user-profile-summary">
+      <div class="avatar-circle">A</div>
+      <div class="user-info">
+        <h4>Aditya</h4>
+        <p>Pro Member</p>
+      </div>
+    </div>
+
+    <div class="sidebar-menu">
+      <a href="#" class="sidebar-item"><i class="fa-solid fa-user"></i> My Profile</a>
+      <a href="#" class="sidebar-item"><i class="fa-solid fa-gear"></i> Account Settings</a>
+      <a href="#" class="sidebar-item"><i class="fa-solid fa-bell"></i> Notifications</a>
+      <a href="#" class="sidebar-item"><i class="fa-solid fa-moon"></i> Dark Mode</a>
+      <a href="#" id="logout-btn" class="sidebar-item logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div> <!-- Closes .sidebar-menu -->
+  </div> <!-- Closes .sidebar -->
+
+  <!-- STATS GRID SECTION (Placed in main layout) -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-label">Calories Burned</span>
     </div>
   </div>
-
-  <div class="sidebar-menu">
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-user"></i> My Profile</a>
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-gear"></i> Account Settings</a>
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-bell"></i> Notifications</a>
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-moon"></i> Dark Mode</a>
-    <a href="#" class="sidebar-item logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-  </div>
-</nav>
-        
-</div>
-
     <!-- STATS GRID -->
     <div class="stats-grid">
         <div class="stat-card">

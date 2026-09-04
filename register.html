@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Matters | Register</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-body">
+
+  <div class="auth-card">
+    <div class="nav-brand auth-brand">
+      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+      <span class="brand-name">FITNESS<span>MATTERS</span></span>
+    </div>
+
+    <!-- Step 1: User Details Form -->
+    <form id="register-form" class="auth-step">
+      <h2>Create Account</h2>
+      <p class="auth-sub">Enter your details to access your fitness dashboard</p>
+
+      <div class="input-group">
+        <label for="reg-name">Full Name</label>
+        <input type="text" id="reg-name" placeholder="Enter Your Full Name" required>
+      </div>
+
+      <div class="input-group">
+        <label for="reg-phone">Mobile Number</label>
+        <input type="tel" id="reg-phone" placeholder="9405248583" pattern="[0-9]{10}" maxlength="10" required>
+      </div>
+
+      <div class="input-group">
+        <label for="reg-password">Password</label>
+        <input type="password" id="reg-password" placeholder="Create Password" required>
+      </div>
+
+      <button type="submit" class="auth-btn">Send OTP <i class="fa-solid fa-arrow-right"></i></button>
+    </form>
+
+    <!-- Step 2: OTP Form -->
+    <form id="otp-form" class="auth-step" style="display: none;">
+      <h2>Verify Mobile Number</h2>
+      <p class="auth-sub">Enter the 6-digit code sent to your phone via SMS</p>
+
+      <div class="input-group">
+        <label for="otp-code">OTP Code</label>
+        <input type="text" id="otp-code" maxlength="6" placeholder="123456" style="text-align: center; letter-spacing: 6px; font-size: 1.2rem;" required>
+      </div>
+
+      <button type="submit" class="auth-btn">Verify & Go to Dashboard</button>
+      <button type="button" id="back-to-reg-btn" class="auth-secondary-btn">Edit Details</button>
+    </form>
+  </div>
+
+  <!-- Firebase Invisible reCAPTCHA Container -->
+  <div id="recaptcha-container"></div>
+
+  <!-- Firebase Modular Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  
+  <!-- Custom Auth Logic -->
+  <script src="auth.js"></script>
+</body>
+</html>
