@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Matters | Notifications</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .notifications-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+    .notification-card {
+      background-color: #1a2232; border: 1px solid #2d3748;
+      border-radius: 12px; padding: 20px; margin-bottom: 15px;
+      display: flex; gap: 15px; align-items: center;
+    }
+    .notif-icon {
+      width: 45px; height: 45px; border-radius: 50%;
+      background-color: rgba(255, 193, 7, 0.15); color: #ffc107;
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-header">
+      <button class="hamburger-btn" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <span class="brand-name">FITNESS<span class="gold-text">MATTERS</span></span>
+    </div>
+  </nav>
+
+  <main class="notifications-container">
+    <h1 style="color: #ffc107; margin-bottom: 20px;">Notifications</h1>
+
+    <div class="notification-card">
+      <div class="notif-icon"><i class="fa-solid fa-trophy"></i></div>
+      <div>
+        <h4 style="margin-bottom: 4px;">Goal Milestone Reached!</h4>
+        <p style="font-size: 0.85rem; color: #a0aec0;">You logged 3 workouts this week. Keep up the streak!</p>
+      </div>
+    </div>
+
+    <div class="notification-card">
+      <div class="notif-icon"><i class="fa-solid fa-droplet"></i></div>
+      <div>
+        <h4 style="margin-bottom: 4px;">Hydration Reminder</h4>
+        <p style="font-size: 0.85rem; color: #a0aec0;">Don't forget to reach your daily 2.5L water target today.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

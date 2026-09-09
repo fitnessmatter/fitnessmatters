@@ -4,64 +4,225 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fitness Matters | Register</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #121824;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #1a2232;
+      padding: 15px 30px;
+      border-bottom: 1px solid #2d3748;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background-color: #ffc107;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #121824;
+      font-weight: bold;
+    }
+
+    .logo-text {
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    .logo-text span {
+      color: #ffc107;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .register-card {
+      background-color: #1a2232;
+      border-radius: 12px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .register-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .register-card p {
+      color: #a0aec0;
+      font-size: 0.9rem;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #cbd5e0;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 6px;
+      border: 1px solid #2d3748;
+      background-color: #0f172a;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: #ffc107;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background-color: #ffc107;
+      color: #000000;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+      background-color: #e0a800;
+    }
+
+    #otp-section {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #1a2232;
+      border-top: 1px solid #2d3748;
+      padding: 15px 30px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #ffffff !important;
+    }
+
+    footer span.gold-text {
+      color: #ffc107 !important;
+      font-weight: 600;
+    }
+  </style>
+
+  <!-- Firebase Compatibility SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 </head>
-<body class="auth-body">
+<body>
 
-  <div class="auth-card">
-    <div class="nav-brand auth-brand">
-      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-      <span class="brand-name">FITNESS<span>MATTERS</span></span>
+  <header>
+    <div class="logo-container">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </div>
+      <div class="logo-text">FITNESS<span>MATTERS</span></div>
     </div>
+  </header>
 
-    <!-- Step 1: User Details Form -->
-    <form id="register-form" class="auth-step">
-      <h2>Create Account</h2>
-      <p class="auth-sub">Enter your details to access your fitness dashboard</p>
-
-      <div class="input-group">
-        <label for="reg-name">Full Name</label>
-        <input type="text" id="reg-name" placeholder="Enter Your Full Name" required>
-      </div>
-
-      <div class="input-group">
-        <label for="reg-phone">Mobile Number</label>
-        <input type="tel" id="reg-phone" placeholder="9405248583" pattern="[0-9]{10}" maxlength="10" required>
-      </div>
-
-      <div class="input-group">
-        <label for="reg-password">Password</label>
-        <input type="password" id="reg-password" placeholder="Create Password" required>
-      </div>
-
-      <button type="submit" class="auth-btn">Send OTP <i class="fa-solid fa-arrow-right"></i></button>
-    </form>
-
-    <!-- Step 2: OTP Form -->
-    <form id="otp-form" class="auth-step" style="display: none;">
-      <h2>Verify Mobile Number</h2>
-      <p class="auth-sub">Enter the 6-digit code sent to your phone via SMS</p>
-
-      <div class="input-group">
-        <label for="otp-code">OTP Code</label>
-        <input type="text" id="otp-code" maxlength="6" placeholder="123456" style="text-align: center; letter-spacing: 6px; font-size: 1.2rem;" required>
-      </div>
-
-      <button type="submit" class="auth-btn">Verify & Go to Dashboard</button>
-      <button type="button" id="back-to-reg-btn" class="auth-secondary-btn">Edit Details</button>
-    </form>
-  </div>
-
-  <!-- Firebase Invisible reCAPTCHA Container -->
-  <div id="recaptcha-container"></div>
-
-  <!-- Firebase Modular Compat SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   
-  <!-- Custom Auth Logic -->
+  <main>
+  <div class="register-card">
+    <h2>Create Account</h2>
+    <p>Sign up to start your journey with Fitness Matters</p>
+
+    <!-- Invisible reCAPTCHA Container -->
+    <div id="recaptcha-container"></div>
+
+    <!-- Main Registration Form -->
+    <form id="phone-form">
+      <div id="phone-section">
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" placeholder="Enter Your Full Name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone-input">Mobile Number</label>
+          <input type="tel" id="phone-input" placeholder="Enter 10-digit mobile number" autocomplete="off" required />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Create Password" required>
+        </div>
+
+        <button type="submit" class="btn-submit" id="send-otp-btn">Send OTP</button>
+      </div>
+    </form>
+
+    <!-- OTP Form Section -->
+    <form id="otp-form">
+      <div id="otp-section" style="display: none;">
+        <div class="form-group">
+          <label for="otp-code">Enter 6-Digit OTP</label>
+          <input type="text" id="otp-code" placeholder="Enter OTP code" maxlength="6" required />
+        </div>
+        <button type="submit" class="btn-submit">Verify OTP & Register</button>
+        <button type="button" id="back-to-reg-btn" style="background: none; border: none; color: #a0aec0; text-decoration: underline; margin-top: 10px; cursor: pointer; width: 100%;">Change Phone Number</button>
+      </div>
+    </form>
+
+    <div id="statusMessage" class="message"></div>
+  </div>
+</main>
+  <footer>
+    &copy; 2026 <span class="gold-text">Fitness Matters</span>. All rights reserved.
+  </footer>
+
+  <!-- External JS File Link -->
   <script src="auth.js"></script>
 </body>
 </html>

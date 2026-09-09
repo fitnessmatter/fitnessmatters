@@ -39,25 +39,36 @@
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
 <!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
-<aside class="sidebar" id="sidebar">
+<<aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <h3>User Profile</h3>
+    <h3>User Menu</h3>
     <button class="close-btn" onclick="toggleSidebar()">&times;</button>
   </div>
-  
-  <div class="user-profile-summary">
-    <div class="avatar-circle">A</div>
+
+  <div class="user-card">
+    <div class="avatar" id="avatar-initial">A</div>
     <div class="user-info">
-      <h4>Aditya</h4>
-      <p>Pro Member</p>
+      <h4 id="menu-display-name">Aditya</h4>
+      <span class="badge" style="color: #ffc107; font-weight: 600;">Pro Member</span>
     </div>
   </div>
 
   <div class="sidebar-menu">
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-user"></i> My Profile</a>
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-gear"></i> Account Settings</a>
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-bell"></i> Notifications</a>
-    <a href="#" class="sidebar-item logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    <a href="profile.html" class="sidebar-item">
+      <i class="fa-solid fa-user"></i> My Profile
+    </a>
+    <a href="settings.html" class="sidebar-item">
+      <i class="fa-solid fa-gear"></i> Account Settings
+    </a>
+    <a href="notifications.html" class="sidebar-item">
+      <i class="fa-solid fa-bell"></i> Notifications
+    </a>
+    <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
+      <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
+    </button>
+    <a href="#" class="sidebar-item logout-link" onclick="handleLogout()" style="color: #f56565;">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
   </div>
 </aside>
     

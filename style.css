@@ -2560,3 +2560,160 @@ body.app-body,
   color: #f59e0b !important;
   font-weight: 600 !important;
 }
+footer {
+  background-color: #1a2232;
+  border-top: 1px solid #2d3748;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #ffffff; /* Sets copyright and rights reserved text to white */
+}
+
+footer .footer-brand {
+  color: #ffc107; /* Matches the brand gold/yellow color */
+  font-weight: 600;
+}
+/* Sets identical placeholder text color across all browsers */
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1; /* Override default browser opacity */
+}
+/* Center Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Center Mission Section Content */
+.mission-section {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  padding: 0 20px;
+}
+
+.mission-section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.mission-section p {
+  color: #a0aec0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Center Metric Boxes */
+.stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background-color: #1a2232;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  padding: 20px 30px;
+  min-width: 130px;
+  text-align: center;
+}
+
+.stat-box h3 {
+  font-size: 1.8rem;
+  color: #ffc107;
+  margin-bottom: 5px;
+}
+
+.stat-box p {
+  font-size: 0.8rem;
+  color: #cbd5e0;
+  margin-bottom: 0;
+}
+footer {
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  color: #a0aec0;
+  font-size: 0.85rem;
+  border-top: 1px solid #2d3748;
+  margin-top: auto;
+}
+
+footer .gold-text {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+footer {
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  color: #ffffff !important; /* Forces 2026 & All rights reserved to pure white */
+  font-size: 0.85rem;
+  border-top: 1px solid #2d3748;
+  margin-top: auto;
+}
+
+footer .gold-text {
+  color: #ffc107 !important; /* Keeps Fitness Matters in signature gold */
+  font-weight: 600;
+}
+/* LIGHT MODE OVERRIDES */
+body.light-mode {
+  background-color: #f4f6f9 !important;
+  color: #121824 !important;
+}
+
+body.light-mode .navbar,
+body.light-mode .sidebar,
+body.light-mode .register-card,
+body.light-mode .profile-card,
+body.light-mode .settings-card,
+body.light-mode .notification-card,
+body.light-mode .stat-box,
+body.light-mode footer {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #121824 !important;
+}
+
+body.light-mode .nav-item,
+body.light-mode .sidebar-item,
+body.light-mode label,
+body.light-mode p {
+  color: #4a5568 !important;
+}
+
+body.light-mode input,
+body.light-mode select {
+  background-color: #edf2f7 !important;
+  border-color: #cbd5e0 !important;
+  color: #121824 !important;
+}
+
+body.light-mode .gold-text,
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3 {
+  color: #d97706 !important;
+}
+.footer-text {
+  color: #ffffff; /* Sets 2026 and 'All rights reserved.' to white */
+  text-align: center;
+}
+
+.brand-name {
+  color: #ff6b00; /* Keeps your brand name highlighted */
+}.footer-text {
+  color: #ffffff; /* Sets 2026 and 'All rights reserved.' to white */
+  text-align: center;
+}
+
+.brand-gold {
+  color: #d97706; /* Standard Gold (use #d4af37 for a deeper metallic gold) */
+  text-transform: none; /* Overrides uppercase CSS rules */
+  font-size: 0.85em; /* Slightly shrinks the text size relative to the rest */
+}

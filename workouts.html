@@ -42,23 +42,34 @@
 <!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <h3>User Profile</h3>
+    <h3>User Menu</h3>
     <button class="close-btn" onclick="toggleSidebar()">&times;</button>
   </div>
-  
-  <div class="user-profile-summary">
-    <div class="avatar-circle">A</div>
+
+  <div class="user-card">
+    <div class="avatar" id="avatar-initial">A</div>
     <div class="user-info">
-      <h4>Aditya</h4>
-      <p>Pro Member</p>
+      <h4 id="menu-display-name">Aditya</h4>
+      <span class="badge" style="color: #ffc107; font-weight: 600;">Pro Member</span>
     </div>
   </div>
 
   <div class="sidebar-menu">
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-user"></i> My Profile</a>
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-gear"></i> Account Settings</a>
-    <a href="#" class="sidebar-item"><i class="fa-solid fa-bell"></i> Notifications</a>
-    <a href="#" class="sidebar-item logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    <a href="profile.html" class="sidebar-item">
+      <i class="fa-solid fa-user"></i> My Profile
+    </a>
+    <a href="settings.html" class="sidebar-item">
+      <i class="fa-solid fa-gear"></i> Account Settings
+    </a>
+    <a href="notifications.html" class="sidebar-item">
+      <i class="fa-solid fa-bell"></i> Notifications
+    </a>
+    <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
+      <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
+    </button>
+    <a href="#" class="sidebar-item logout-link" onclick="handleLogout()" style="color: #f56565;">
+      <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
   </div>
 </aside>
 </nav>
@@ -69,101 +80,107 @@
 </div>
 
         <div class="plan-grid">
-            <!-- Plan 1 -->
-            <div class="plan-card">
-            
-        <h3><span style="color: #f59e0b !important;">Beginner Workout Plan</span></h3>
-                <p class="desc">High-volume weight training optimized for lean muscle gains.</p>
-                <div class="price-wrap">
-                    <span class="price">₹499</span><span class="period">/ month</span>
-                </div>
-                <ul class="features">
-                    <li><i class="fa-solid fa-check"></i> 4-Day Upper/Lower Split</li>
-                    <li><i class="fa-solid fa-check"></i> Form Correction Videos</li>
-                    <li><i class="fa-solid fa-check"></i> Progressive Overload Tracker</li>
-                </ul>
-                <button class="subscribe-btn">Subscribe Plan</button>
-            </div>
+         <!-- Plan 1 -->
+    <div class="plan-card">
+      <h3><span style="color: #f59e0b !important;">Beginner Workout Plan</span></h3>
+      <p class="desc">High-volume weight training optimized for lean muscle gains.</p>
+      <div class="price-wrap">
+        <span class="price">₹499</span><span class="period">/ month</span>
+      </div>
+      <ul class="features">
+        <li><i class="fa-solid fa-check"></i> 4-Day Upper/Lower Split</li>
+        <li><i class="fa-solid fa-check"></i> Form Correction Videos</li>
+        <li><i class="fa-solid fa-check"></i> Progressive Overload Tracker</li>
+      </ul>
+      <button class="subscribe-btn" onclick="payNow('Beginner Workout Plan', 499)">
+        Subscribe Plan
+      </button>
+    </div>
 
-            <!-- Plan 2 (Popular) -->
-            <div class="plan-card popular">
-                <span class="badge">Popular</span>
-                <h3><span style="color: #f59e0b !important;">Lean Muscle Hypertrophy Workout Plan</h3>
-                <p class="desc">High-intensity interval training aimed at rapid body fat reduction.</p>
-                <div class="price-wrap">
-                    <span class="price">₹699</span><span class="period">/ month</span>
-                </div>
-                <ul class="features">
-                    <li><i class="fa-solid fa-check"></i> 5-Day Fast Paced Circuits</li>
-                    <li><i class="fa-solid fa-check"></i> No Equipment Required</li>
-                    <li><i class="fa-solid fa-check"></i> Daily Cardio Finishers</li>
-                </ul>
-                <button class="subscribe-btn">Subscribe Plan</button>
-            </div>
+    <!-- Plan 2 -->
+    <div class="plan-card popular">
+      <span class="badge">Popular</span>
+      <h3><span style="color: #f59e0b !important;">Lean Muscle Hypertrophy Workout Plan</span></h3>
+      <p class="desc">High-intensity training aimed at body fat reduction and muscle retention.</p>
+      <div class="price-wrap">
+        <span class="price">₹699</span><span class="period">/ month</span>
+      </div>
+      <ul class="features">
+        <li><i class="fa-solid fa-check"></i> 5-Day Fast Paced Circuits</li>
+        <li><i class="fa-solid fa-check"></i> Hypertrophy Focus</li>
+        <li><i class="fa-solid fa-check"></i> Daily Cardio Finishers</li>
+      </ul>
+      <button class="subscribe-btn" onclick="payNow('Lean Muscle Hypertrophy Workout Plan', 699)">
+        Subscribe Plan
+      </button>
+    </div>
 
-            <!-- Plan 3 -->
-            <div class="plan-card">
-                <h3><span style="color: #f59e0b !important;">Muscle Building Workout Plan</h3>
-                <p class="desc">Heavy compound lifting focused entirely on raw strength output.</p>
-                <div class="price-wrap">
-                    <span class="price">₹499</span><span class="period">/ month</span>
-                </div>
-                <ul class="features">
-                    <li><i class="fa-solid fa-check"></i> Squat, Bench, Deadlift Focus</li>
-                    <li><i class="fa-solid fa-check"></i> 1RM (Max Rep) Tracking</li>
-                    <li><i class="fa-solid fa-check"></i> Custom Peaking Blocks</li>
-                </ul>
-                <button class="subscribe-btn">Subscribe Plan</button>
-            </div>
+    <!-- Plan 3 -->
+    <div class="plan-card">
+      <h3><span style="color: #f59e0b !important;">Muscle Building Workout Plan</span></h3>
+      <p class="desc">Pure strength and mass overload split for intermediate lifters.</p>
+      <div class="price-wrap">
+        <span class="price">₹799</span><span class="period">/ month</span>
+      </div>
+      <ul class="features">
+        <li><i class="fa-solid fa-check"></i> Push / Pull / Legs Split</li>
+        <li><i class="fa-solid fa-check"></i> Hypertrophy Periodization</li>
+      </ul>
+      <button class="subscribe-btn" onclick="payNow('Muscle Building Workout Plan', 799)">
+        Subscribe Plan
+      </button>
+    </div>
 
-            <!-- Plan 4 -->
-            <div class="plan-card">
-                <h3><span style="color: #f59e0b !important;">Muscular 8 Workout Plan</h3>
-                <p class="desc">Bodyweight mechanics, advanced holds, and core domination.</p>
-                <div class="price-wrap">
-                    <span class="price">₹499</span><span class="period">/ month</span>
-                </div>
-                <ul class="features">
-                    <li><i class="fa-solid fa-check"></i> Step-by-Step Skill Progressions</li>
-                    <li><i class="fa-solid fa-check"></i> Handstand & Muscle-Up Guides</li>
-                    <li><i class="fa-solid fa-check"></i> Core Stability Routines</li>
-                </ul>
-                <button class="subscribe-btn">Subscribe Plan</button>
-            </div>
+    <!-- Plan 4 -->
+    <div class="plan-card">
+      <h3><span style="color: #f59e0b !important;">Muscular 8 Workout Plan</span></h3>
+      <p class="desc">8-week intensive transformation protocol for maximum muscularity.</p>
+      <div class="price-wrap">
+        <span class="price">₹899</span><span class="period">/ month</span>
+      </div>
+      <ul class="features">
+        <li><i class="fa-solid fa-check"></i> 8-Week Blueprint</li>
+        <li><i class="fa-solid fa-check"></i> Advanced Rest-Pause Sets</li>
+      </ul>
+      <button class="subscribe-btn" onclick="payNow('Muscular 8 Workout Plan', 899)">
+        Subscribe Plan
+      </button>
+    </div>
 
-            <!-- Plan 5 -->
-            <div class="plan-card">
-                <h3><span style="color: #f59e0b !important;">Muscle Size 5x5 Workout Plan</h3>
-                <p class="desc">Combining endurance cardio built for high performance and lifting.</p>
-                <div class="price-wrap">
-                    <span class="price">₹499</span><span class="period">/ month</span>
-                </div>
-                <ul class="features">
-                    <li><i class="fa-solid fa-check"></i> 5K to Marathon Prep</li>
-                    <li><i class="fa-solid fa-check"></i> Tactical Cross-Training</li>
-                    <li><i class="fa-solid fa-check"></i> Advanced Injury Prevention</li>
-                </ul>
-                <button class="subscribe-btn">Subscribe Plan</button>
-            </div>
+    <!-- Plan 5 -->
+    <div class="plan-card">
+      <h3><span style="color: #f59e0b !important;">Muscle Size 5x5 Workout Plan</span></h3>
+      <p class="desc">Classic heavy compound strength and size powerlifting protocol.</p>
+      <div class="price-wrap">
+        <span class="price">₹599</span><span class="period">/ month</span>
+      </div>
+      <ul class="features">
+        <li><i class="fa-solid fa-check"></i> Heavy Compound Focus</li>
+        <li><i class="fa-solid fa-check"></i> Linear Progression Model</li>
+      </ul>
+      <button class="subscribe-btn" onclick="payNow('Muscle Size 5x5 Workout Plan', 599)">
+        Subscribe Plan
+      </button>
+    </div>
 
-            <!-- Plan 6 -->
-            <div class="plan-card">
-                <h3><span style="color: #f59e0b !important;">Gain Pecs & Delts Workout Plan</h3>
-                <p class="desc">Active recovery systems, joint health, and posture correction.</p>
-                <div class="price-wrap">
-                    <span class="price">₹499</span><span class="period">/ month</span>
-                </div>
-                <ul class="features">
-                    <li><i class="fa-solid fa-check"></i> Daily 15-Min Stretching</li>
-                    <li><i class="fa-solid fa-check"></i> Restorative Yoga Flows</li>
-                    <li><i class="fa-solid fa-check"></i> Breathwork Exercises</li>
-                </ul>
-                <button class="subscribe-btn">Subscribe Plan</button>
-            </div>
-        </div>
+    <!-- Plan 6 -->
+    <div class="plan-card">
+      <h3><span style="color: #f59e0b !important;">Gain Pecs & Delts Workout Plan</span></h3>
+      <p class="desc">Targeted upper-body specialization routine for chest and shoulder width.</p>
+      <div class="price-wrap">
+        <span class="price">₹649</span><span class="period">/ month</span>
+      </div>
+      <ul class="features">
+        <li><i class="fa-solid fa-check"></i> Chest & Delts Specialization</li>
+        <li><i class="fa-solid fa-check"></i> High Volume Upper Body Focus</li>
+      </ul>
+      <button class="subscribe-btn" onclick="payNow('Gain Pecs & Delts Workout Plan', 649)">
+        Subscribe Plan
+      </button>
+    </div>
     </main>
 <footer class="app-footer">
-    <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
+    <p>&copy; 2026 <span class="gold-text">Fitness Matters</span>. All rights reserved.</p>
 </footer>
 <!-- Link external script file -->
   <script src="script.js"></script>

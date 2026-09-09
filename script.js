@@ -128,3 +128,54 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+// Toggle Sidebar Drawer
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) sidebar.classList.toggle('active');
+}
+
+// Toggle Light/Dark Mode
+function toggleDarkMode() {
+  document.body.classList.toggle('light-mode');
+  const isLight = document.body.classList.contains('light-mode');
+  localStorage.setItem('app_theme', isLight ? 'light' : 'dark');
+  
+  const themeBtnText = document.getElementById('theme-text');
+  if (themeBtnText) {
+    themeBtnText.innerText = isLight ? 'Light Mode' : 'Dark Mode';
+  }
+}
+
+// Logout Function
+function handleLogout() {
+  localStorage.removeItem('user_authenticated');
+  if (typeof firebase !== 'undefined' && firebase.auth) {
+    firebase.auth().signOut().catch(() => {});
+  }
+  window.location.href = 'register.html';
+}
+
+// Initialize User State & Theme on Every Page Load
+document.addEventListener('DOMContentLoaded', () => {
+  // Apply Saved Theme
+  const savedTheme = localStorage.getItem('app_theme');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-mode');
+    const themeBtnText = document.getElementById('theme-text');
+    if (themeBtnText) themeBtnText.innerText = 'Light Mode';
+  }
+
+  // Load Dynamic Profile Name
+  const profile = JSON.parse(localStorage.getItem('user_profile') || '{}');
+  const nameDisplay = document.getElementById('menu-display-name');
+  const avatarDisplay = document.getElementById('avatar-initial');
+
+  if (profile.fullname && nameDisplay && avatarDisplay) {
+    nameDisplay.innerText = profile.fullname;
+    avatarDisplay.innerText = profile.fullname.charAt(0).toUpperCase();
+  }
+});
+function payNow(planName, amount) {
+  let fakePaymentId = "pay_test_" + Math.floor(Math.random() * 1000000);
+  window.location.href = "success.html?plan=" + encodeURIComponent(planName) + "&payment_id=" + fakePaymentId;
+}

@@ -10,59 +10,60 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 const auth = firebase.auth();
 
 document.addEventListener('DOMContentLoaded', () => {
   const regForm = document.getElementById('register-form');
   const otpForm = document.getElementById('otp-form');
   const backBtn = document.getElementById('back-to-reg-btn');
+  const phoneForm = document.getElementById('phone-form');
+  const logoutBtn = document.getElementById('logout-btn');
 
-  // Setup reCAPTCHA verifier (Invisible)
-  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-    'size': 'invisible'
-  });
+  // Initialize invisible reCAPTCHA safely after DOM loads
+  if (document.getElementById('recaptcha-container')) {
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+      'size': 'invisible'
+    });
+  }
 
-  // STEP 1: Send Real OTP SMS (India +91)
-  if (regForm) {
-    regForm.addEventListener('submit', (e) => {
+  // 1. Send OTP Handler
+  if (phoneForm) {
+    phoneForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const nameInput = document.getElementById('reg-name').value.trim();
-      let rawPhone = document.getElementById('reg-phone').value.trim();
-      
-      // Clean non-digits
-      rawPhone = rawPhone.replace(/\D/g, '');
+      const phoneNumberInput = document.getElementById('phone-input').value.trim();
+      const formattedPhone = phoneNumberInput.startsWith('+') 
+        ? phoneNumberInput 
+        : `+91${phoneNumberInput}`;
 
-      // Format automatically to +91
-      let formattedPhone;
-      if (rawPhone.length === 10) {
-        formattedPhone = `+91${rawPhone}`;
-      } else if (rawPhone.startsWith('91') && rawPhone.length === 12) {
-        formattedPhone = `+${rawPhone}`;
-      } else {
-        formattedPhone = `+${rawPhone}`;
-      }
-
-      // Save user info temporarily
-      localStorage.setItem('temp_user', JSON.stringify({ name: nameInput, phone: formattedPhone }));
-
-      // Request Firebase SMS
       const appVerifier = window.recaptchaVerifier;
-      auth.signInWithPhoneNumber(formattedPhone, appVerifier)
+
+      firebase.auth().signInWithPhoneNumber(formattedPhone, appVerifier)
         .then((confirmationResult) => {
           window.confirmationResult = confirmationResult;
-          regForm.style.display = 'none';
-          otpForm.style.display = 'block';
+          
+          const phoneSec = document.getElementById('phone-section');
+          const otpSec = document.getElementById('otp-section');
+          if (phoneSec) phoneSec.style.display = 'none';
+          if (otpSec) otpSec.style.display = 'block';
         })
         .catch((error) => {
-          alert('Error sending SMS: ' + error.message);
-          console.error(error);
+          console.error("Error sending OTP:", error);
+          alert("Failed to send OTP: " + error.message);
+          
+          if (window.grecaptcha && window.recaptchaVerifier) {
+            window.recaptchaVerifier.render().then((widgetId) => {
+              grecaptcha.reset(widgetId);
+            });
+          }
         });
     });
   }
 
-  // STEP 2: Verify Real Received OTP Code
+  // 2. Verify Received OTP Code
   if (otpForm) {
     otpForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -92,27 +93,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // STEP 3: Edit Details Button
+  // 3. Edit Details / Back Button
   if (backBtn) {
     backBtn.addEventListener('click', () => {
-      otpForm.style.display = 'none';
-      regForm.style.display = 'block';
+      const phoneSec = document.getElementById('phone-section');
+      const otpSec = document.getElementById('otp-section');
+      if (otpSec) otpSec.style.display = 'none';
+      if (phoneSec) phoneSec.style.display = 'block';
     });
   }
-});
-// Logout Click Handler
-document.addEventListener('DOMContentLoaded', () => {
-  const logoutBtn = document.getElementById('logout-btn');
 
+  // 4. Logout Handler
   if (logoutBtn) {
     logoutBtn.addEventListener('click', (e) => {
       e.preventDefault();
 
-      // Clear local session storage
       localStorage.removeItem('user_authenticated');
       localStorage.removeItem('user_profile');
 
-      // Sign out from Firebase if auth exists
       if (typeof auth !== 'undefined') {
         auth.signOut().finally(() => {
           window.location.href = 'register.html';

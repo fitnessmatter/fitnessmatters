@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Matters | Plan Unlocked</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0d0d0d;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 20px;
+    }
+    .success-card {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      max-width: 900px;
+      width: 100%;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .icon-badge {
+      width: 60px;
+      height: 60px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+      font-size: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      color: #a0a0a0;
+      font-size: 1.05rem;
+      margin-bottom: 30px;
+    }
+    .gold-text {
+      color: #f59e0b;
+      font-weight: 600;
+    }
+    .action-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background-color: #f59e0b;
+      color: #000000;
+      padding: 12px 28px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background-color: #d97706;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background-color: transparent;
+      color: #cccccc;
+      border: 1px solid #333333;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .btn-secondary:hover {
+      background-color: #222222;
+      color: #ffffff;
+      border-color: #444444;
+    }
+    .pdf-frame-wrapper {
+      position: relative;
+      width: 100%;
+      height: 650px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #2a2a2a;
+      background-color: #111111;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .app-footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ffffff;
+    }
+    .app-footer .gold-text {
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="success-card">
+    <div class="icon-badge">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <h1>Payment Successful!</h1>
+    <p class="subtitle">Thank you for subscribing to <span id="plan-title" class="gold-text">your plan</span>.</p>
+
+    <div class="action-group">
+      <a id="pdf-download" href="" download class="btn-primary">
+        <i class="fa-solid fa-download"></i> Download PDF Plan
+      </a>
+      <a href="workouts.html" class="btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+      </a>
+    </div>
+
+    <div class="pdf-frame-wrapper">
+      <iframe id="pdf-viewer" src=""></iframe>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>&copy; 2026 <span class="gold-text">Fitness Matters</span>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const plan = urlParams.get('plan');
+    const paymentId = urlParams.get('payment_id');
+
+    const pdfMap = {
+  'Beginner Workout Plan': 'beginner-plan.pdf',
+  'Lean Muscle Hypertrophy Workout Plan': 'lean-muscle-plan.pdf',
+  'Muscle Building Workout Plan': 'muscle-building-plan.pdf',
+  'Muscular 8 Workout Plan': 'muscular-8-plan.pdf',
+  'Muscle Size 5x5 Workout Plan': 'muscle-size-5x5-plan.pdf',
+  'Gain Pecs & Delts Workout Plan': 'gain-pecs-delts-plan.pdf'
+};
+
+    if (paymentId && pdfMap[plan]) {
+      document.getElementById('plan-title').innerText = plan;
+      document.getElementById('pdf-download').href = pdfMap[plan];
+      document.getElementById('pdf-viewer').src = pdfMap[plan];
+    } else {
+      document.querySelector('.success-card').innerHTML = `
+        <div class="icon-badge" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+        <h1 style="color: #ef4444;">Access Denied</h1>
+        <p class="subtitle">Please complete payment to access your workout plan content.</p>
+        <a href="workouts.html" class="btn-primary">View Available Plans</a>
+      `;
+    }
+  </script>
+
+</body>
+</html>
