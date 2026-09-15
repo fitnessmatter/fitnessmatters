@@ -2,187 +2,186 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0maximum-scale=1.0, user-scale=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Fitness Matters | Workout Plans</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="auth-guard.js"></script>
-    </head>
+</head>
 
 <body>
 
-    <!-- GLOBAL NAVBAR WITH HAMBURGER -->
-<nav class="navbar">
-  <div class="nav-header">
-    <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+    <!-- GLOBAL NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-header">
+        <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
 
-    <div class="nav-brand">
-      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-      <span class="brand-name">FITNESS<span>MATTERS</span></span>
-    </div>
-  </div>
+        <div class="nav-brand">
+          <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+          <span class="brand-name">FITNESS<span>MATTERS</span></span>
+        </div>
+      </div>
 
-  <!-- MENU LINKS (Update the "active" class per page) -->
-  <div class="nav-menu">
-    <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-    <a href="workouts.html" class="nav-item active"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-    <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-    <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
-    <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
-    <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
-  </div>
-</nav>
+      <div class="nav-menu">
+        <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+        <a href="workouts.html" class="nav-item active"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+        <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+        <a href="consultancy.html" class="nav-item"><i class="fa-solid fa-user-doctor"></i> Consultancy</a>
+        <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+        <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+        <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </div>
+    </nav>
 
-<!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <!-- SIDEBAR DRAWER OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-<!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <h3>User Menu</h3>
-    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-  </div>
+    <!-- SIDEBAR CONTENT -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>User Menu</h3>
+        <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+      </div>
 
-  <div class="user-card">
-    <div class="avatar" id="avatar-initial">A</div>
-    <div class="user-info">
-      <h4 id="menu-display-name">Aditya</h4>
-      <span class="badge" style="color: #ffc107; font-weight: 600;">Pro Member</span>
-    </div>
-  </div>
+      <div class="user-card">
+        <div class="avatar" id="avatar-initial">A</div>
+        <div class="user-info">
+          <h4 id="menu-display-name">Aditya</h4>
+          <span class="badge">Pro Member</span>
+        </div>
+      </div>
 
-  <div class="sidebar-menu">
-    <a href="profile.html" class="sidebar-item">
-      <i class="fa-solid fa-user"></i> My Profile
-    </a>
-    <a href="settings.html" class="sidebar-item">
-      <i class="fa-solid fa-gear"></i> Account Settings
-    </a>
-    <a href="notifications.html" class="sidebar-item">
-      <i class="fa-solid fa-bell"></i> Notifications
-    </a>
-    <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
-      <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
-    </button>
-    <a href="#" class="sidebar-item logout-link" onclick="handleLogout()" style="color: #f56565;">
-      <i class="fa-solid fa-right-from-bracket"></i> Logout
-    </a>
-  </div>
-</aside>
-</nav>
+      <div class="sidebar-menu">
+        <a href="profile.html" class="sidebar-item"><i class="fa-solid fa-user"></i> My Profile</a>
+        <a href="settings.html" class="sidebar-item"><i class="fa-solid fa-gear"></i> Account Settings</a>
+        <a href="notifications.html" class="sidebar-item"><i class="fa-solid fa-bell"></i> Notifications</a>
+        <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
+          <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
+        </button>
+        <a href="#" class="sidebar-item logout-link" onclick="handleLogout()">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD -->
     <main class="dashboard-wrapper">
         <div class="page-header">
-    <h1 style="color: #f59e0b !important;">Premium Workout Plans</h1>
-    <p style=" color: #a1a1aa !important;">Choose a tailored training protocol designed by certified coaches.</p>
-</div>
+            <h1>Premium Workout Plans</h1>
+            <p>Choose a tailored training protocol designed by certified coaches.</p>
+        </div>
 
         <div class="plan-grid">
-         <!-- Plan 1 -->
-    <div class="plan-card">
-      <h3><span style="color: #f59e0b !important;">Beginner Workout Plan</span></h3>
-      <p class="desc">High-volume weight training optimized for lean muscle gains.</p>
-      <div class="price-wrap">
-        <span class="price">₹499</span><span class="period">/ month</span>
-      </div>
-      <ul class="features">
-        <li><i class="fa-solid fa-check"></i> 4-Day Upper/Lower Split</li>
-        <li><i class="fa-solid fa-check"></i> Form Correction Videos</li>
-        <li><i class="fa-solid fa-check"></i> Progressive Overload Tracker</li>
-      </ul>
-      <button class="subscribe-btn" onclick="payNow('Beginner Workout Plan', 499)">
-        Subscribe Plan
-      </button>
-    </div>
+            <!-- Plan 1 -->
+            <div class="plan-card">
+              <h3>Beginner Workout Plan</h3>
+              <p class="desc">High-volume weight training optimized for lean muscle gains.</p>
+              <div class="price-wrap">
+                <span class="price">₹499</span><span class="period">/ month</span>
+              </div>
+              <ul class="features">
+                <li><i class="fa-solid fa-check"></i> 4-Day Upper/Lower Split</li>
+                <li><i class="fa-solid fa-check"></i> Form Correction Videos</li>
+                <li><i class="fa-solid fa-check"></i> Progressive Overload Tracker</li>
+              </ul>
+              <button class="subscribe-btn" onclick="payNow('Beginner Workout Plan', 499)">Subscribe Plan</button>
+            </div>
 
-    <!-- Plan 2 -->
-    <div class="plan-card popular">
-      <span class="badge">Popular</span>
-      <h3><span style="color: #f59e0b !important;">Lean Muscle Hypertrophy Workout Plan</span></h3>
-      <p class="desc">High-intensity training aimed at body fat reduction and muscle retention.</p>
-      <div class="price-wrap">
-        <span class="price">₹699</span><span class="period">/ month</span>
-      </div>
-      <ul class="features">
-        <li><i class="fa-solid fa-check"></i> 5-Day Fast Paced Circuits</li>
-        <li><i class="fa-solid fa-check"></i> Hypertrophy Focus</li>
-        <li><i class="fa-solid fa-check"></i> Daily Cardio Finishers</li>
-      </ul>
-      <button class="subscribe-btn" onclick="payNow('Lean Muscle Hypertrophy Workout Plan', 699)">
-        Subscribe Plan
-      </button>
-    </div>
+            <!-- Plan 2 -->
+            <div class="plan-card popular">
+              <span class="badge">Most Popular</span>
+              <h3>Lean Muscle Hypertrophy Workout Plan</h3>
+              <p class="desc">High-intensity training aimed at body fat reduction and muscle retention.</p>
+              <div class="price-wrap">
+                <span class="price">₹699</span><span class="period">/ month</span>
+              </div>
+              <ul class="features">
+                <li><i class="fa-solid fa-check"></i> 5-Day Fast Paced Circuits</li>
+                <li><i class="fa-solid fa-check"></i> Hypertrophy Focus</li>
+                <li><i class="fa-solid fa-check"></i> Daily Cardio Finishers</li>
+              </ul>
+              <button class="subscribe-btn" onclick="payNow('Lean Muscle Hypertrophy Workout Plan', 699)">Subscribe Plan</button>
+            </div>
 
-    <!-- Plan 3 -->
-    <div class="plan-card">
-      <h3><span style="color: #f59e0b !important;">Muscle Building Workout Plan</span></h3>
-      <p class="desc">Pure strength and mass overload split for intermediate lifters.</p>
-      <div class="price-wrap">
-        <span class="price">₹799</span><span class="period">/ month</span>
-      </div>
-      <ul class="features">
-        <li><i class="fa-solid fa-check"></i> Push / Pull / Legs Split</li>
-        <li><i class="fa-solid fa-check"></i> Hypertrophy Periodization</li>
-      </ul>
-      <button class="subscribe-btn" onclick="payNow('Muscle Building Workout Plan', 799)">
-        Subscribe Plan
-      </button>
-    </div>
+            <!-- Plan 3 -->
+            <div class="plan-card">
+              <h3>Muscle Building Workout Plan</h3>
+              <p class="desc">Pure strength and mass overload split for intermediate lifters.</p>
+              <div class="price-wrap">
+                <span class="price">₹799</span><span class="period">/ month</span>
+              </div>
+              <ul class="features">
+                <li><i class="fa-solid fa-check"></i> Push / Pull / Legs Split</li>
+                <li><i class="fa-solid fa-check"></i> Hypertrophy Periodization</li>
+              </ul>
+              <button class="subscribe-btn" onclick="payNow('Muscle Building Workout Plan', 799)">Subscribe Plan</button>
+            </div>
 
-    <!-- Plan 4 -->
-    <div class="plan-card">
-      <h3><span style="color: #f59e0b !important;">Muscular 8 Workout Plan</span></h3>
-      <p class="desc">8-week intensive transformation protocol for maximum muscularity.</p>
-      <div class="price-wrap">
-        <span class="price">₹899</span><span class="period">/ month</span>
-      </div>
-      <ul class="features">
-        <li><i class="fa-solid fa-check"></i> 8-Week Blueprint</li>
-        <li><i class="fa-solid fa-check"></i> Advanced Rest-Pause Sets</li>
-      </ul>
-      <button class="subscribe-btn" onclick="payNow('Muscular 8 Workout Plan', 899)">
-        Subscribe Plan
-      </button>
-    </div>
+            <!-- Plan 4 -->
+            <div class="plan-card">
+              <h3>Muscular 8 Workout Plan</h3>
+              <p class="desc">8-week intensive transformation protocol for maximum muscularity.</p>
+              <div class="price-wrap">
+                <span class="price">₹899</span><span class="period">/ month</span>
+              </div>
+              <ul class="features">
+                <li><i class="fa-solid fa-check"></i> 8-Week Blueprint</li>
+                <li><i class="fa-solid fa-check"></i> Advanced Rest-Pause Sets</li>
+              </ul>
+              <button class="subscribe-btn" onclick="payNow('Muscular 8 Workout Plan', 899)">Subscribe Plan</button>
+            </div>
 
-    <!-- Plan 5 -->
-    <div class="plan-card">
-      <h3><span style="color: #f59e0b !important;">Muscle Size 5x5 Workout Plan</span></h3>
-      <p class="desc">Classic heavy compound strength and size powerlifting protocol.</p>
-      <div class="price-wrap">
-        <span class="price">₹599</span><span class="period">/ month</span>
-      </div>
-      <ul class="features">
-        <li><i class="fa-solid fa-check"></i> Heavy Compound Focus</li>
-        <li><i class="fa-solid fa-check"></i> Linear Progression Model</li>
-      </ul>
-      <button class="subscribe-btn" onclick="payNow('Muscle Size 5x5 Workout Plan', 599)">
-        Subscribe Plan
-      </button>
-    </div>
+            <!-- Plan 5 -->
+            <div class="plan-card">
+              <h3>Muscle Size 5x5 Workout Plan</h3>
+              <p class="desc">Classic heavy compound strength and size powerlifting protocol.</p>
+              <div class="price-wrap">
+                <span class="price">₹599</span><span class="period">/ month</span>
+              </div>
+              <ul class="features">
+                <li><i class="fa-solid fa-check"></i> Heavy Compound Focus</li>
+                <li><i class="fa-solid fa-check"></i> Linear Progression Model</li>
+              </ul>
+              <button class="subscribe-btn" onclick="payNow('Muscle Size 5x5 Workout Plan', 599)">Subscribe Plan</button>
+            </div>
 
-    <!-- Plan 6 -->
-    <div class="plan-card">
-      <h3><span style="color: #f59e0b !important;">Gain Pecs & Delts Workout Plan</span></h3>
-      <p class="desc">Targeted upper-body specialization routine for chest and shoulder width.</p>
-      <div class="price-wrap">
-        <span class="price">₹649</span><span class="period">/ month</span>
-      </div>
-      <ul class="features">
-        <li><i class="fa-solid fa-check"></i> Chest & Delts Specialization</li>
-        <li><i class="fa-solid fa-check"></i> High Volume Upper Body Focus</li>
-      </ul>
-      <button class="subscribe-btn" onclick="payNow('Gain Pecs & Delts Workout Plan', 649)">
-        Subscribe Plan
-      </button>
-    </div>
+            <!-- Plan 6 -->
+            <div class="plan-card">
+              <h3>Gain Pecs & Delts Workout Plan</h3>
+              <p class="desc">Targeted upper-body specialization routine for chest and shoulder width.</p>
+              <div class="price-wrap">
+                <span class="price">₹649</span><span class="period">/ month</span>
+              </div>
+              <ul class="features">
+                <li><i class="fa-solid fa-check"></i> Chest & Delts Specialization</li>
+                <li><i class="fa-solid fa-check"></i> High Volume Upper Body Focus</li>
+              </ul>
+              <button class="subscribe-btn" onclick="payNow('Gain Pecs & Delts Workout Plan', 649)">Subscribe Plan</button>
+            </div>
+        </div>
     </main>
-<footer class="app-footer">
-    <p>&copy; 2026 <span class="gold-text">Fitness Matters</span>. All rights reserved.</p>
-</footer>
-<!-- Link external script file -->
-  <script src="script.js"></script>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 <span class="gold-text">Fitness Matters</span>. All rights reserved.</p>
+    </footer>
+
+    <!-- SUBSCRIPTION MODAL -->
+    <div id="sub-modal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-icon"><i class="fa-solid fa-crown"></i></div>
+        <h3 id="modal-plan-title">Confirm Plan Subscription</h3>
+        <p>You selected <strong id="selected-plan-name">Plan</strong> for <span id="selected-plan-price">₹699</span>/month.</p>
+        
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeSubModal()">Cancel</button>
+          <button class="btn-confirm" onclick="processSubscription()">Download Plan PDF</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

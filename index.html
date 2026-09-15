@@ -1,75 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Matters | Registration</title>
-    <!-- Link External CSS -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitness Matters | Overview</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <div class="logo">FITNESS <span>MATTERS</span></div>
-        <nav>
-            <a href="index.html" class="active">Register</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
 
-    <main>
-        <section class="auth-container">
-            <div class="auth-card">
-                <h2>Create Account</h2>
-                <p class="auth-sub">Enter your details to register via phone verification</p>
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-header">
+    <button class="hamburger-btn" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+    <div class="nav-brand">
+      <i class="fas fa-bolt brand-icon"></i>
+      <div class="brand-name">FITNESS<span>MATTERS</span></div>
+    </div>
+  </div>
 
-                <form id="registerForm">
-                    <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" placeholder="Enter Your Full Name" required>
-                    </div>
+  <!-- ALL MAIN NAV LINKS (HORIZONTAL NO-WRAP) -->
+  <div class="nav-menu">
+    <a href="index.html" class="nav-item"><i class="fas fa-chart-pie"></i> Overview</a>
+    <a href="workouts.html" class="nav-item"><i class="fas fa-dumbbell"></i> Workouts</a>
+    <a href="nutrition.html" class="nav-item"><i class="fas fa-utensils"></i> Nutrition</a>
+    <a href="consultancy.html" class="nav-item"><i class="fas fa-user-tie"></i> Consultancy</a>
+    <a href="goals.html" class="nav-item"><i class="fas fa-bullseye"></i> Goals</a>
+    <a href="about.html" class="nav-item"><i class="fas fa-info-circle"></i> About</a>
+    <a href="contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+</nav>
 
-                    <div class="form-group">
-                        <label for="mobileNo">Mobile Number</label>
-                        <input type="tel" id="mobileNo" placeholder="Enter Your Contact Number" required>
-                    </div>
+<!-- SIDEBAR DRAWER -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h3>Account</h3>
+    <button class="close-btn" id="closeSidebarBtn">&times;</button>
+  </div>
 
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Create Password" required>
-                    </div>
-
-                    <button type="submit" class="main-btn full-width">Request OTP</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- OTP Verification Modal -->
-        <div id="otpModal" class="modal-overlay" style="display:none;">
-            <div class="modal-content">
-                <h3>Verify Phone Number</h3>
-                <p>Enter the 6-digit code sent to your mobile device.</p>
-                <div class="otp-inputs">
-                    <input type="text" maxlength="6" id="otpCode" placeholder="123456" required>
-                </div>
-                <button id="verifyOtpBtn" class="main-btn full-width">Verify & Register</button>
-                <button id="closeModalBtn" class="close-btn">Cancel</button>
-            </div>
+  <div class="sidebar-menu">
+    <!-- USER PROFILE -->
+    <a href="profile.html" class="sidebar-item">
+      <div class="user-card" style="display:flex; align-items:center; gap:0.75rem; width:100%;">
+        <div class="avatar" id="avatar-initial" style="background:var(--accent-color); color:#fff; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">FM</div>
+        <div class="user-info">
+          <h4 id="menu-display-name" style="margin:0; font-size:1rem; color:var(--text-primary);">User Profile</h4>
         </div>
-    </main>
+      </div>
+    </a>
 
-    <footer>
-        <p class="copyright">&copy; 2026 Fitness Matters. All Rights Reserved.</p>
-    </footer>
+    <!-- ACCOUNT SETTINGS -->
+    <a href="settings.html" class="sidebar-item">
+      <i class="fas fa-cog"></i> <span>Account Settings</span>
+    </a>
 
-    <!-- Invisible Recaptcha Container required by Firebase -->
-    <div id="recaptcha-container"></div>
+    <!-- NOTIFICATIONS -->
+    <a href="notifications.html" class="sidebar-item">
+      <i class="fas fa-bell"></i> <span>Notifications</span>
+    </a>
 
-    <!-- Firebase App & Auth SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <!-- LIGHT / DARK MODE TOGGLE -->
+    <button class="sidebar-item" id="themeToggleBtn" style="background:none; border:none; width:100%; text-align:left; cursor:pointer; color:inherit; font:inherit; display:flex; align-items:center; gap:0.5rem; padding:0.75rem 0;">
+      <i class="fas fa-moon"></i> <span id="theme-text">Light Mode</span>
+    </button>
 
-    <!-- Main JavaScript -->
-    <script src="script.js"></script>
+    <hr style="border:none; border-top:1px solid var(--border-color); margin:1rem 0;" />
+
+    <!-- LOGOUT -->
+    <a href="#" class="sidebar-item logout-link" style="color:#ef4444;">
+      <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+    </a>
+  </div>
+</aside>
+  <!-- MAIN DASHBOARD CONTENT -->
+  <main class="dashboard-wrapper">
+    <div class="page-header">
+      <h1>Dashboard Overview</h1>
+      <p>Welcome back! Here is a summary of your activity and fitness metrics.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h4>Calories Burned</h4>
+        <div class="value">2,450 <span>kcal</span></div>
+      </div>
+      <div class="stat-card">
+        <h4>Workouts Done</h4>
+        <div class="value">18</div>
+      </div>
+      <div class="stat-card">
+        <h4>Active Streak</h4>
+        <div class="value">14 <span>Days</span></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

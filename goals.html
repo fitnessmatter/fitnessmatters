@@ -1,158 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Fitness Matters | Goals</title>
-   <!-- FontAwesome CDN (Loads the lightning bolt and icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="auth-guard.js"></script>
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=7.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitnessMatters | Goals</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* OVERRIDE TO FORCE VISIBLE 2-LINE MOBILE NAVBAR */
+    @media (max-width: 1024px) {
+      .navbar {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 0.8rem 1rem !important;
+        background: #ffffff !important;
+        border-bottom: 1px solid #e0e0e0 !important;
+      }
+
+      /* LINE 1: HEADER ROW */
+      .nav-header {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.8rem !important;
+        width: 100% !important;
+      }
+
+      .hamburger-btn {
+        background: transparent !important;
+        border: none !important;
+        font-size: 1.3rem !important;
+        cursor: pointer !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+
+      .hamburger-btn i {
+        color: #000000 !important;
+      }
+
+      .nav-brand {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+      }
+
+      .nav-brand .brand-icon {
+        color: #d9534f !important;
+        font-size: 1.2rem !important;
+      }
+
+      .nav-brand .brand-name {
+        color: #a35d2d !important;
+        font-weight: 700 !important;
+        font-size: 1.1rem !important;
+        letter-spacing: 0.5px !important;
+      }
+
+      /* LINE 2: PERMANENT VISIBLE NAV LINKS */
+      .nav-menu {
+        display: flex !important; /* Forces menu to stay visible, not hidden */
+        flex-direction: column !important;
+        gap: 0.3rem !important;
+        width: 100% !important;
+        margin-top: 0.8rem !important;
+        padding-top: 0.6rem !important;
+        border-top: 1px solid #f0f0f0 !important;
+        position: static !important;
+        box-shadow: none !important;
+      }
+
+      .nav-menu .nav-item {
+        text-decoration: none !important;
+        color: #a35d2d !important;
+        font-weight: 500 !important;
+        font-size: 0.9rem !important;
+        padding: 0.4rem 0.6rem !important;
+        border-radius: 4px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.6rem !important;
+        width: 100% !important;
+      }
+
+      .nav-menu .nav-item.active,
+      .nav-menu .nav-item:hover {
+        background: rgba(212, 160, 23, 0.12) !important;
+        color: #d4a017 !important;
+      }
+    }
+  </style>
 </head>
-<body class="app-body">
+<body class="light-mode">
 
-  <!-- GLOBAL NAVBAR WITH HAMBURGER -->
+  <!-- NAVBAR WITH ALWAYS-VISIBLE SECOND LINE -->
   <nav class="navbar">
+    <!-- LINE 1: TOGGLE & LOGO -->
     <div class="nav-header">
-      <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
-        <i class="fa-solid fa-bars"></i>
+      <button class="hamburger-btn" aria-label="Toggle Navigation">
+        <i class="fas fa-bars"></i>
       </button>
-
       <div class="nav-brand">
-  <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-  <h1 class="brand-name">FITNESS<span>MATTERS</span></h1>
-</div>
-    </div>
-  <!-- MENU LINKS (Update the "active" class per page) -->
-  <div class="nav-menu">
-    <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-    <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-    <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-    <a href="goals.html" class="nav-item active"><i class="fa-solid fa-bullseye"></i> Goals</a>
-    <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
-    <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
-  </div>
-</nav>
-
-<!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-
-<!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <h3>User Menu</h3>
-    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-  </div>
-
-  <div class="user-card">
-    <div class="avatar" id="avatar-initial">A</div>
-    <div class="user-info">
-      <h4 id="menu-display-name">Aditya</h4>
-      <span class="badge" style="color: #ffc107; font-weight: 600;">Pro Member</span>
-    </div>
-  </div>
-
-  <div class="sidebar-menu">
-    <a href="profile.html" class="sidebar-item">
-      <i class="fa-solid fa-user"></i> My Profile
-    </a>
-    <a href="settings.html" class="sidebar-item">
-      <i class="fa-solid fa-gear"></i> Account Settings
-    </a>
-    <a href="notifications.html" class="sidebar-item">
-      <i class="fa-solid fa-bell"></i> Notifications
-    </a>
-    <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
-      <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
-    </button>
-    <a href="#" class="sidebar-item logout-link" onclick="handleLogout()" style="color: #f56565;">
-      <i class="fa-solid fa-right-from-bracket"></i> Logout
-    </a>
-  </div>
-</aside>   
-    </nav>
-  </div>
-</header>
-  <!-- MAIN DASHBOARD CONTENT -->
-  <!-- PAGE HEADER -->
-<div class="page-header">
-  <h1 class="page-title">
-    <span class="gold-text">Fitness Targets<br>
-    <span class="ampersand">&</span><br>
-    Milestones
-  </h1>
-  <p class="page-subtitle">Track your personal records, weight goals, and overall progress.</p>
-</div>
-
-<!-- STATS OVERVIEW (WITH BACKGROUND CARDS) -->
-<div class="stats-overview-grid">
-  <div class="stat-card">
-    <span class="stat-number">5</span>
-    <span class="stat-label">ACTIVE GOALS</span>
-  </div>
-  <div class="stat-card">
-    <span class="stat-number">12</span>
-    <span class="stat-label">COMPLETED</span>
-  </div>
-  <div class="stat-card">
-    <span class="stat-number">14</span>
-    <span class="stat-label">DAY STREAK</span>
-  </div>
-</div>
-
-<!-- ACTIVE MILESTONES -->
-<h3 class="section-heading">Active Milestones</h3>
-
-<div class="milestones-list">
-  <!-- Goal 1 -->
-  <div class="goal-card">
-    <div class="goal-header">
-      <div class="goal-title-group">
-        <i class="fa-solid fa-chart-line goal-icon"></i>
-        <div>
-          <h4>Target Body Fat %</h4>
-          <p class="goal-sub">Fat Loss Milestone</p>
-        </div>
+        <i class="fas fa-bolt brand-icon"></i>
+        <span class="brand-name">FITNESSMATTERS</span>
       </div>
-      <span class="badge in-progress">In Progress</span>
     </div>
-    <div class="goal-metrics">
-      <div><span>Current</span><strong>18%</strong></div>
-      <div><span>Target</span><strong>12%</strong></div>
-      <div><span>Target Date</span><strong>Oct 30</strong></div>
-    </div>
-  </div>
 
-  <!-- Goal 2 -->
-  <div class="goal-card">
-    <div class="goal-header">
-      <div class="goal-title-group">
-        <i class="fa-solid fa-dumbbell goal-icon"></i>
-        <div>
-          <h4>Bench Press 100kg</h4>
-          <p class="goal-sub">Strength Goal</p>
+    <!-- LINE 2: NAV LINKS -->
+    <div class="nav-menu">
+      <a href="home.html" class="nav-item"><i class="fas fa-chart-pie"></i> Overview</a>
+      <a href="workouts.html" class="nav-item"><i class="fas fa-dumbbell"></i> Workouts</a>
+      <a href="nutrition.html" class="nav-item"><i class="fas fa-utensils"></i> Nutrition</a>
+      <a href="consultancy.html" class="nav-item"><i class="fas fa-user-tie"></i> Consultancy</a>
+      <a href="goals.html" class="nav-item active"><i class="fas fa-bullseye"></i> Goals</a>
+      <a href="about.html" class="nav-item"><i class="fas fa-info-circle"></i> About</a>
+      <a href="contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+  </nav>
+
+  <!-- DASHBOARD CONTENT -->
+  <main class="dashboard-wrapper">
+    <header class="page-header">
+      <h1>Fitness Targets & Milestones</h1>
+      <p>Track your personal records, weight goals, and overall progress.</p>
+    </header>
+
+    <div class="plans-grid">
+      <article class="plan-card stat-card">
+        <h3>Active Goals</h3>
+        <div class="plan-price">
+          <span class="price-amount" style="font-size: 2rem;">2</span>
         </div>
-      </div>
-      <span class="badge in-progress">In Progress</span>
-    </div>
-    <div class="goal-metrics">
-      <div><span>Current</span><strong>85 kg</strong></div>
-      <div><span>Target</span><strong>100 kg</strong></div>
-      <div><span>Target Date</span><strong>Dec 15</strong></div>
-    </div>
-  </div>
+      </article>
 
-  <!-- Goal 3: SET A NEW GOAL CARD -->
-  <button class="add-goal-card" onclick="alert('Set a new custom goal feature clicked!')">
-    <i class="fa-solid fa-circle-plus"></i>
-    <span>Set a New Goal</span>
-  </button>
-</div>
-</div>
+      <article class="plan-card stat-card">
+        <h3>Completed</h3>
+        <div class="plan-price">
+          <span class="price-amount" style="font-size: 2rem;">12</span>
+        </div>
+      </article>
 
-<!-- GUARANTEED FOOTER -->
-<footer class="footer-text">
-  &copy; 2026 <span class="gold-text"  >Fitness Matters.</span> All rights reserved.
-</footer>
+      <article class="plan-card stat-card">
+        <h3>Day Streak</h3>
+        <div class="plan-price">
+          <span class="price-amount" style="font-size: 2rem;">14</span>
+          <span class="price-period"> Days</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- ACTIVE MILESTONES -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0 1rem 0;">
+      <h2 style="color: var(--accent-gold, #d4a017); font-size: 1.25rem;">Active Milestones</h2>
+      <button class="buy-btn" style="width: auto; padding: 0.6rem 1.2rem;">+ Set New Goal</button>
+    </div>
+
+    <div class="plans-grid">
+      <article class="plan-card stat-card">
+        <span class="badge" style="background: rgba(212, 160, 23, 0.15); color: #d4a017; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; width: fit-content; margin-bottom: 0.5rem; display: inline-block;">In Progress</span>
+        <h3>Target Body Fat %</h3>
+        <p>Fat Loss Milestone<br>Current: 18%</p>
+        <div style="background: #e0e0e0; height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 0.75rem;">
+          <div style="width: 50%; background: #d4a017; height: 100%;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #666666;">
+          <span>Target: 12%</span>
+          <span>Target Date: Oct 30</span>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>&copy; 2026 <span>FITNESSMATTERS</span>. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

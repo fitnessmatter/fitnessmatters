@@ -1,2719 +1,2629 @@
 /* ==========================================
-   PREVENT HEADER SHIFT ACROSS PAGES
+   GLOBAL DESIGN VARIABLES & THEMES
    ========================================== */
-
-/* Always reserve vertical scrollbar space */
-html {
-  overflow-y: scroll !important;
+:root {
+  /* DARK MODE (DEFAULT) */
+  --bg-main: #0b0f17;
+  --bg-card: #151c28;
+  --bg-navbar: #0f172a;
+  --bg-sidebar: #151c28;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-gold: #f59e0b;
+  --accent-gold-hover: #d97706;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --modal-bg: #151c28;
+  --badge-bg: rgba(245, 158, 11, 0.15);
+  --input-bg: #0b0f17;
+  --progress-bg: #0f172a;
+  --accent-color: #f59e0b;
+  --card-bg: #151c28;
 }
 
-/* Force navbar and containers to calculate width identically */
-.navbar,
-.nav-header,
-.dashboard-wrapper {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+body.light-mode {
+  /* LIGHT MODE OVERRIDES */
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-navbar: #ffffff;
+  --bg-sidebar: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --accent-gold: #d97706;
+  --accent-gold-hover: #b45309;
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --modal-bg: #ffffff;
+  --badge-bg: #fef3c7;
+  --input-bg: #f8fafc;
+  --progress-bg: #e2e8f0;
+  --accent-color: #d97706;
+  --card-bg: #ffffff;
 }
-/* Core Page Theme & Pure Black Background */
-html, body {
-  background-color: #0d0d0e !important;
-  color: #ffffff !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+/* ==========================================
+   BASE & RESET STYLES
+   ========================================== */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+body {
+  background-color: var(--bg-main) !important;
+  color: var(--text-primary) !important;
   min-height: 100vh;
-}
-
-/* Dashboard Wrapper */
-.dashboard-wrapper {
-  padding: 24px 16px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* Gold/Amber Brand Highlight */
-.brand-name span {
-  color: #f59e0b !important; /* Gold / Amber Highlight */
-}
-
-/* Card Styling (Exact match to Workout cards) */
-.stats-grid, .dashboard-card, .metric-card, .card {
-  background: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 16px !important;
-  padding: 20px !important;
-  margin-top: 16px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* Headers & Amber Stat Highlights */
-.page-header h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #ffffff !important;
-  margin-bottom: 6px;
-}
-
-.page-header p {
-  color: #a1a1aa !important;
-  font-size: 0.95rem;
-}
-
-.stat-value, .stat-number {
-  color: #f59e0b !important; /* Amber Highlight */
-  font-size: 2.2rem !important;
-  font-weight: 800 !important;
-}
-
-.stat-label {
-  color: #a1a1aa !important;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Active Nav Link Styling */
-.nav-item.active {
-  color: #ffffff !important;
-  background: rgba(245, 158, 11, 0.15) !important;
-  border: 1px solid rgba(245, 158, 11, 0.3) !important;
-  border-radius: 8px;
-}
-
-.dashboard-wrapper {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.page-header h1 {
-  color: #ffffff;
-  font-size: 24px;
-  margin-bottom: 5px;
-}
-
-.page-header p {
-  color: #a0a0a0;
-  font-size: 14px;
-}
-
-.navbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2rem;
-  background: #000000 !important;
-  border-bottom: 1px solid #1c1c1c !important;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================
+ /* ==========================================
+   NAVIGATION BAR (CENTERED LOGO & MENU)
+   ========================================== */
+.navbar {
+  background-color: var(--bg-navbar) !important;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 1rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  width: 100% !important;
+  box-sizing: border-box !important;
+  gap: 0.75rem;
+}
+
+.nav-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important; /* Centers logo horizontally */
+  width: 100% !important;
+  position: relative; /* Keeps hamburger pinned left while logo stays perfectly centered */
+}
+
+.hamburger-btn {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  font-size: 1.4rem !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .brand-icon {
-  width: 36px;
-  height: 36px;
-  background: #ffffff;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000000;
-  font-size: 1.1rem;
+  color: var(--accent-gold);
+  font-size: 1.4rem;
 }
 
 .brand-name {
   font-weight: 800;
-  letter-spacing: 0.5px;
   font-size: 1.25rem;
-  color: #ffffff;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.brand-name span {
+  color: var(--accent-gold);
 }
 
 .nav-menu {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important; /* Centers line 1 and line 2 items */
+  gap: 0.35rem 0.6rem !important;
+  width: 100% !important;
+  overflow: visible !important;
 }
 
 .nav-item {
-  color: #a0a0a0;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: color 0.2s;
+  gap: 0.3rem;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.78rem !important;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  white-space: nowrap !important;
+  font-weight: 500;
+}
+
+body.light-mode .nav-item {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .nav-item:hover, .nav-item.active {
+  color: var(--accent-gold);
+  background-color: var(--badge-bg);
+}
+
+.nav-item i {
+  font-size: 0.75rem;
+}
+
+/* DESKTOP NAVBAR ADJUSTMENTS */
+@media (min-width: 769px) {
+  .navbar {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.85rem 2rem !important;
+  }
+
+  .nav-header {
+    width: auto !important;
+    position: static;
+  }
+
+  .hamburger-btn {
+    position: static;
+    transform: none;
+  }
+
+  .nav-menu {
+    width: auto !important;
+    justify-content: flex-end !important;
+    gap: 0.5rem !important;
+  }
+
+  .nav-item {
+    font-size: 0.9rem !important;
+    background: transparent;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+/* ==========================================
+   SLIDE-OUT SIDEBAR DRAWER
+   ========================================== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.open {
+  display: block !important;
+  opacity: 1;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 280px;
+  height: 100vh;
+  background-color: var(--bg-sidebar) !important;
+  border-right: 1px solid var(--border-color);
+  z-index: 9999;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 5px 0 25px var(--shadow-color);
+  transition: left 0.3s ease;
+  box-sizing: border-box;
+}
+
+.sidebar.open {
+  left: 0 !important;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.sidebar-header h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--bg-main);
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.avatar, .avatar-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--accent-gold);
   color: #ffffff;
-}
-        /* Force complete pitch black overrides */
-        html, body {
-            background-color: #000000 !important;
-            color: #ffffff !important;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .navbar {
-            background-color: #000000 !important;
-            border-bottom: 1px solid #1c1c1c !important;
-        }
-
-        /* Hero Text */
-        .workout-header h1 {
-            color: #ffffff !important;
-            font-size: 2.2rem;
-            font-weight: 800;
-        }
-
-        .workout-header p {
-            color: #888888 !important;
-        }
-
-        /* Filter Pills */
-        .filter-btn {
-            background: #0a0a0a !important;
-            border: 1px solid #222222 !important;
-            color: #888888 !important;
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: #04a8c9 !important;
-            color: #000000 !important;
-            border-color: #ffffff !important;
-        }
-
-        /* Cards */
-        .plan-card {
-            background-color: #0a0a0a !important;
-            border: 1px solid #222222 !important;
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: border-color 0.2s;
-        }
-
-        .plan-card:hover {
-            border-color: #444444 !important;
-        }
-
-        .plan-title {
-            color: #ffffff !important;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .plan-desc {
-            color: #888888 !important;
-            font-size: 0.85rem;
-        }
-
-        /* Tags & Badges */
-        .tag {
-            background: #141414 !important;
-            border: 1px solid #262626 !important;
-            color: #aaaaaa !important;
-            padding: 0.3rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-        }
-
-        .badge-popular {
-            background: #fdbe12 !important;
-            color: #000000 !important;
-            font-weight: 700;
-        }
-
-        /* Pricing & Buttons */
-        .price {
-            color: #ffffff !important;
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .price-original {
-            color: #555555 !important;
-            text-decoration: line-through;
-        }
-
-        .btn-outline {
-            background: #000000 !important;
-            border: 1px solid #333333 !important;
-            color: #ffffff !important;
-            padding: 0.6rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .btn-solid {
-            background: #04aac7 !important;
-            color: #000000 !important;
-            border: 1px solid #ffffff !important;
-            padding: 0.6rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-        }
-
-        .btn-solid:hover {
-            background: #e5e5e5 !important;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-brand">
-            <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-            <span class="brand-name">FITNESS<span>MATTERS</span></span>
-        </div>
-
-        <div class="nav-menu">
-            <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-            <a href="workouts.html" class="nav-item active"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-            <a href="#" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-            <a href="#" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
-        </div>
-
-        <div class="user-profile-nav">
-            <div class="avatar">A</div>
-            <button id="logoutBtn" class="logout-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-        </div>
-    </nav>
-
-    <!-- Content -->
-    <main class="dashboard-wrapper">
-        <div class="workout-header" style="text-align: center; margin: 2rem 0;">
-            <h1>Choose Your Workout Plan</h1>
-            <p>Professionally designed workout programs to help you build muscle, lose fat, and achieve your fitness goals.</p>
-        </div>
-
-        <!-- Filters -->
-        <div style="display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
-            <button class="filter-btn active">All Plans</button>
-            <button class="filter-btn">Muscle Building</button>
-            <button class="filter-btn">Fat Loss</button>
-            <button class="filter-btn">Beginner</button>
-            <button class="filter-btn">Advanced</button>
-        </div>
-
-        <!-- Cards Container -->
-        <div class="metrics-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-            
-            <!-- Plan 1 -->
-            <div class="plan-card">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                    <span class="tag">BEGINNER</span>
-                    <i class="fa-solid fa-lock" style="color: #444;"></i>
-                </div>
-                <div style="text-align: center; font-size: 3rem; margin: 1rem 0;">🏆</div>
-                <h2 class="plan-title">Beginner Transformation</h2>
-                <p class="plan-desc" style="margin: 0.5rem 0 1rem;">A perfect starting program for beginners who want to build strength and improve overall fitness.</p>
-                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
-                    <span class="tag">8 Weeks</span>
-                    <span class="tag">5 Days / Week</span>
-                    <span class="tag">Home & Gym</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <div>
-                        <span class="price">₹499</span>
-                        <span class="price-original">₹799</span>
-                    </div>
-                    <span class="tag" style="border-color: #444; color: #fff;">38% OFF</span>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
-                    <button class="btn-outline">View Details</button>
-                    <button class="btn-solid">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Plan 2 -->
-            <div class="plan-card" style="border-color: #ffffff !important;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                    <span class="tag badge-popular">⭐ MOST POPULAR</span>
-                    <i class="fa-solid fa-lock" style="color: #444;"></i>
-                </div>
-                <div style="text-align: center; font-size: 3rem; margin: 1rem 0;">💪</div>
-                <h2 class="plan-title">Muscle Builder Pro</h2>
-                <p class="plan-desc" style="margin: 0.5rem 0 1rem;">A structured muscle-building program designed to maximize strength, size, and muscular development.</p>
-                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
-                    <span class="tag">12 Weeks</span>
-                    <span class="tag">6 Days / Week</span>
-                    <span class="tag">Gym</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <div>
-                        <span class="price">₹999</span>
-                        <span class="price-original">₹1,499</span>
-                    </div>
-                    <span class="tag" style="border-color: #444; color: #fff;">33% OFF</span>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
-                    <button class="btn-outline">View Details</button>
-                    <button class="btn-solid">Buy Now</button>
-                </div>
-            </div>
-
-            <!-- Plan 3 -->
-            <div class="plan-card">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-                    <span class="tag">FAT LOSS</span>
-                    <i class="fa-solid fa-lock" style="color: #444;"></i>
-                </div>
-                <div style="text-align: center; font-size: 3rem; margin: 1rem 0;">🔥</div>
-                <h2 class="plan-title">Fat Loss & Shred</h2>
-                <p class="plan-desc" style="margin: 0.5rem 0 1rem;">A focused fat-loss program combining resistance training and cardio for a leaner physique.</p>
-                <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
-                    <span class="tag">10 Weeks</span>
-                    <span class="tag">5 Days / Week</span>
-                    <span class="tag">Gym</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <div>
-                        <span class="price">₹799</span>
-                        <span class="price-original">₹1,199</span>
-                    </div>
-                    <span class="tag" style="border-color: #444; color: #fff;">33% OFF</span>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
-                    <button class="btn-outline">View Details</button>
-                    <button class="btn-solid">Buy Now</button>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-</body>
-</html>
-/* --- CONTACT PAGE STYLES --- */
-.contact-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
-.info-card {
-    background: #1e1e24;
-    border: 1px solid #333333;
-    border-radius: 12px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.user-info h4 {
+  color: var(--text-primary);
+  font-size: 0.95rem;
 }
 
-.info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.info-icon {
-    width: 42px;
-    height: 42px;
-    background: rgba(245, 158, 11, 0.15);
-    color: #f59e0b;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
+.sidebar-item {
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 0.75rem 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.info-text h4 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.2rem;
+.sidebar-item:hover {
+  background-color: var(--badge-bg);
+  color: var(--accent-gold);
 }
 
-.info-text p {
-    color: #a0a0a0;
-    font-size: 0.85rem;
+/* ==========================================
+   PAGE WRAPPERS & HEADERS
+   ========================================== */
+.dashboard-wrapper, .container, .main-container, .goals-container, .goals-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  flex: 1;
+  background-color: transparent !important;
 }
 
-.form-card {
-    background: #1e1e24;
-    border: 1px solid #333333;
-    border-radius: 12px;
-    padding: 2rem;
+.page-header, .section-header, .goals-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.page-header h1, .section-header h2, .goals-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent-gold) !important;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p, .section-header p, .goals-header p {
+  color: var(--text-secondary) !important;
+  font-size: 1rem;
+}
+
+/* ==========================================
+   CARDS & GRIDS
+   ========================================== */
+.stats-grid, .overview-grid, .plans-grid, .cards-grid, .goals-grid, .milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card, .plan-card, .goal-card, .about-card, .contact-card, .milestone-card, .streak-card, .goals-section {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 14px;
+  padding: 1.8rem;
+  box-shadow: 0 10px 25px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: var(--text-primary) !important;
+}
+
+.stat-card h4, .stat-title, .goal-card h3, .about-card h3, .milestone-card h3, .goal-title {
+  color: var(--accent-gold) !important;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card .value, .stat-value, .goal-value, .streak-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary) !important;
+  margin-top: 0.25rem;
+}
+
+.plan-card h3 {
+  color: var(--accent-gold) !important;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.plan-card p, .goal-card p, .about-card p, .milestone-card p, .goal-desc {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.plan-price {
+  margin-bottom: 1.25rem;
+}
+
+.price-amount {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary) !important;
+}
+
+.price-period {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+}
+
+.plan-features, .card-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.plan-features li, .card-list li {
+  color: var(--text-primary) !important;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.plan-features li i, .card-list li i {
+  color: var(--accent-gold);
+}
+
+/* ==========================================
+   GOALS & PROGRESS BARS
+   ========================================== */
+.goals-section-title, .section-title {
+  color: var(--text-primary) !important;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.progress-bar-container, .progress-track {
+  width: 100%;
+  height: 10px;
+  background-color: var(--progress-bg) !important;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.progress-bar, .progress-fill {
+  height: 100%;
+  background-color: var(--accent-gold) !important;
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+.goal-meta, .milestone-info {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary) !important;
+  font-size: 0.85rem;
+}
+
+/* ==========================================
+   ABOUT PAGE STYLES
+   ========================================== */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.about-stat-box {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.about-stat-box h2 {
+  font-size: 2.2rem;
+  color: var(--accent-gold) !important;
+  font-weight: 800;
+}
+
+.about-stat-box p {
+  color: var(--text-secondary) !important;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+/* ==========================================
+   CONTACT PAGE & INPUT STYLES
+   ========================================== */
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-primary) !important;
+  font-size: 0.95rem;
+}
+
+.contact-info-item i {
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+  width: 24px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .form-group {
-    margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .form-group label {
-    display: block;
-    color: #ffffff;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+  color: var(--text-primary) !important;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-.form-input, .form-textarea {
-    width: 100%;
-    background: #121212;
-    border: 1px solid #333333;
-    border-radius: 8px;
-    padding: 0.8rem 1rem;
-    color: #ffffff;
-    font-family: inherit;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s;
+.form-group input, .form-group textarea {
+  background-color: var(--input-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
 }
 
-.form-input:focus, .form-textarea:focus {
-    border-color: #f59e0b;
+.form-group input:focus, .form-group textarea:focus {
+  border-color: var(--accent-gold) !important;
 }
 
-.form-textarea {
-    resize: vertical;
-    min-height: 120px;
+/* ==========================================
+   BUTTONS & BADGES
+   ========================================== */
+.buy-btn, .btn-confirm, .submit-btn, button[type="submit"] {
+  background-color: var(--accent-gold) !important;
+  color: #ffffff !important;
+  border: none;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
 }
 
-.submit-btn {
-    width: 100%;
-    background: #f59e0b;
-    color: #000000;
-    border: none;
-    padding: 0.9rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background 0.2s;
+.buy-btn:hover, .btn-confirm:hover, .submit-btn:hover, button[type="submit"]:hover {
+  background-color: var(--accent-gold-hover) !important;
 }
 
-.submit-btn:hover {
-    background: #d97706;
-}
-/* --- Base Grid & Card Styles --- */
-.stats-grid {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 12px !important;
-  margin-top: 20px !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
+.badge {
+  background-color: var(--badge-bg) !important;
+  color: var(--accent-gold) !important;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: fit-content;
+  margin-bottom: 0.75rem;
 }
 
-.stat-card {
-  background: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 14px !important;
-  padding: 16px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+/* ==========================================
+   CUSTOM TOGGLE SWITCHES
+   ========================================== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
-.stat-label {
-  color: #a1a1aa !important;
-  font-size: 0.75rem !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 22px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-gold);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* ==========================================
+   MODAL OVERLAY
+   ========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1000;
+  transition: opacity 0.25s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-card {
+  background-color: var(--modal-bg) !important;
+  color: var(--text-primary) !important;
+  padding: 2rem;
+  border-radius: 14px;
+  max-width: 440px;
+  width: 90%;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 20px 40px var(--shadow-color);
+  text-align: center;
+}
+
+.modal-icon {
+  font-size: 2.5rem;
+  color: var(--accent-gold);
+  margin-bottom: 1rem;
+}
+
+.modal-card h3 {
+  color: var(--text-primary) !important;
+  margin-bottom: 0.5rem;
+}
+
+.modal-card p {
+  color: var(--text-secondary) !important;
+  margin-bottom: 1.5rem;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: var(--text-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.app-footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary) !important;
+  background-color: var(--bg-navbar) !important;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.app-footer span {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE STACKING FIXES
+   ========================================== */
+@media (max-width: 768px) {
+  .dashboard-wrapper {
+    padding: 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .stats-grid,
+  .plans-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .page-header h1 {
+    font-size: 1.6rem !important;
+  }
+
+  .page-header p {
+    font-size: 0.85rem !important;
+  }
+
+  .sidebar {
+    width: 80% !important;
+    max-width: 280px;
+  }
+}
+/* ==========================================
+   PLANS & CARDS (NUTRITION / WORKOUT MATCH)
+   ========================================== */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.plan-card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px var(--shadow-color);
+}
+
+.plan-card h3 {
+  color: var(--accent-gold) !important;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.plan-card p {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.plan-price {
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: baseline;
+}
+
+.price-amount {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary) !important;
+}
+
+.price-period {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  margin-left: 0.35rem;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem 0;
+  flex: 1;
+}
+
+.plan-features li {
+  color: var(--text-primary) !important;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.plan-features li i {
+  color: var(--accent-gold);
+  font-size: 0.85rem;
+}
+
+/* BUTTONS & BADGES */
+.buy-btn {
+  background-color: var(--accent-gold) !important;
+  color: #ffffff !important;
+  border: none;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.buy-btn:hover {
+  background-color: var(--accent-gold-hover) !important;
+}
+
+.buy-btn:active {
+  transform: scale(0.98);
+}
+
+.badge {
+  background-color: var(--badge-bg) !important;
+  color: var(--accent-gold) !important;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+/* ==========================================
+   WORKOUT & NUTRITION CARDS UNIFICATION
+   ========================================== */
+/* Ensures all workout cards adopt the exact stat-card styling */
+.plan-card,
+.plan-card.stat-card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 14px;
+  padding: 1.8rem;
+  box-shadow: 0 10px 25px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: var(--text-primary) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px var(--shadow-color);
+}
+
+.plan-card h3 {
+  color: var(--accent-gold) !important;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.plan-card p {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+/* Feature Lists Styling */
+.plan-features,
+.plan-features.card-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+  flex: 1;
+  padding: 0;
+}
+
+.plan-features li {
+  color: var(--text-primary) !important;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.plan-features li i {
+  color: var(--accent-gold);
+}
+
+/* Subscribe Button Styling */
+.buy-btn,
+.plan-card button {
+  background-color: var(--accent-gold) !important;
+  color: #ffffff !important;
+  border: none;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.buy-btn:hover,
+.plan-card button:hover {
+  background-color: var(--accent-gold-hover) !important;
+}
+
+.buy-btn:active,
+.plan-card button:active {
+  transform: scale(0.98);
+}
+/* Fix spacing between list features and subscribe button */
+.plan-features, 
+.plan-card ul {
+  margin-bottom: 1.5rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+.buy-btn, 
+.plan-card button {
+  margin-top: auto !important;
+}
+/* ==========================================
+   ABOUT PAGE CUSTOM STYLING
+   ========================================== */
+.mission-card {
+  margin-bottom: 2rem;
+  padding: 1.8rem;
+}
+
+.section-title {
+  color: var(--accent-gold) !important;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.center-title {
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.about-stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(212, 160, 23, 0.08);
+  padding: 1rem 0.5rem;
+  border-radius: 10px;
 }
 
 .stat-number {
-  color: #f59e0b !important;
-  font-size: 1.6rem !important;
-  font-weight: 800 !important;
-  margin: 6px 0 0 0 !important;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--accent-gold);
 }
 
-.stat-number small {
-  font-size: 0.85rem !important;
-  color: #ffffff !important;
-  font-weight: 500 !important;
-}
-.page-header {
-  text-align: center !important;
-  margin-bottom: 24px !important;
-}
-
-.page-header h1 {
-  font-size: 1.8rem !important;
-  font-weight: 800 !important;
-  color: #ffffff !important;
-  margin-bottom: 6px !important;
-}
-
-.page-header p {
-  color: #a1a1aa !important;
-  font-size: 0.9rem !important;
-  margin: 0 auto !important;
-}
-/* Page Header Accent Highlight */
-.page-header h1 span {
-  color: #f59e0b !important; /* Gold/Amber highlight matching MATTERS */
-}
-/* CENTERING FOOTER STYLES */
-.app-footer {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-  padding: 20px 0 !important;
-  margin: 40px auto 0 auto !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: #0d0d0e !important;
-  box-sizing: border-box !important;
-}
-
-.app-footer p {
-  color: #fdfdfd !important;
-  font-size: 0.85rem !important;
-  margin: 0 !important;
-  padding: 0 15px !important;
-  width: 100% !important;
-  text-align: center !important;
-}
-
-.app-footer p span {
-  color: #f59e0b !important;
-  font-weight: 600 !important;
-}
-/* GOLD SUBSCRIBE BUTTON STYLING */
-.plan-card button,
-.subscribe-btn,
-button.subscribe-btn {
-  background-color: #f59e0b !important;
-  color: #0d0d0e !important; /* Dark text for high contrast */
-  font-weight: 700 !important;
-  border: none !important;
-  padding: 10px 20px !important;
-  border-radius: 8px !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease-in-out !important;
-  width: 100% !important; /* Spans full card width for a cleaner mobile look */
-}
-
-.plan-card button:hover,
-.subscribe-btn:hover {
-  background-color: #d97706 !important; /* Slightly darker gold on hover */
-  transform: translateY(-1px) !important;
-}
-/* Center Align About Page Section Headings & Content */
-.about-section h2,
-.about-section h3,
-.feature-card h3,
-.feature-card p,
-.feature-card .icon {
-  text-align: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.2rem;
 }
 
 .feature-card {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.feature-icon {
+  width: 42px;
+  height: 42px;
+  background-color: rgba(212, 160, 23, 0.15);
+  color: var(--accent-gold);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+/* ==========================================
+   PROFESSIONAL GOAL MODAL POPUP STYLING
+   ========================================== */
+.goal-modal-overlay {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(4px);
   display: flex !important;
-  flex-direction: column !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.goal-modal-content {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 1.75rem;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  color: var(--text-primary);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.modal-header h3 {
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+}
+/* ==========================================
+   FIX CLOSE BUTTON STYLING & BEHAVIOR
+   ========================================== */
+.close-modal {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  text-align: center !important;
+  font-size: 1.4rem !important;
+  color: var(--text-primary) !important;
+  cursor: pointer !important;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  padding: 0 !important;
 }
-/* SINGLE-ROW STATS GRID FOR MOBILE */
-.stats-row {
+
+.close-modal:hover {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+.goal-modal-overlay {
+  pointer-events: auto !important;
+}
+
+.goal-modal-content {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 10000;
+}
+/* NAVBAR CONTAINER */
+.navbar {
   display: flex !important;
-  flex-direction: row !important;
   justify-content: space-between !important;
   align-items: center !important;
-  gap: 8px !important;
+  padding: 0.8rem 1.2rem !important;
+  background: var(--bg-card, #ffffff) !important;
+  border-bottom: 1px solid var(--border-color, #e0e0e0) !important;
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+.nav-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.8rem !important;
+}
+
+/* HAMBURGER BUTTON (BLACK 3 LINES) */
+.hamburger-btn {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  font-size: 1.3rem !important;
+  cursor: pointer !important;
+  color: #000000 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* MENU OUTSIDE TOP BAR DROPDOWN */
+@media (max-width: 1024px) {
+  .nav-menu {
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: var(--bg-card, #ffffff) !important;
+    border-bottom: 2px solid var(--accent-gold, #d4a017) !important;
+    padding: 0.8rem 1rem !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  /* CLASS TRIGGERED BY JAVASCRIPT */
+  .nav-menu.active {
+    display: flex !important;
+  }
+
+  .nav-menu .nav-item {
+    width: 100% !important;
+    padding: 0.6rem 0.8rem !important;
+  }
+}
+/* =========================================================
+   UNIVERSAL NAVBAR FIX FOR ALL HTML PAGES
+   ========================================================= */
+
+/* 1. Header Bar Layout (Single Line) */
+.navbar {
+  display: flex !important;
+  flex-direction: column !important; /* Stack top header bar and menu links vertically */
+  align-items: stretch !important;
+  padding: 0.8rem 1.2rem !important;
+  background: var(--bg-card, #ffffff) !important;
+  border-bottom: 1px solid var(--border-color, #e0e0e0) !important;
   width: 100% !important;
   box-sizing: border-box !important;
-  margin-bottom: 24px !important;
 }
 
-.stats-row .stat-card {
-  flex: 1 !important;
-  background-color: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 12px !important;
-  padding: 12px 6px !important;
-  text-align: center !important;
-  min-width: 0 !important; /* Prevents overflow */
+/* Line 1: Hamburger Button + Brand Logo */
+.nav-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.8rem !important;
+  width: 100% !important;
 }
 
-.stats-row .stat-number {
-  color: #f59e0b !important;
+/* 2. Hamburger Icon (Black 3-lines) */
+.hamburger-btn {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  font-size: 1.3rem !important;
+  cursor: pointer !important;
+  color: #000000 !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+}
+
+.hamburger-btn i {
+  color: #000000 !important;
+}
+
+/* 3. Brand Logo & Title Colors */
+.nav-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.nav-brand .brand-icon {
+  color: #d9534f !important; /* Red/orange bolt icon */
+  font-size: 1.2rem !important;
+}
+
+.nav-brand .brand-name {
+  color: #a35d2d !important; /* Warm brown brand font color */
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
   font-size: 1.1rem !important;
-  font-weight: 800 !important;
-  margin-bottom: 4px !important;
 }
 
-.stats-row .stat-label {
-  color: #f5f5f8 !important;
-  font-size: 0.68rem !important;
-  line-height: 1.1 !important;
-  white-space: normal !important;
+/* 4. Navigation Links (Always Visible in 2nd Line) */
+.nav-menu {
+  display: flex !important; /* FORCES LINKS TO BE VISIBLE ACROSS ALL PAGES */
+  flex-direction: column !important;
+  gap: 0.3rem !important;
+  width: 100% !important;
+  margin-top: 0.8rem !important;
+  padding-top: 0.6rem !important;
+  border-top: 1px solid var(--border-color, #f0f0f0) !important;
 }
-/* --- Mobile Media Queries (ALWAYS KEEP AT THE VERY BOTTOM) --- */
-@media screen and (max-width: 768px) {
-  /* Mobile navbar overrides here... */
+
+/* Individual Link Styling */
+.nav-menu .nav-item {
+  text-decoration: none !important;
+  color: #a35d2d !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  padding: 0.49rem 0.6rem !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  width: 100% !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
 }
-/* Mobile Layout Overrides */
-@media screen and (max-width: 768px) {
+
+/* Hover and Active State Styling */
+.nav-menu .nav-item.active,
+.nav-menu .nav-item:hover {
+  background: rgba(212, 160, 23, 0.12) !important;
+  color: #d4a017 !important;
+}
+
+/* DESKTOP VIEW ADJUSTMENT (Above 1024px) */
+@media (min-width: 1025px) {
   .navbar {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .nav-header {
+    width: auto !important;
+  }
+
+  .nav-menu {
+    flex-direction: row !important;
+    width: auto !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+    gap: 1rem !important;
+  }
+
+  .nav-menu .nav-item {
+    width: auto !important;
+  }
+}
+/* =========================================================
+   2-LINE HORIZONTAL PILL NAVBAR (MATCHING 2ND IMAGE)
+   ========================================================= */
+
+/* Main Header Container */
+.navbar {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  padding: 0.6rem 0.8rem !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Line 1: Hamburger + Brand Logo Row */
+.nav-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.8rem !important;
+  width: 100% !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Hamburger Icon (Black 3 Lines) */
+.hamburger-btn {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  font-size: 1.2rem !important;
+  cursor: pointer !important;
+  color: #333333 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.hamburger-btn i {
+  color: #333333 !important;
+}
+
+/* Brand Title & Red Bolt */
+.nav-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+
+.nav-brand .brand-icon {
+  color: #d9534f !important; /* Red bolt icon */
+  font-size: 1.1rem !important;
+}
+
+.nav-brand .brand-name {
+  color: #333333 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  font-size: 1rem !important;
+}
+
+.nav-brand .brand-name span {
+  color: #a35d2d !important;
+}
+
+/* Line 2: Horizontal Scrollable/Wrapped Pill Buttons */
+.nav-menu {
+  display: flex !important;
+  flex-wrap: wrap !important; /* Wraps items into horizontal rows */
+  align-items: center !important;
+  gap: 0.3rem 0.4rem !important;
+  width: 100% !important;
+  margin-top: 0.2rem !important;
+  padding-top: 0.4rem !important;
+  border-top: 1px solid #f1f5f9 !important;
+}
+
+/* Individual Pill Buttons */
+.nav-menu .nav-item {
+  text-decoration: none !important;
+  color: #475569 !important;
+  font-weight: 500 !important;
+  font-size: 0.75rem !important;
+  padding: 0.3rem 0.55rem !important;
+  border-radius: 4px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  white-space: nowrap !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav-menu .nav-item i {
+  font-size: 0.75rem !important;
+  color: #64748b !important;
+}
+
+/* Active State & Hover Styling */
+.nav-menu .nav-item.active {
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  border-color: #bfdbfe !important;
+  font-weight: 600 !important;
+}
+
+.nav-menu .nav-item.active i {
+  color: #2563eb !important;
+}
+
+.nav-menu .nav-item:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+/* FORCE 2-LINE HORIZONTAL PILL NAVBAR */
+@media screen and (max-width: 1024px) {
+  nav.navbar {
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
-    padding: 12px 8px !important;
+    align-items: stretch !important;
+    padding: 0.6rem 0.8rem !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
 
-  .nav-brand, .user-profile-nav {
-    margin-bottom: 8px !important;
-    justify-content: center !important;
-  }
-
-  .nav-menu {
+  /* LINE 1: HAMBURGER + LOGO */
+  nav.navbar .nav-header {
     display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    width: 100% !important;
-    gap: 8px 12px !important;
-    overflow: visible !important;
-    white-space: normal !important;
-  }
-
-  .nav-menu .nav-item {
-    font-size: 0.82rem !important;
-    padding: 6px 10px !important;
-    background: rgba(227, 212, 43, 0.08) !important;
-    border-radius: 6px !important;
-    white-space: nowrap !important;
-    display: inline-flex !important;
     align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.8rem !important;
+    width: 100% !important;
+  }
+
+  nav.navbar .hamburger-btn {
+    display: flex !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 1.2rem !important;
+    cursor: pointer !important;
+    color: #333333 !important;
+    padding: 0 !important;
+  }
+
+  nav.navbar .nav-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+  }
+
+  /* LINE 2: HORIZONTAL MENU BUTTONS (FORCED INLINE HORIZONTAL) */
+  nav.navbar .nav-menu {
+    display: flex !important;
+    flex-direction: row !important; /* Force items side-by-side */
+    flex-wrap: wrap !important;     /* Allow wrapping into 2 rows */
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.35rem 0.4rem !important;
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    border-top: 1px solid #f1f5f9 !important;
+    position: static !important;
+  }
+
+  /* INDIVIDUAL PILL BUTTONS */
+  nav.navbar .nav-menu .nav-item {
+    display: inline-flex !important; /* Prevents 100% full-width block rows */
+    width: auto !important;          /* Keeps buttons compact */
+    max-width: fit-content !important;
+    text-decoration: none !important;
+    color: #b3b9c2 !important;
+    font-weight: 500 !important;
+    font-size: 0.72rem !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 4px !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    white-space: nowrap !important;
+  }
+
+  nav.navbar .nav-menu .nav-item i {
+    font-size: 0.7rem !important;
+    color: #64748b !important;
+  }
+
+  /* ACTIVE STATE (Overview, Workouts, Profile, etc.) */
+  nav.navbar .nav-menu .nav-item.active {
+    background: #eff6ff !important;
+    color: #2563eb !important;
+    border-color: #bfdbfe !important;
+    font-weight: 600 !important;
+  }
+
+  nav.navbar .nav-menu .nav-item.active i {
+    color: #2563eb !important;
   }
 }
-/* RESPONSIVE MOBILE CONTACT ROW */
-.contact-inline-row {
+/* FORCE 2-LINE HORIZONTAL PILL NAVBAR */
+@media screen and (max-width: 1024px) {
+  nav.navbar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 0.6rem 0.8rem !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* LINE 1: HAMBURGER + LOGO */
+  nav.navbar .nav-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.8rem !important;
+    width: 100% !important;
+  }
+
+  nav.navbar .hamburger-btn {
+    display: flex !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 1.2rem !important;
+    cursor: pointer !important;
+    color: #948f8f !important;
+    padding: 0 !important;
+  }
+
+  nav.navbar .nav-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+  }
+
+  /* LINE 2: HORIZONTAL MENU BUTTONS (FORCED INLINE HORIZONTAL) */
+  nav.navbar .nav-menu {
+    display: flex !important;
+    flex-direction: row !important; /* Force items side-by-side */
+    flex-wrap: wrap !important;     /* Allow wrapping into 2 rows */
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.35rem 0.4rem !important;
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    border-top: 1px solid #f1f5f9 !important;
+    position: static !important;
+  }
+
+  /* INDIVIDUAL PILL BUTTONS */
+  nav.navbar .nav-menu .nav-item {
+    display: inline-flex !important; /* Prevents 100% full-width block rows */
+    width: auto !important;          /* Keeps buttons compact */
+    max-width: fit-content !important;
+    text-decoration: none !important;
+    color: #73787f !important;
+    font-weight: 500 !important;
+    font-size: 0.72rem !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 4px !important;
+    background: #bcbfc2 !important;
+    border: 1px solid #a0a6ad !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    white-space: nowrap !important;
+  }
+
+  nav.navbar .nav-menu .nav-item i {
+    font-size: 0.7rem !important;
+    color: #818997 !important;
+  }
+
+  /* ACTIVE STATE (Overview, Workouts, Profile, etc.) */
+  nav.navbar .nav-menu .nav-item.active {
+    background: #eff6ff !important;
+    color: #c28e0c !important;
+    border-color: #bfdbfe !important;
+    font-weight: 600 !important;
+  }
+
+  nav.navbar .nav-menu .nav-item.active i {
+    color: #c28e0c !important;
+  }
+}
+/* =========================================================
+   CENTERED NAVBAR WITH CUSTOM BACKGROUND COLOR
+   ========================================================= */
+
+@media screen and (max-width: 1024px) {
+  /* MAIN NAVBAR BOX CONTAINER */
+  nav.navbar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* Centers contents horizontally */
+    text-align: center !important;
+    padding: 0.8rem 1rem !important;
+    background: #ffffff !important; /* CHANGE THIS HEX COLOR CODE TO YOUR DESIRED BG */
+    border-bottom: 2px solid var(--accent-gold, #d4a017) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* LINE 1: CENTERED LOGO AND HAMBURGER ROW */
+  nav.navbar .nav-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important; /* Centers hamburger and brand logo */
+    gap: 0.8rem !important;
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* HAMBURGER ICON */
+  nav.navbar .hamburger-btn {
+    display: flex !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 1.1rem !important;
+    cursor: pointer !important;
+    color: #1a1a1a !important;
+    padding: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  nav.navbar .hamburger-btn i {
+    color: #1a1a1a !important;
+  }
+
+  /* BRAND LOGO */
+  nav.navbar .nav-brand {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.4rem !important;
+  }
+
+  nav.navbar .nav-brand .brand-icon {
+    color: var(--accent-red, #d9534f) !important;
+    font-size: 1rem !important;
+  }
+
+  nav.navbar .nav-brand .brand-name {
+    color: var(--brand-brown, #a35d2d) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    font-size: 0.95rem !important;
+    text-transform: uppercase !important;
+  }
+
+  /* LINE 2: CENTERED PILL MENU */
+  nav.navbar .nav-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important; /* Centers the navigation pill items */
+    gap: 0.35rem 0.4rem !important;
+    width: 100% !important;
+    margin-top: 0.2rem !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+  }
+
+  /* INDIVIDUAL PILL BUTTONS */
+  nav.navbar .nav-menu .nav-item {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: fit-content !important;
+    text-decoration: none !important;
+    color: #555555 !important;
+    font-weight: 500 !important;
+    font-size: 0.7rem !important;
+    padding: 0.25rem 0.55rem !important;
+    border-radius: 4px !important;
+    background: #f8f9fa !important;
+    border: 1px solid #e0e0e0 !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    white-space: nowrap !important;
+  }
+
+  nav.navbar .nav-menu .nav-item i {
+    font-size: 0.7rem !important;
+    color: #666666 !important;
+  }
+
+  /* ACTIVE PILL ITEM */
+  nav.navbar .nav-menu .nav-item.active {
+    background: rgba(212, 160, 23, 0.15) !important;
+    color: var(--accent-gold, #b8860b) !important;
+    border-color: var(--accent-gold, #d4a017) !important;
+    font-weight: 600 !important;
+  }
+
+  nav.navbar .nav-menu .nav-item.active i {
+    color: var(--accent-gold, #b8860b) !important;
+  }
+}
+/* HORIZONTAL CONTACT CARDS LAYOUT */
+.contact-cards-container,
+.contact-grid,
+.plans-grid {
   display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-around !important;
-  align-items: center !important;
-  flex-wrap: wrap !important; /* Allows items to wrap neatly on very narrow screens */
-  gap: 8px 12px !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 15px auto 25px auto !important;
-  padding: 0 4px !important;
-  box-sizing: border-box !important;
-}
-
-.contact-link {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-  color: #ffffff !important;
-  text-decoration: none !important;
-  font-size: 0.65rem !important; /* Scaled down slightly to fit tight viewports */
-  font-weight: 500 !important;
-  transition: color 0.2s ease !important;
-}
-
-.social-logo {
-  width: 14px !important;
-  height: 14px !important;
-  filter: invert(1) brightness(2) !important;
-  flex-shrink: 0 !important;
-}
-
-.contact-link:hover {
-  color: #f59e0b !important;
-}}
-/* INLINE CONTACT LOGO ALIGNMENT */
-.contact-inline-row {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 16px !important;
-  width: 100% !important;
-  margin: 15px 0 25px 0 !important;
-  box-sizing: border-box !important;
-}
-
-.contact-link {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  color: #ffffff !important;
-  text-decoration: none !important;
-  font-size: 0.72rem !important;
-  font-weight: 500 !important;
-  white-space: nowrap !important;
-  transition: opacity 0.2s ease !important;
-}
-
-.social-logo {
-  width: 16px !important;
-  height: 16px !important;
-  /* Converts black CDN icons to crisp white */
-  filter: invert(1) brightness(2) !important; 
-}
-
-.contact-link:hover {
-  color: #f59e0b !important;
-  opacity: 0.85;
-}
-/* CONTACT FORM CONTAINER RESPONSIVE FIX */
-form,
-.contact-form,
-.contact-card,
-.contact-container {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  padding: 16px !important;
-  margin: 0 auto !important;
-  overflow: hidden !important;
-}
-
-/* INPUTS & TEXTAREA RESPONSIVE SIZING */
-form input[type="text"],
-form input[type="email"],
-form textarea {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  font-size: 0.85rem !important;
-  padding: 10px 12px !important;
-  margin-bottom: 12px !important;
-}
-
-/* SUBMIT BUTTON FIT */
-form button,
-form button[type="submit"] {
-  width: 100% !important;
-  box-sizing: border-box !important;
-  padding: 12px !important;
-  font-size: 0.9rem !important;
-  background-color: #f59e0b !important;
-  color: #0d0d0e !important;
-  font-weight: 700 !important;
-  border: none !important;
-  border-radius: 8px !important;
-}
-/* STICKY FOOTER TO BOTTOM OF VIEWPORT */
-html, body {
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-body {
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 100vh !important;
-}
-
-/* MAIN WRAPPER GROWS TO PUSH FOOTER DOWN */
-main, 
-.dashboard-wrapper, 
-.app-container {
-  flex: 1 0 auto !important;
-}
-
-/* FOOTER SNAPS TO BOTTOM */
-.app-footer {
-  flex-shrink: 0 !important;
-  margin-top: auto !important;
-}
-/* SEPARATE GOAL BLOCKS STYLING */
-.goals-blocks-container {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
-  width: 100% !important;
-  max-width: 440px !important;
-  margin: 0 auto !important;
-  padding: 0 12px 24px 12px !important;
-  box-sizing: border-box !important;
-}
-
-.goal-item-block {
-  background-color: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 12px !important;
-  padding: 14px 16px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
-  box-sizing: border-box !important;
-}
-
-/* Stat Blocks Row Align */
-.goal-item-block:has(.block-content) {
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 14px !important;
-}
-
-.block-icon {
-  font-size: 1.4rem !important;
-  background: rgba(245, 158, 11, 0.1) !important;
-  padding: 8px !important;
-  border-radius: 8px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.block-label {
-  font-size: 0.72rem !important;
-  color: #a1a1aa !important;
-}
-
-.block-value {
-  font-size: 1.1rem !important;
-  color: #f59e0b !important;
-  margin: 2px 0 0 0 !important;
-  font-weight: 700 !important;
-}
-
-/* Milestone Block Headers */
-.block-header {
-  display: flex !important;
+  flex-direction: row !important; /* Forces items side-by-side */
   justify-content: space-between !important;
-  align-items: center !important;
-  width: 100% !important;
-}
-
-.block-title-wrap {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-}
-
-.block-title {
-  color: #ffffff !important;
-  font-size: 0.95rem !important;
-  margin: 0 !important;
-  font-weight: 600 !important;
-}
-
-.block-sub {
-  color: #a1a1aa !important;
-  font-size: 0.7rem !important;
-}
-
-.block-details {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  padding-top: 6px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
-  font-size: 0.75rem !important;
-  color: #d4d4d8 !important;
-}
-
-.block-details p {
-  margin: 0 !important;
-}
-
-.block-date {
-  color: #a1a1aa !important;
-  font-size: 0.68rem !important;
-}
-
-.badge.yellow {
-  background: rgba(245, 158, 11, 0.2) !important;
-  color: #f59e0b !important;
-  padding: 3px 8px !important;
-  border-radius: 6px !important;
-  font-size: 0.68rem !important;
-  font-weight: 600 !important;
-}
-/* ==========================================
-   SEPARATE NAV-STYLE GOAL BLOCKS
-   ========================================== */
-
-.goals-list-container {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
-  width: 100% !important;
-  max-width: 420px !important;
-  margin: 0 auto !important;
-  padding: 0 12px 30px 12px !important;
-  box-sizing: border-box !important;
-}
-
-/* Base Block Styling - Matches Navbar Buttons */
-.goal-pill-block {
-  background-color: #1a1d24 !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 12px !important;
-  padding: 12px 16px !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
-  box-sizing: border-box !important;
-}
-
-.pill-left {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
-
-.pill-icon {
-  font-size: 1.2rem !important;
-}
-
-.pill-title {
-  color: #ffffff !important;
-  font-size: 0.9rem !important;
-  font-weight: 600 !important;
-}
-
-.pill-sub {
-  color: #a1a1aa !important;
-  font-size: 0.72rem !important;
-  margin: 2px 0 0 0 !important;
-}
-
-.pill-value {
-  color: #ffffff !important;
-  font-size: 0.88rem !important;
-  font-weight: 600 !important;
-}
-
-.pill-value.highlight {
-  color: #f59e0b !important;
-  font-weight: 700 !important;
-}
-
-/* Detailed Block Variant */
-.goal-pill-block.detailed {
-  flex-direction: column !important;
   align-items: stretch !important;
-  gap: 10px !important;
-}
-
-.pill-header {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
+  gap: 0.5rem !important;
   width: 100% !important;
-}
-
-.pill-body {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  padding-top: 8px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  font-size: 0.78rem !important;
-  color: #d4d4d8 !important;
-}
-
-.pill-date {
-  color: #a1a1aa !important;
-  font-size: 0.72rem !important;
-}
-
-.badge.yellow {
-  background: rgba(245, 158, 11, 0.18) !important;
-  color: #f59e0b !important;
-  padding: 4px 10px !important;
-  border-radius: 6px !important;
-  font-size: 0.7rem !important;
-  font-weight: 600 !important;
-}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, 
-  
-  <title>Fitness Matters | Goals</title>
-  <link rel="stylesheet" href="style.css?v=4.0" />
-</head>
-<body class="app-body">
-
-  <!-- TOP HEADER & NAVIGATION BAR -->
-  <header class="app-header">
-    <div class="header-content">
-      <div class="logo">
-        <span class="logo-icon">⚡</span>
-        <span class="logo-text">FITNESS<span class="highlight">MATTERS</span></span>
-      </div>
-      <nav class="nav-links">
-        <a href="home.html" class="nav-btn"> Overview</a>
-        <a href="workouts.html" class="nav-btn"> Workouts</a>
-        <a href="nutrition.html" class="nav-btn"> Nutrition</a>
-        <a href="goals.html" class="nav-btn active"> Goals</a>
-        <a href="about.html" class="nav-btn"> About</a>
-        <a href="contact.html" class="nav-btn"> Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- MAIN GOALS CONTAINER -->
-  <main class="dashboard-wrapper">
-    <section class="page-title-section">
-      <h1 class="page-title">Fitness Targets & Milestones</h1>
-      <p class="page-subtitle">Track your personal records, weight goals, and overall progress.</p>
-    </section>
-
-    <!-- SEPARATE NAV-STYLE OPTION BLOCKS -->
-    <div class="goals-list-container">
-      
-      <!-- Block 1 -->
-      <div class="goal-pill-block">
-        <div class="pill-left">
-          <span class="pill-icon">🎯</span>
-          <span class="pill-title">Active Goals</span>
-        </div>
-        <span class="pill-value highlight">5 Active</span>
-      </div>
-
-      <!-- Block 2 -->
-      <div class="goal-pill-block">
-        <div class="pill-left">
-          <span class="pill-icon">🏆</span>
-          <span class="pill-title">Completed</span>
-        </div>
-        <span class="pill-value">12 Goals</span>
-      </div>
-
-      <!-- Block 3 -->
-      <div class="goal-pill-block">
-        <div class="pill-left">
-          <span class="pill-icon">🔥</span>
-          <span class="pill-title">Current Streak</span>
-        </div>
-        <span class="pill-value highlight">14 Days</span>
-      </div>
-
-      <!-- Block 4 -->
-      <div class="goal-pill-block detailed">
-        <div class="pill-header">
-          <div class="pill-left">
-            <span class="pill-icon">📊</span>
-            <div>
-              <span class="pill-title">Target Body Fat %</span>
-              <p class="pill-sub">Fat Loss</p>
-            </div>
-          </div>
-          <span class="badge yellow">In Progress</span>
-        </div>
-        <div class="pill-body">
-          <span>Current: <strong>18%</strong> | Target: <strong>12%</strong></span>
-          <span class="pill-date">📅 Target: Oct 30</span>
-        </div>
-      </div>
-
-      <!-- Block 5 -->
-      <div class="goal-pill-block detailed">
-        <div class="pill-header">
-          <div class="pill-left">
-            <span class="pill-icon">🏋️</span>
-            <div>
-              <span class="pill-title">Bench Press 100kg</span>
-              <p class="pill-sub">Strength Milestone</p>
-            </div>
-          </div>
-          <span class="badge yellow">In Progress</span>
-        </div>
-        <div class="pill-body">
-          <span>Current: <strong>85kg</strong> | Target: <strong>100kg</strong></span>
-          <span class="pill-date">📅 Target: Dec 15</span>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- STICKY FOOTER -->
-  <footer class="app-footer">
-    <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
-  </footer>
-
-</body>
-</html>
-/* ==========================================
-   ABOUT-PAGE MATCHING CARD STYLES
-   ========================================== */
-
-/* Top Stats Grid (3 Pills Row) */
-.stats-card-row {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 8px !important;
-  width: 100% !important;
-  max-width: 420px !important;
-  margin: 0 auto 20px auto !important;
-  padding: 0 12px !important;
   box-sizing: border-box !important;
 }
 
-.stat-box {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 10px !important;
-  padding: 10px 4px !important;
-  text-align: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.stat-number {
-  color: #ffffff !important;
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
-  line-height: 1.2 !important;
-}
-
-.stat-label {
-  color: #9ca3af !important;
-  font-size: 0.58rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.5px !important;
-  margin-top: 2px !important;
-}
-
-/* Individual Card Styling */
-.goals-section-container {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
-  width: 100% !important;
-  max-width: 420px !important;
-  margin: 0 auto !important;
-  padding: 0 12px 30px 12px !important;
-  box-sizing: border-box !important;
-}
-
-.section-heading {
-  color: #ffffff !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  margin-bottom: 4px !important;
+/* INDIVIDUAL CONTACT CARD ADJUSTMENT FOR MOBILE */
+.contact-card,
+.contact-cards-container > div,
+.contact-grid > div {
+  flex: 1 1 0px !important; /* Equal width for all 3 cards */
+  min-width: 0 !important;   /* Prevents overflow on small screens */
+  padding: 0.75rem 0.3rem !important;
   text-align: center !important;
 }
 
-.about-style-card {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 14px !important;
-  padding: 14px 16px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
-  box-sizing: border-box !important;
-}
-
-.card-header-row {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-}
-
-.card-title-group {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-}
-
-.card-icon {
-  font-size: 1.2rem !important;
-}
-
-.card-title {
-  color: #ffffff !important;
-  font-size: 0.9rem !important;
-  font-weight: 700 !important;
-  margin: 0 !important;
-}
-
-.card-subtitle {
-  color: #9ca3af !important;
-  font-size: 0.72rem !important;
-  margin: 1px 0 0 0 !important;
-}
-
-.status-pill.warning {
-  background: rgba(245, 158, 11, 0.2) !important;
-  color: #f59e0b !important;
-  border: 1px solid rgba(245, 158, 11, 0.3) !important;
-  padding: 3px 8px !important;
-  border-radius: 20px !important;
-  font-size: 0.65rem !important;
-  font-weight: 600 !important;
-}
-
-.card-details-row {
-  display: flex !important;
-  justify-content: space-between !important;
-  background: rgba(0, 0, 0, 0.2) !important;
-  border-radius: 8px !important;
-  padding: 8px 12px !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
-}
-
-.detail-item {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-.detail-label {
-  color: #9ca3af !important;
-  font-size: 0.65rem !important;
-}
-
-.detail-value {
-  color: #ffffff !important;
-  font-size: 0.8rem !important;
-  font-weight: 600 !important;
-  margin-top: 2px !important;
-}
-
-.detail-value.highlight {
-  color: #f59e0b !important;
-}
-/* ==========================================
-   HEADER & NAVBAR HORIZONTAL FLEX FIX
-   ========================================== */
-.app-header {
-  width: 100% !important;
-  background-color: #12141a !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding: 10px 12px !important;
-  box-sizing: border-box !important;
-}
-
-.header-container {
-  max-width: 440px !important;
-  margin: 0 auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.logo {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 6px !important;
-}
-
-.logo-text {
-  color: #ffffff !important;
-  font-weight: 800 !important;
-  font-size: 1rem !important;
-}
-
-.logo-text .highlight {
-  color: #f59e0b !important;
-}
-
-.nav-links {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 6px !important;
-  width: 100% !important;
-}
-
-.nav-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #a1a1aa !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  padding: 5px 8px !important;
-  border-radius: 8px !important;
-  font-size: 0.7rem !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-}
-
-.nav-btn.active, .nav-btn:hover {
-  background: rgba(245, 158, 11, 0.15) !important;
-  color: #f59e0b !important;
-  border-color: #f59e0b !important;
-}
-
-/* ==========================================
-   3 STAT BOXES HORIZONTAL ROW FIX
-   ========================================== */
-.stats-card-row {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  gap: 8px !important;
-  width: 100% !important;
-  max-width: 420px !important;
-  margin: 0 auto 16px auto !important;
-  padding: 0 12px !important;
-  box-sizing: border-box !important;
-}
-
-.stat-box {
-  flex: 1 !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 10px !important;
-  padding: 10px 4px !important;
-  text-align: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.stat-number {
-  color: #ffffff !important;
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
-}
-
-.stat-label {
-  color: #9ca3af !important;
-  font-size: 0.58rem !important;
-  font-weight: 600 !important;
-  margin-top: 2px !important;
-}
-/* ==========================================
-   HEADER & NAVBAR HORIZONTAL FLEX FIX
-   ========================================== */
-.app-header {
-  width: 100% !important;
-  background-color: #12141a !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding: 10px 12px !important;
-  box-sizing: border-box !important;
-}
-
-.header-container {
-  max-width: 440px !important;
-  margin: 0 auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.logo {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 6px !important;
-}
-
-.logo-text {
-  color: #ffffff !important;
-  font-weight: 800 !important;
-  font-size: 1rem !important;
-}
-
-.logo-text .highlight {
-  color: #f59e0b !important;
-}
-
-.nav-links {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 6px !important;
-  width: 100% !important;
-}
-
-.nav-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #a1a1aa !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  padding: 5px 8px !important;
-  border-radius: 8px !important;
-  font-size: 0.7rem !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-}
-
-.nav-btn.active, .nav-btn:hover {
-  background: rgba(245, 158, 11, 0.15) !important;
-  color: #f59e0b !important;
-  border-color: #f59e0b !important;
-}
-
-/* ==========================================
-   3 STAT BOXES HORIZONTAL ROW FIX
-   ========================================== */
-.stats-card-row {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  gap: 8px !important;
-  width: 100% !important;
-  max-width: 420px !important;
-  margin: 0 auto 16px auto !important;
-  padding: 0 12px !important;
-  box-sizing: border-box !important;
-}
-
-.stat-box {
-  flex: 1 !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 10px !important;
-  padding: 10px 4px !important;
-  text-align: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.stat-number {
-  color: #ffffff !important;
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
-}
-
-.stat-label {
-  color: #9ca3af !important;
-  font-size: 0.58rem !important;
-  font-weight: 600 !important;
-  margin-top: 2px !important;
-}
-/* ==========================================
-   2ND IMAGE EXACT NAVBAR & LOGO MATCH
-   ========================================== */
-
-.logo {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.logo-box {
-  background: #ffffff !important;
-  color: #000000 !important;
-  width: 28px !important;
-  height: 28px !important;
-  border-radius: 6px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-size: 0.9rem !important;
-  font-weight: 800 !important;
-}
-
-.nav-links {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 6px !important;
-}
-
-.nav-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  padding: 6px 12px !important;
-  border-radius: 8px !important;
-  font-size: 0.78rem !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-}
-
-/* Active Highlight Pill (Exact Match to Image 2) */
-.nav-btn.active {
-  background: rgba(245, 158, 11, 0.1) !important;
-  color: #ffffff !important;
-  border: 1.5px solid #f59e0b !important;
-  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2) !important;
-}
-
-.nav-icon {
-  width: 14px !important;
-  height: 14px !important;
-  fill: #ffffff !important;
-}
-/* ==========================================
-   VERTICAL SPACING BETWEEN PLAN CARDS
-   ========================================== */
-
-/* Spacing if cards are stacked inside a wrapper container */
-.plan-container,
-.plans-wrapper,
-.nutrition-plans-container {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 20px !important; /* Creates a clean 20px gap between each plan */
-  padding-bottom: 40px !important;
-}
-
-/* Fallback direct margin spacing for each plan card */
-.plan-card {
-  margin-bottom: 20px !important; /* Ensures vertical separation between stacked cards */
-  box-sizing: border-box !important;
-}
-
-/* Remove bottom margin from the last card to prevent layout overflow */
-.plan-card:last-child {
-  margin-bottom: 0 !important;
-}
-/* ==========================================
-   NAVBAR POSITIONING & BUTTON REMOVAL
-   ========================================== */
-
-/* Push top header/navbar down slightly */
-.app-header {
-  padding-top: 24px !important; /* Adjusts top spacing */
-  padding-bottom: 16px !important;
-}
-
-/* Force hide any remaining profile/logout elements */
-.user-profile,
-.user-avatar,
-.logout-btn,
-.profile-section,
-.user-menu,
-.header-container > div:last-child:not(.logo):not(.nav-links) {
-  display: none !important;
-}
-/* ==========================================
-   SPACE BETWEEN LOGO AND NAVBAR
-   ========================================== */
-
-/* Method 1: Using flex gap on container */
-.header-container {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 16px !important; /* Increases vertical gap between logo and navbar */
-}
-
-/* Method 2: Fallback margin directly on logo */
-.logo {
-  margin-bottom: 12px !important; /* Creates explicit separation */
-}
-/* ==========================================
-   FORCE SPACE BETWEEN LOGO AND NAVBAR
-   ========================================== */
-
-/* Structure header container as column with forced gap */
-.app-header .header-container,
-header .header-container {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 20px !important; /* Increase this value for more space */
-}
-
-/* Force bottom margin directly on the logo element */
-.app-header .logo,
-header .logo {
-  margin-bottom: 18px !important; /* Direct push away from navbar */
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* Force top margin on the navigation links wrapper */
-.app-header .nav-links,
-header .nav-links {
-  margin-top: 6px !important;
-}
-/* ==========================================
-   EXACT HTML CLASS MATCH FOR SPACING
-   ========================================== */
-
-.navbar {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  padding-top: 20px !important;
-}
-
-.nav-brand {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  margin-bottom: 22px !important; /* Forces the gap between logo & buttons */
-}
-
-.nav-menu {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 6px !important;
-}
-/* Header Layout Fix */
-.nav-header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  position: relative !important;
-  width: 100% !important;
-  margin-bottom: 20px !important;
-}
-
-/* Hamburger Icon Positioning */
-.hamburger-btn {
-  position: absolute !important;
-  left: 12px !important;
-  background: transparent !important;
-  border: none !important;
-  color: #ffffff !important;
-  font-size: 1.2rem !important;
-  cursor: pointer !important;
-}
-
-/* Overlay Background */
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 999;
-}
-
-/* Sidebar Drawer */
-.sidebar {
-  position: fixed;
-  top: 0; left: -260px;
-  width: 250px; height: 100%;
-  background: #1c2029;
-  z-index: 1000;
-  transition: left 0.3s ease;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.sidebar.open { left: 0; }
-.sidebar-overlay.open { display: block; }
-
-.sidebar-header {
-  display: flex; justify-content: space-between;
-  align-items: center; color: #fff; margin-bottom: 20px;
-}
-
-.close-btn { background: none; border: none; color: #fff; font-size: 1.5rem; }
-
-.user-profile-summary {
-  display: flex; align-items: center; gap: 12px;
-  padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.avatar-circle {
-  width: 40px; height: 40px; background: #f59e0b;
-  border-radius: 50%; display: flex; align-items: center;
-  justify-content: center; font-weight: 700; color: #000;
-}
-
-.sidebar-menu { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
-.sidebar-item { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; display: flex; gap: 10px; align-items: center; }
-.logout-link { color: #ef4444; margin-top: 20px; }
-/* ==========================================
-   STICKY FOOTER LAYOUT FIX
-   ========================================== */
-
-html, body {
-  height: 100% !important;
-  margin: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-/* Force main content wrapper to expand and fill remaining space */
-.dashboard-wrapper,
-main {
-  flex: 1 0 auto !important;
-  width: 100% !important;
-}
-
-/* Pushes the footer directly to the bottom */
-.app-footer,
-footer {
-  flex-shrink: 0 !important;
-  width: 100% !important;
-  margin-top: auto !important; /* Forces footer to the bottom */
-  padding: 16px 0 !important;
-  text-align: center !important;
-  background: #1c2029 !important;
-}
-/* Header Layout Fix */
-.nav-header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  position: relative !important;
-  width: 100% !important;
-  margin-bottom: 20px !important;
-}
-
-/* Hamburger Icon Positioning */
-.hamburger-btn {
-  position: absolute !important;
-  left: 12px !important;
-  background: transparent !important;
-  border: none !important;
-  color: #ffffff !important;
-  font-size: 1.2rem !important;
-  cursor: pointer !important;
-}
-
-/* Overlay Background */
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 999;
-}
-
-/* Sidebar Drawer */
-.sidebar {
-  position: fixed;
-  top: 0; left: -260px;
-  width: 250px; height: 100%;
-  background: #1c2029;
-  z-index: 1000;
-  transition: left 0.3s ease;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.sidebar.open { left: 0; }
-.sidebar-overlay.open { display: block; }
-
-.sidebar-header {
-  display: flex; justify-content: space-between;
-  align-items: center; color: #fff; margin-bottom: 20px;
-}
-
-.close-btn { background: none; border: none; color: #fff; font-size: 1.5rem; }
-
-.user-profile-summary {
-  display: flex; align-items: center; gap: 12px;
-  padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.avatar-circle {
-  width: 40px; height: 40px; background: #f59e0b;
-  border-radius: 50%; display: flex; align-items: center;
-  justify-content: center; font-weight: 700; color: #000;
-}
-
-.sidebar-menu { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
-.sidebar-item { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; display: flex; gap: 10px; align-items: center; }
-.logout-link { color: #ef4444; margin-top: 20px; }
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  
-  if (sidebar && overlay) {
-    sidebar.classList.toggle('open');
-    overlay.classList.toggle('open');
+/* SCALING TEXT & ICONS FOR MOBILE FIT */
+@media screen and (max-width: 480px) {
+  .contact-card i,
+  .contact-cards-container i {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  .contact-card h3,
+  .contact-card h4,
+  .contact-cards-container h3,
+  .contact-cards-container h4 {
+    font-size: 0.75rem !important;
+    margin: 0.2rem 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .contact-card p,
+  .contact-card a,
+  .contact-cards-container p,
+  .contact-cards-container a {
+    font-size: 0.65rem !important;
+    word-break: break-all !important; /* Fits long email strings without pushing card width */
   }
 }
-/* ==========================================
-   COMPACT NAV BUTTONS FOR MOBILE FIT
-   ========================================== */
-
-/* Reduce gap between items and container padding */
-.nav-menu {
-  gap: 4px !important;
-  padding: 0 4px !important;
-}
-
-/* Shrink button font size, padding, and icons */
-.nav-item {
-  font-size: 0.72rem !important;
-  padding: 5px 9px !important;
-  gap: 4px !important;
-  border-radius: 16px !important;
-  letter-spacing: -0.2px !important;
-}
-
-/* Scaled-down FontAwesome icons inside pills */
-.nav-item i {
-  font-size: 0.68rem !important;
-}
-/* ==========================================
-   PREVENT ACCIDENTAL ZOOMING & TOUCH SCALING
-   ========================================== */
-
-html, body {
-  /* Prevents pinch-zoom and double-tap zoom gestures */
-  touch-action: manipulation !important;
-  -webkit-text-size-adjust: 100% !important;
-  text-size-adjust: 100% !important;
-}
-
-/* Ensure inputs, buttons, and links don't trigger automatic iOS focus zoom */
-input, select, textarea, button, a {
-  font-size: 16px !important; /* iOS zooms in automatically on fonts < 16px in inputs */
-  touch-action: manipulation !important;
-}
-/* ==========================================
-   STRICT BRAND LOGO & FONT UNIFICATION
-   ========================================== */
-
-.nav-brand {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-}
-
-.brand-name {
-  font-size: 1.4rem !important;
-  font-weight: 900 !important;
-  text-transform: uppercase !important;
-  letter-spacing: -0.5px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1 !important;
-  color: #ffffff !important;
-}
-
-.brand-name span {
-  color: #f59e0b !important; /* Gold/Amber highlight */
-}
-
-.brand-icon {
-  width: 36px !important;
-  height: 36px !important;
-  font-size: 1.1rem !important;
-}
-/* FORCE EXACT BRAND LOGO DIMENSIONS ACROSS ALL PAGES */
-.nav-brand .brand-name,
-span.brand-name,
-h1.brand-name {
-  font-size: 1.1rem !important; /* Scaled down to match standard nav dimensions */
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  letter-spacing: -0.5px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1 !important;
-  display: inline-block !important;
-}
-
-/* Ensure inner amber highlight span inherits same sizing */
-.nav-brand .brand-name span {
-  font-size: 1.1rem !important;
-  font-weight: 800 !important;
-  color: #f59e0b !important;
-}
-/* ==========================================
-   EXACT DIMENSIONS FROM WORKOUTS / NUTRITION
-   ========================================== */
-
-/* Exact brand text size and spacing */
-.brand-name {
-  font-size: 1rem !important; /* Matches workout baseline */
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: -0.3px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1 !important;
-  color: #ffffff !important;
-  display: inline-block !important;
-}
-
-/* Exact gold highlight styling */
-.brand-name span {
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  color: #f59e0b !important;
-}
-
-/* Exact icon wrapper size */
-.brand-icon {
-  width: 32px !important;
-  height: 32px !important;
-  min-width: 32px !important;
-  min-height: 32px !important;
-  font-size: 0.95rem !important;
-}
-/* ==========================================
-   STICKY FOOTER FIX FOR SHORT PAGES
-   ========================================== */
-
-/* Enable vertical flexbox on main body */
-body.app-body {
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 100vh !important;
-  margin: 0 !important;
-}
-
-/* Allow main content container to take up remaining height */
-.dashboard-wrapper {
-  flex: 1 0 auto !important;
-}
-
-/* Force footer to the bottom and align styling */
-.site-footer {
-  margin-top: auto !important;
+/* VERTICAL WHY CHOOSE US LAYOUT */
+.why-choose-us-container {
   width: 100% !important;
-  padding: 20px 0 !important;
-  background-color: #111112 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-  text-align: center !important;
-  color: #a1a1aa !important;
-  font-size: 0.85rem !important;
-}
-/* ==========================================
-   FORCE FOOTER VISIBILITY ON OVERVIEW / HOME
-   ========================================== */
-
-footer, 
-.site-footer {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 100 !important;
-  width: 100% !important;
-  padding: 20px 0 !important;
-  background-color: #111112 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-  text-align: center !important;
-  color: #a1a1aa !important;
-  margin-top: 40px !important;
-}
-/* ==========================================
-   CENTERED HEADING WITH BRAND GOLD ACCENT
-   ========================================== */
-
-.page-header {
-  text-align: center !important;
-  margin-bottom: 24px !important;
-}
-
-.page-title {
-  color: #ffffff !important;
-  font-size: 1.8rem !important;
-  font-weight: 800 !important;
+  margin-top: 1.5rem !important;
   text-align: center !important;
 }
 
-.page-title span {
-  color: #f59e0b !important; /* Gold accent matching MATTERS */
-}
-
-.page-subtitle {
-  color: #a1a1aa !important;
-  font-size: 0.9rem !important;
-  text-align: center !important;
-  margin-top: 6px !important;
-}
-/* ==========================================
-   GOALS PAGE CUSTOMIZATION & SPACING
-   ========================================== */
-
-/* 1. Spacing between subtext and stats grid */
-.page-header {
-  margin-bottom: 28px !important;
-  text-align: center !important;
-}
-
-.page-subtitle {
-  margin-bottom: 0 !important;
-}
-
-/* 2. Stat Boxes without background */
-.stats-overview-grid {
-  display: flex !important;
-  justify-content: space-between !important;
-  gap: 12px !important;
-  margin-top: 24px !important; /* Adds vertical spacing below track subtext */
-  margin-bottom: 32px !important;
-}
-
-.stat-box-clean {
-  flex: 1 !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  text-align: center !important;
-  padding: 8px 4px !important;
-}
-
-.stat-number {
-  display: block !important;
-  font-size: 1.6rem !important;
-  font-weight: 800 !important;
-  color: #ffffff !important;
-}
-
-.stat-label {
-  display: block !important;
-  font-size: 0.7rem !important;
-  font-weight: 700 !important;
-  color: #a1a1aa !important;
-  letter-spacing: 0.5px !important;
-  margin-top: 4px !important;
-}
-
-/* 3. Section Heading Spacing */
-.section-heading {
-  text-align: center !important;
-  color: #ffffff !important;
+.why-choose-us-container .section-title {
+  color: var(--brand-brown, #a35d2d) !important;
   font-size: 1.1rem !important;
-  margin-bottom: 16px !important;
+  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
 }
 
-/* 4. Interactive "Set a New Goal" Button Card */
-.add-goal-card {
+.why-choose-list {
+  display: flex !important;
+  flex-direction: column !important; /* Stack items vertically */
+  gap: 0.8rem !important;
   width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.why-item-card {
   display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 10px !important;
-  padding: 16px !important;
-  background: rgba(245, 158, 11, 0.05) !important;
-  border: 2px dashed rgba(245, 158, 11, 0.4) !important;
-  border-radius: 14px !important;
-  color: #f59e0b !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease !important;
-  margin-top: 14px !important;
-}
-
-.add-goal-card:hover {
-  background: rgba(245, 158, 11, 0.12) !important;
-  border-color: #f59e0b !important;
-  transform: translateY(-2px) !important;
-}
-
-.add-goal-card i {
-  font-size: 1.2rem !important;
-}
-/* ==========================================
-   CARD BACKGROUNDS & FOOTER STYLING
-   ========================================== */
-
-/* Stat Cards (Active Goals, Completed, Day Streak) */
-.stats-overview-grid {
-  display: flex !important;
-  justify-content: space-between !important;
-  gap: 10px !important;
-  margin: 20px 0 28px 0 !important;
-}
-
-.stat-card {
-  flex: 1 !important;
-  background: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 12px !important;
-  padding: 14px 8px !important;
-  text-align: center !important;
-}
-
-.stat-number {
-  display: block !important;
-  font-size: 1.5rem !important;
-  font-weight: 800 !important;
-  color: #ffffff !important;
-}
-
-.stat-label {
-  display: block !important;
-  font-size: 0.65rem !important;
-  font-weight: 700 !important;
-  color: #a1a1aa !important;
-  margin-top: 4px !important;
-}
-
-/* Milestone Cards (Body Fat & Bench Press) */
-.milestones-list {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 14px !important;
-  margin-bottom: 30px !important;
-}
-
-.goal-card {
-  background: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 14px !important;
-  padding: 16px !important;
-}
-
-.goal-header {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  margin-bottom: 12px !important;
-}
-
-.goal-title-group {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
-
-.goal-title-group h4 {
-  margin: 0 !important;
-  font-size: 0.95rem !important;
-  color: #ffffff !important;
-}
-
-.goal-sub {
-  margin: 2px 0 0 0 !important;
-  font-size: 0.75rem !important;
-  color: #a1a1aa !important;
-}
-
-.badge.in-progress {
-  background: rgba(245, 158, 11, 0.15) !important;
-  color: #f59e0b !important;
-  border: 1px solid rgba(245, 158, 11, 0.3) !important;
-  padding: 4px 8px !important;
-  border-radius: 20px !important;
-  font-size: 0.7rem !important;
-  font-weight: 600 !important;
-}
-
-.goal-metrics {
-  display: flex !important;
-  justify-content: space-between !important;
-  background: #111112 !important;
-  padding: 10px 14px !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 0.8rem !important;
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
   border-radius: 8px !important;
+  padding: 0.8rem 1rem !important;
+  text-align: left !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
 }
 
-.goal-metrics div span {
-  display: block !important;
-  font-size: 0.68rem !important;
-  color: #a1a1aa !important;
-}
-
-.goal-metrics div strong {
-  display: block !important;
-  font-size: 0.85rem !important;
-  color: #ffffff !important;
-  margin-top: 2px !important;
-}
-
-/* Set New Goal Column Button */
-.add-goal-card {
-  width: 100 !important;
+/* CIRCULAR GOLD ICON BADGE */
+.why-icon-badge {
+  min-width: 32px !important;
+  height: 32px !important;
+  background: rgba(212, 160, 23, 0.12) !important;
+  border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
-  padding: 14px !important;
-  background: rgba(245, 158, 11, 0.08) !important;
-  border: 1.5px dashed #f59e0b !important;
-  border-radius: 12px !important;
-  color: #f59e0b !important;
-  font-weight: 700 !important;
-  cursor: pointer !important;
+  margin-top: 0.1rem !important;
 }
 
-/* Sticky Footer Fixed */
-.site-footer {
-  margin-top: 30px !important;
-  padding: 18px 0 !important;
-  background: #111112 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+.why-icon-badge i {
+  color: var(--accent-gold, #d4a017) !important;
+  font-size: 0.85rem !important;
+}
+
+/* CONTENT STYLING */
+.why-content h3 {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: var(--brand-brown, #a35d2d) !important;
+  margin: 0 0 0.2rem 0 !important;
+}
+
+.why-content p {
+  font-size: 0.72rem !important;
+  color: #666666 !important;
+  margin: 0 !important;
+  line-height: 1.35 !important;
+}
+/* CENTER WHY CHOOSE US HEADING */
+.why-choose-us-container h2,
+.why-choose-us-container .section-title,
+h2:contains("Why Choose Us") {
   text-align: center !important;
-  color: #a1a1aa !important;
-  font-size: 0.8rem !important;
   width: 100% !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
-/* ==========================================
-   MOBILE LAYOUT & CARD DIMENSION HARMONIZATION
-   ========================================== */
+/* VERTICAL CONSULTANCY PLANS STACK */
+.consultancy-plans-grid,
+.plans-grid,
+.pricing-grid {
+  display: flex !important;
+  flex-direction: column !important; /* Forces vertical stacking */
+  gap: 1.2rem !important;
+  width: 100% !important;
+  padding: 0.5rem 0 !important;
+  box-sizing: border-box !important;
+}
 
-/* Main Page Container Side Margins */
-.dashboard-wrapper {
-  padding: 16px 16px 24px 16px !important;
+/* INDIVIDUAL PLAN CARD - FULL WIDTH & PROFESSIONAL SPACING */
+.plan-card,
+.consultancy-plans-grid > div,
+.plans-grid > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 1.2rem 1rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  text-align: left !important;
+}
+
+/* BADGE STYLING (Basic Plan / Most Popular) */
+.plan-card .badge,
+.plan-card span.tag {
+  display: inline-block !important;
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  padding: 0.25rem 0.6rem !important;
+  border-radius: 20px !important;
+  background: rgba(212, 160, 23, 0.12) !important;
+  color: var(--brand-brown, #a35d2d) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* PLAN TITLE */
+.plan-card h3,
+.plan-card h4 {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: var(--brand-brown, #a35d2d) !important;
+  margin: 0.2rem 0 0.4rem 0 !important;
+}
+
+/* DESCRIPTION TEXT */
+.plan-card p.description,
+.plan-card p {
+  font-size: 0.75rem !important;
+  color: #666666 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0.8rem !important;
+}
+
+/* PRICING DISPLAY */
+.plan-card .price {
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  color: #1a1a1a !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.plan-card .price span {
+  font-size: 0.7rem !important;
+  font-weight: 400 !important;
+  color: #777777 !important;
+}
+
+/* FEATURE LIST ALIGNMENT */
+.plan-card ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.plan-card ul li {
+  font-size: 0.72rem !important;
+  color: #4a5568 !important;
+  padding: 0.25rem 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+/* WORKOUTS PAGE - EXACT REFERENCE CONTAINER & CARD SPACING */
+.workout-plans-container {
+  padding: 1.2rem 1rem !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
 }
 
-/* Stat Cards Sizing */
-.stats-overview-grid {
-  display: flex !important;
-  gap: 10px !important;
-  margin: 20px 0 24px 0 !important;
-}
-
-.stat-card {
-  flex: 1 !important;
-  background: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 16px !important; /* Exact match to workout cards */
-  padding: 12px 6px !important;
-  text-align: center !important;
-}
-
-/* Goal Cards Sizing & Internal Padding */
-.milestones-list {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 14px !important;
-  margin-bottom: 24px !important;
-}
-
-.goal-card {
-  background: #18181b !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 16px !important; /* Exact match to workout cards */
-  padding: 16px !important;
-  box-sizing: border-box !important;
-}
-
-.add-goal-card {
-  width: 100% !important;
+/* WHITE OUTER CONTAINER CARD */
+.workout-card-container {
+  background: #fbf9f5 !important; /* Soft warm off-white container bg */
   border-radius: 16px !important;
-  padding: 14px !important;
-  box-sizing: border-box !important;
-}
-/* ==========================================
-   FORCE INNER CARD MARGINS & EDGE PADDING
-   ========================================== */
-
-/* Add spacing around the main app container */
-body.app-body, 
-.dashboard-wrapper {
-  padding-left: 16px !important;
-  padding-right: 16px !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-}
-
-/* Ensure cards do not touch browser edges */
-.stats-overview-grid,
-.milestones-list,
-.goal-card,
-.add-goal-card,
-.page-header {
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Fix grid overflow */
-.stats-overview-grid {
-  display: flex !important;
-  gap: 8px !important;
-}
-
-.stat-card {
-  min-width: 0 !important; /* Prevents flex items from overflowing side edges */
-}
-/* ==========================================
-   CENTERED MULTI-LINE HEADING WITH GOLD ACCENT
-   ========================================== */
-
-.page-header {
-  text-align: center !important;
-  margin-bottom: 24px !important;
-}
-
-.page-title {
-  color: #ffffff !important;
-  font-size: 1.8rem !important;
-  font-weight: 800 !important;
-  text-align: center !important;
-  line-height: 1.2 !important;
-  margin: 0 auto 10px auto !important;
-}
-
-/* Color Fitness Gold */
-.page-title .gold-text {
-  color: #f59e0b !important;
-}
-
-/* Style the Centered Ampersand */
-.page-title .ampersand {
-  color: #f59e0b !important;
-  font-size: 1.5rem !important;
-  display: inline-block !important;
-  margin: 4px 0 !important;
-}
-
-.page-subtitle {
-  color: #a1a1aa !important;
-  font-size: 0.85rem !important;
-  text-align: center !important;
-  margin: 0 auto !important;
-}
-/* ==========================================
-   HEADER TOP MARGIN (MATCHES NUTRITION & WORKOUTS)
-   ========================================== */
-
-.page-header {
-  margin-top: 32px !important; /* Creates clear vertical space below navbar border */
-  margin-bottom: 24px !important;
-  text-align: center !important;
-}
-
-.dashboard-wrapper {
-  padding-top: 12px !important;
-}
-/* ==========================================
-   GOLD ACCENT FOR FOOTER BRAND NAME
-   ========================================== */
-
-.site-footer .footer-brand {
-  color: #f59e0b !important;
-  font-weight: 700 !important;
-}
-/* ==========================================
-   CONTACT METHOD LABELS STYLING
-   ========================================== */
-
-.contact-methods {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 20px !important;
-  flex-wrap: wrap !important;
-  margin-top: 16px !important;
-  margin-bottom: 32px !important;
-}
-
-.contact-item {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  color: #ffffff !important;
-  text-decoration: none !important;
-  font-size: 0.85rem !important;
-}
-
-/* Gold label styling for prefix text */
-.contact-label {
-  color: #f59e0b !important; /* Gold accent */
-  font-weight: 600 !important;
-  margin-right: 2px !important;
-}
-/* ==========================================
-   UNIFIED GLOBAL PAGE HEADER STYLING
-   ========================================== */
-
-.page-header {
-  text-align: center !important;
-  margin-top: 32px !important;
-  margin-bottom: 24px !important;
-}
-
-.page-title {
-  color: #ffffff !important;
-  font-size: 1.8rem !important;
-  font-weight: 800 !important;
-  text-align: center !important;
-  line-height: 1.25 !important;
-  margin: 0 auto 8px auto !important;
-}
-
-/* Gold accent matching nutrition & workout titles */
-.page-title .gold-text {
-  color: #f59e0b !important;
-}
-
-.page-subtitle {
-  color: #a1a1aa !important;
-  font-size: 0.85rem !important;
-  font-weight: 400 !important;
-  text-align: center !important;
-  margin: 0 auto !important;
-}
-/* ==========================================
-   STACKED VERTICAL CONTACT METHODS (LEFT-ALIGNED)
-   ========================================== */
-
-.contact-methods {
+  padding: 1.5rem 1.2rem !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start !important; /* Left-aligns each item under text */
-  gap: 10px !important; /* Space between each row */
-  margin-top: 20px !important;
-  margin-bottom: 28px !important;
-  padding-left: 16px !important; /* Matches lateral padding */
+  gap: 2rem !important; /* Spacing between stacked plans */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+  margin-top: 1rem !important;
 }
 
-.contact-item {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  color: #ffffff !important;
-  font-size: 0.85rem !important;
-  text-decoration: none !important;
-}
-
-.contact-label {
-  color: #f59e0b !important; /* Gold accent */
-  font-weight: 600 !important;
-}
-/* ==========================================
-   CONTACT PAGE STACKED & CENTERED LAYOUT
-   ========================================== */
-
-.contact-methods {
+/* INDIVIDUAL PLAN BLOCK */
+.plan-item-block {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  width: fit-content !important;
-  margin: 20px auto 32px auto !important; /* Centers the stacked list block */
-  gap: 12px !important;
+  text-align: left !important;
+  width: 100% !important;
 }
 
-.contact-item {
+/* POPULAR BADGE */
+.plan-item-block .plan-tag {
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  color: #a3a3a3 !important;
+  margin-bottom: 0.4rem !important;
+}
+
+/* PLAN TITLE */
+.plan-item-block .plan-title {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: var(--brand-brown, #b8652d) !important;
+  margin: 0 0 0.3rem 0 !important;
+}
+
+/* PLAN SUBTITLE / DESCRIPTION */
+.plan-item-block .plan-subtitle {
+  font-size: 0.75rem !important;
+  color: #777777 !important;
+  line-height: 1.35 !important;
+  margin: 0 0 0.8rem 0 !important;
+}
+
+/* PRICE DISPLAY */
+.plan-item-block .plan-price {
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  color: #1a1a1a !important;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 0.25rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.plan-item-block .plan-price span {
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  color: #777777 !important;
+}
+
+/* FEATURE CHECKLIST */
+.plan-item-block .plan-features {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 1.2rem 0 !important;
+  width: 100% !important;
+}
+
+.plan-item-block .plan-features li {
+  font-size: 0.75rem !important;
+  color: #555555 !important;
+  margin-bottom: 0.5rem !important;
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 0.4rem !important;
+}
+
+.plan-item-block .plan-features li i {
+  color: #888888 !important;
+  font-size: 0.7rem !important;
+}
+
+/* FULL-WIDTH GOLD BUTTON */
+.plan-item-block .btn-subscribe {
+  width: 100% !important;
+  background: var(--accent-gold, #d49a17) !important;
   color: #ffffff !important;
   font-size: 0.85rem !important;
-  text-decoration: none !important;
-}
-
-.contact-label {
-  color: #f59e0b !important;
   font-weight: 600 !important;
+  padding: 0.7rem 0 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(212, 154, 23, 0.2) !important;
+  display: block !important;
 }
-/* ==========================================
-   SINGLE LINE HORIZONTAL CONTACT METHODS
-   ========================================== */
+/* MATCH NUTRITION CARD CONTAINER SPACING */
+.workout-plans-container {
+  padding: 1rem 0.8rem !important;
+}
 
-.contact-methods {
+.workout-card-container {
+  background: #fbf9f5 !important;
+  border-radius: 16px !important;
+  padding: 1.5rem 1.2rem !important;
+  margin-top: 1rem !important;
   display: flex !important;
-  flex-direction: row !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 12px !important;
+  flex-direction: column !important;
+  gap: 2.2rem !important; /* Matches vertical gap between plans */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* MATCH INTERNAL PLAN ITEM SPACING */
+.plan-item-block {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
   width: 100% !important;
-  white-space: nowrap !important;
-  overflow-x: auto !important; /* Prevents text wrapping on small screens */
-  padding: 8px 16px !important;
-  margin: 16px auto 24px auto !important;
+}
+
+.plan-item-block .plan-tag {
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  color: #a3a3a3 !important;
+  margin-bottom: 0.6rem !important;
+}
+
+.plan-item-block .plan-title {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #b8652d !important;
+  margin: 0 0 0.4rem 0 !important;
+}
+
+.plan-item-block .plan-subtitle {
+  font-size: 0.75rem !important;
+  color: #777777 !important;
+  line-height: 1.35 !important;
+  margin: 0 0 1rem 0 !important;
+}
+
+.plan-item-block .plan-price {
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  color: #1a1a1a !important;
+  margin-bottom: 1rem !important;
+}
+
+.plan-item-block .plan-features {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 1.2rem 0 !important;
+  width: 100% !important;
+}
+
+.plan-item-block .plan-features li {
+  font-size: 0.75rem !important;
+  color: #555555 !important;
+  margin-bottom: 0.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+
+.plan-item-block .btn-subscribe {
+  width: 100% !important;
+  background: #d49a17 !important;
+  color: #ffffff !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 0 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+  cursor: pointer !important;
+}
+/* FORCE GAP BETWEEN ALL WORKOUT PLAN CARDS */
+.dashboard-wrapper .plan-grid,
+.plan-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2.5rem !important; /* Increases vertical gap between each card */
+  width: 100% !important;
+}
+
+/* CARDS INTERNAL SPACING */
+.plan-card {
+  margin: 0 !important;
+  padding: 1.5rem 1.2rem !important; /* Space inside the card */
   box-sizing: border-box !important;
 }
 
-/* Hide scrollbar for a clean UI */
-.contact-methods::-webkit-scrollbar {
-  display: none !important;
+/* SPACE ABOVE SUBSCRIBE BUTTON */
+.plan-card .subscribe-btn {
+  margin-top: 1.2rem !important;
+}
+/* =========================================================
+   UNIVERSAL PLAN CARDS & SPACING (LIGHT & DARK MODE)
+   ========================================================= */
+
+/* 1. CONTAINER & GRID SPACING */
+.plan-grid, 
+.workout-card-container,
+.dashboard-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2rem !important; /* Proper vertical spacing between cards */
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-.contact-item {
-  display: inline-flex !important;
+/* 2. BASE CARD STYLE (LIGHT MODE) */
+.plan-card, 
+.plan-item-block {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 16px !important;
+  padding: 1.5rem 1.25rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: left !important;
+}
+
+/* 3. LIGHT MODE TYPOGRAPHY */
+.plan-card h3, 
+.plan-card h3 span,
+.plan-item-block .plan-title {
+  color: #d97706 !important; /* Warm Amber/Gold Title */
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+.plan-card .desc, 
+.plan-item-block .plan-subtitle {
+  color: #6b7280 !important; /* Readable Subtitle */
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
+  margin: 0 0 1rem 0 !important;
+}
+
+.plan-card .price-wrap, 
+.plan-item-block .plan-price {
+  color: #111827 !important; /* Bold Price */
+  font-size: 1.75rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 1rem !important;
+}
+
+.plan-card .period, 
+.plan-item-block .plan-price span {
+  color: #6b7280 !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+}
+
+/* 4. LIST & CHECKMARKS */
+.plan-card .features, 
+.plan-item-block .plan-features {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 1.25rem 0 !important;
+}
+
+.plan-card .features li, 
+.plan-item-block .plan-features li {
+  color: #374151 !important;
+  font-size: 0.85rem !important;
+  margin-bottom: 0.6rem !important;
+  display: flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 0.5rem !important;
+}
+
+.plan-card .features li i, 
+.plan-item-block .plan-features li i {
+  color: #10b981 !important; /* Green Checkmark */
+}
+
+/* 5. BUTTONS & BADGES */
+.plan-card .subscribe-btn, 
+.plan-item-block .btn-subscribe {
+  width: 100% !important;
+  background: #d97706 !important;
   color: #ffffff !important;
-  font-size: 0.75rem !important; /* Scaled down slightly to fit on one line */
-  text-decoration: none !important;
-  flex-shrink: 0 !important;
-}
-
-.contact-label {
-  color: #f59e0b !important;
+  font-size: 0.9rem !important;
   font-weight: 600 !important;
-}
-footer {
-  background-color: #1a2232;
-  border-top: 1px solid #2d3748;
-  padding: 15px 30px;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #ffffff; /* Sets copyright and rights reserved text to white */
+  padding: 0.8rem 0 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  transition: background 0.2s ease !important;
 }
 
-footer .footer-brand {
-  color: #ffc107; /* Matches the brand gold/yellow color */
-  font-weight: 600;
+.plan-card .subscribe-btn:hover, 
+.plan-item-block .btn-subscribe:hover {
+  background: #b45309 !important;
 }
-/* Sets identical placeholder text color across all browsers */
-.form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.5) !important;
-  opacity: 1; /* Override default browser opacity */
+
+.plan-card .badge, 
+.plan-item-block .plan-tag {
+  color: #f59e0b !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 0.4rem !important;
 }
-/* Center Page Header */
+
+
+/* =========================================================
+   DARK MODE OVERRIDES (AUTOMATIC & CLASS-BASED)
+   ========================================================= */
+
+body.dark-mode .plan-card,
+body.dark-mode .plan-item-block,
+body.dark-theme .plan-card,
+body.dark-theme .plan-item-block,
+[data-theme="dark"] .plan-card,
+[data-theme="dark"] .plan-item-block {
+  background: #1e293b !important; /* Dark Slate Blue Card Surface */
+  border-color: #334155 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .plan-card h3,
+body.dark-mode .plan-card h3 span,
+body.dark-mode .plan-item-block .plan-title,
+body.dark-theme .plan-card h3,
+body.dark-theme .plan-card h3 span,
+body.dark-theme .plan-item-block .plan-title,
+[data-theme="dark"] .plan-card h3,
+[data-theme="dark"] .plan-card h3 span,
+[data-theme="dark"] .plan-item-block .plan-title {
+  color: #fbbf24 !important; /* Bright Gold Header in Dark Mode */
+}
+
+body.dark-mode .plan-card .desc,
+body.dark-mode .plan-item-block .plan-subtitle,
+body.dark-theme .plan-card .desc,
+body.dark-theme .plan-item-block .plan-subtitle,
+[data-theme="dark"] .plan-card .desc,
+[data-theme="dark"] .plan-item-block .plan-subtitle {
+  color: #94a3b8 !important; /* Soft Gray Subtitle */
+}
+
+body.dark-mode .plan-card .price-wrap,
+body.dark-mode .plan-item-block .plan-price,
+body.dark-theme .plan-card .price-wrap,
+body.dark-theme .plan-item-block .plan-price,
+[data-theme="dark"] .plan-card .price-wrap,
+[data-theme="dark"] .plan-item-block .plan-price {
+  color: #f8fafc !important; /* Pure Crisp White Price */
+}
+
+body.dark-mode .plan-card .period,
+body.dark-mode .plan-item-block .plan-price span,
+body.dark-theme .plan-card .period,
+body.dark-theme .plan-item-block .plan-price span,
+[data-theme="dark"] .plan-card .period,
+[data-theme="dark"] .plan-item-block .plan-price span {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .plan-card .features li,
+body.dark-mode .plan-item-block .plan-features li,
+body.dark-theme .plan-card .features li,
+body.dark-theme .plan-item-block .plan-features li,
+[data-theme="dark"] .plan-card .features li,
+[data-theme="dark"] .plan-item-block .plan-features li {
+  color: #cbd5e1 !important; /* Light Slate List Text */
+}
+
+body.dark-mode .plan-card .subscribe-btn,
+body.dark-mode .plan-item-block .btn-subscribe,
+body.dark-theme .plan-card .subscribe-btn,
+body.dark-theme .plan-item-block .btn-subscribe,
+[data-theme="dark"] .plan-card .subscribe-btn,
+[data-theme="dark"] .plan-item-block .btn-subscribe {
+  background: #f59e0b !important;
+  color: #0f172a !important; /* Dark Text on Gold Button for Contrast */
+  font-weight: 700 !important;
+}
+
+body.dark-mode .plan-card .subscribe-btn:hover,
+body.dark-mode .plan-item-block .btn-subscribe:hover,
+body.dark-theme .plan-card .subscribe-btn:hover,
+body.dark-theme .plan-item-block .btn-subscribe:hover,
+[data-theme="dark"] .plan-card .subscribe-btn:hover,
+[data-theme="dark"] .plan-item-block .btn-subscribe:hover {
+  background: #d97706 !important;
+  color: #ffffff !important;
+}
+/* =========================================================
+   PROFESSIONAL WORKOUT & NUTRITION CARDS
+   ========================================================= */
+
+/* Layout & Card Spacing */
+.dashboard-wrapper {
+  padding: 1.5rem 1rem !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+}
+
 .page-header {
-  text-align: center;
-  margin-bottom: 30px;
+  text-align: center !important;
+  margin-bottom: 2rem !important;
 }
 
-/* Center Mission Section Content */
-.mission-section {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 40px auto;
-  padding: 0 20px;
+.page-header h1 {
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  color: #b45309 !important; /* Gold/Bronze Title */
+  margin-bottom: 0.4rem !important;
 }
 
-.mission-section h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
+.page-header p {
+  font-size: 0.85rem !important;
+  color: #6b7280 !important;
+  margin: 0 !important;
 }
 
-.mission-section p {
-  color: #a0aec0;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 30px;
+.plan-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2.2rem !important; /* Clean distance between each card */
+  width: 100% !important;
 }
 
-/* Center Metric Boxes */
-.stats-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+/* Individual Card Styling (Light Mode Default) */
+.plan-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 16px !important;
+  padding: 1.6rem 1.4rem !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04) !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+  position: relative !important;
 }
 
-.stat-box {
-  background-color: #1a2232;
-  border: 1px solid #2d3748;
-  border-radius: 8px;
-  padding: 20px 30px;
-  min-width: 130px;
-  text-align: center;
+.plan-card.popular {
+  border: 2px solid #f59e0b !important;
 }
 
-.stat-box h3 {
-  font-size: 1.8rem;
-  color: #ffc107;
-  margin-bottom: 5px;
-}
-
-.stat-box p {
-  font-size: 0.8rem;
-  color: #cbd5e0;
-  margin-bottom: 0;
-}
-footer {
-  text-align: center;
-  padding: 20px 0;
-  width: 100%;
-  color: #a0aec0;
-  font-size: 0.85rem;
-  border-top: 1px solid #2d3748;
-  margin-top: auto;
-}
-
-footer .gold-text {
-  color: #ffc107 !important;
-  font-weight: 600;
-}
-footer {
-  text-align: center;
-  padding: 20px 0;
-  width: 100%;
-  color: #ffffff !important; /* Forces 2026 & All rights reserved to pure white */
-  font-size: 0.85rem;
-  border-top: 1px solid #2d3748;
-  margin-top: auto;
-}
-
-footer .gold-text {
-  color: #ffc107 !important; /* Keeps Fitness Matters in signature gold */
-  font-weight: 600;
-}
-/* LIGHT MODE OVERRIDES */
-body.light-mode {
-  background-color: #f4f6f9 !important;
-  color: #121824 !important;
-}
-
-body.light-mode .navbar,
-body.light-mode .sidebar,
-body.light-mode .register-card,
-body.light-mode .profile-card,
-body.light-mode .settings-card,
-body.light-mode .notification-card,
-body.light-mode .stat-box,
-body.light-mode footer {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  color: #121824 !important;
-}
-
-body.light-mode .nav-item,
-body.light-mode .sidebar-item,
-body.light-mode label,
-body.light-mode p {
-  color: #4a5568 !important;
-}
-
-body.light-mode input,
-body.light-mode select {
-  background-color: #edf2f7 !important;
-  border-color: #cbd5e0 !important;
-  color: #121824 !important;
-}
-
-body.light-mode .gold-text,
-body.light-mode h1,
-body.light-mode h2,
-body.light-mode h3 {
+.plan-card .badge {
+  display: inline-block !important;
+  font-size: 0.7rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
   color: #d97706 !important;
-}
-.footer-text {
-  color: #ffffff; /* Sets 2026 and 'All rights reserved.' to white */
-  text-align: center;
+  margin-bottom: 0.5rem !important;
 }
 
-.brand-name {
-  color: #ff6b00; /* Keeps your brand name highlighted */
-}.footer-text {
-  color: #ffffff; /* Sets 2026 and 'All rights reserved.' to white */
-  text-align: center;
+.plan-card h3 {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #b45309 !important; /* Clear Amber/Brown Title */
+  margin: 0 0 0.5rem 0 !important;
 }
 
-.brand-gold {
-  color: #d97706; /* Standard Gold (use #d4af37 for a deeper metallic gold) */
-  text-transform: none; /* Overrides uppercase CSS rules */
-  font-size: 0.85em; /* Slightly shrinks the text size relative to the rest */
+.plan-card .desc {
+  font-size: 0.85rem !important;
+  color: #6b7280 !important;
+  line-height: 1.45 !important;
+  margin: 0 0 1.2rem 0 !important;
+}
+
+.plan-card .price-wrap {
+  margin-bottom: 1.2rem !important;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 0.3rem !important;
+}
+
+.plan-card .price {
+  font-size: 1.85rem !important;
+  font-weight: 800 !important;
+  color: #111827 !important;
+}
+
+.plan-card .period {
+  font-size: 0.85rem !important;
+  color: #6b7280 !important;
+}
+
+.plan-card .features {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 1.5rem 0 !important;
+}
+
+.plan-card .features li {
+  font-size: 0.85rem !important;
+  color: #374151 !important;
+  margin-bottom: 0.6rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.plan-card .features li i {
+  color: #10b981 !important; /* Green Checkmark */
+}
+
+.plan-card .subscribe-btn {
+  width: 100% !important;
+  background: #d97706 !important;
+  color: #ffffff !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  padding: 0.85rem 0 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  transition: background 0.2s ease !important;
+}
+
+.plan-card .subscribe-btn:hover {
+  background: #b45309 !important;
+}
+
+/* =========================================================
+   DARK MODE OVERRIDES (HIGH CONTRAST & ACCESSIBLE)
+   ========================================================= */
+body.dark-mode,
+body.dark-theme,
+[data-theme="dark"] {
+  background-color: #0f172a !important;
+}
+
+body.dark-mode .page-header h1,
+body.dark-theme .page-header h1,
+[data-theme="dark"] .page-header h1 {
+  color: #fbbf24 !important; /* Bright Gold */
+}
+
+body.dark-mode .page-header p,
+body.dark-theme .page-header p,
+[data-theme="dark"] .page-header p {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .plan-card,
+body.dark-theme .plan-card,
+[data-theme="dark"] .plan-card {
+  background: #1e293b !important; /* Dark Slate Surface */
+  border-color: #334155 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .plan-card h3,
+body.dark-theme .plan-card h3,
+[data-theme="dark"] .plan-card h3 {
+  color: #fbbf24 !important; /* Gold Card Title */
+}
+
+body.dark-mode .plan-card .desc,
+body.dark-theme .plan-card .desc,
+[data-theme="dark"] .plan-card .desc {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .plan-card .price,
+body.dark-theme .plan-card .price,
+[data-theme="dark"] .plan-card .price {
+  color: #ffffff !important;
+}
+
+body.dark-mode .plan-card .period,
+body.dark-theme .plan-card .period,
+[data-theme="dark"] .plan-card .period {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .plan-card .features li,
+body.dark-theme .plan-card .features li,
+[data-theme="dark"] .plan-card .features li {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .plan-card .subscribe-btn,
+body.dark-theme .plan-card .subscribe-btn,
+[data-theme="dark"] .plan-card .subscribe-btn {
+  background: #f59e0b !important;
+  color: #0f172a !important; /* High contrast dark text on yellow button */
+}
+/* =========================================================
+   PROFESSIONAL DARK MODE OVERHAUL FOR ALL PAGES
+   ========================================================= */
+
+/* 1. Main Page Dark Background */
+body.dark-mode,
+body.dark-theme,
+[data-theme="dark"] {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+/* 2. Dark Mode Cards Surface */
+body.dark-mode .plan-card,
+body.dark-mode .plan-item-block,
+body.dark-theme .plan-card,
+body.dark-theme .plan-item-block,
+[data-theme="dark"] .plan-card,
+[data-theme="dark"] .plan-item-block {
+  background-color: #1e293b !important; /* Deep slate surface */
+  border: 1px solid #334155 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 3. Dark Mode Titles & Headings */
+body.dark-mode .plan-card h3,
+body.dark-mode .plan-item-block .plan-title,
+body.dark-theme .plan-card h3,
+body.dark-theme .plan-item-block .plan-title,
+[data-theme="dark"] .plan-card h3,
+[data-theme="dark"] .plan-item-block .plan-title {
+  color: #fbbf24 !important; /* Bright Gold for high visibility */
+}
+
+/* 4. Dark Mode Subtitles & Descriptions */
+body.dark-mode .plan-card .desc,
+body.dark-mode .plan-item-block .plan-subtitle,
+body.dark-theme .plan-card .desc,
+body.dark-theme .plan-item-block .plan-subtitle,
+[data-theme="dark"] .plan-card .desc,
+[data-theme="dark"] .plan-item-block .plan-subtitle {
+  color: #94a3b8 !important; /* Soft crisp gray */
+}
+
+/* 5. Dark Mode Pricing Text */
+body.dark-mode .plan-card .price,
+body.dark-mode .plan-item-block .plan-price,
+body.dark-theme .plan-card .price,
+body.dark-theme .plan-item-block .plan-price,
+[data-theme="dark"] .plan-card .price,
+[data-theme="dark"] .plan-item-block .plan-price {
+  color: #ffffff !important; /* Pure white numbers */
+}
+
+body.dark-mode .plan-card .period,
+body.dark-mode .plan-item-block .plan-price span,
+body.dark-theme .plan-card .period,
+body.dark-theme .plan-item-block .plan-price span,
+[data-theme="dark"] .plan-card .period,
+[data-theme="dark"] .plan-item-block .plan-price span {
+  color: #94a3b8 !important;
+}
+
+/* 6. Dark Mode Feature List Items */
+body.dark-mode .plan-card .features li,
+body.dark-mode .plan-item-block .plan-features li,
+body.dark-theme .plan-card .features li,
+body.dark-theme .plan-item-block .plan-features li,
+[data-theme="dark"] .plan-card .features li,
+[data-theme="dark"] .plan-item-block .plan-features li {
+  color: #e2e8f0 !important; /* Clean light text */
+}
+
+/* 7. Dark Mode Action Buttons */
+body.dark-mode .plan-card .subscribe-btn,
+body.dark-mode .plan-item-block .btn-subscribe,
+body.dark-theme .plan-card .subscribe-btn,
+body.dark-theme .plan-item-block .btn-subscribe,
+[data-theme="dark"] .plan-card .subscribe-btn,
+[data-theme="dark"] .plan-item-block .btn-subscribe {
+  background: #f59e0b !important;
+  color: #0f172a !important; /* Dark bold text on gold background for sharp contrast */
+  font-weight: 700 !important;
+}
+
+body.dark-mode .plan-card .subscribe-btn:hover,
+body.dark-mode .plan-item-block .btn-subscribe:hover,
+body.dark-theme .plan-card .subscribe-btn:hover,
+body.dark-theme .plan-item-block .btn-subscribe:hover,
+[data-theme="dark"] .plan-card .subscribe-btn:hover,
+[data-theme="dark"] .plan-item-block .btn-subscribe:hover {
+  background: #d97706 !important;
+  color: #ffffff !important;
 }

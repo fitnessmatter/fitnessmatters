@@ -6,314 +6,387 @@
     <title>Fitness Matters | Nutrition Plans</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css"
-      <script src="auth-guard.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- FIREBASE SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="auth-guard.js"></script>
 </head>
 <body>
 
     <!-- GLOBAL NAVBAR WITH HAMBURGER -->
-<nav class="navbar">
-  <div class="nav-header">
-    <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+    <nav class="navbar">
+      <div class="nav-header">
+        <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
 
-    <div class="nav-brand">
-      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-      <span class="brand-name">FITNESS<span>MATTERS</span></span>
-    </div>
-  </div>
+        <div class="nav-brand">
+          <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+          <span class="brand-name">FITNESS<span>MATTERS</span></span>
+        </div>
+      </div>
 
-  <!-- MENU LINKS (Update the "active" class per page) -->
-  <div class="nav-menu">
-    <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-    <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-    <a href="nutrition.html" class="nav-item active"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-    <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
-    <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
-    <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
-  </div>
-</nav>
+      <!-- MENU LINKS -->
+      <div class="nav-menu">
+        <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+        <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+        <a href="nutrition.html" class="nav-item active"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+        <a href="consultancy.html" class="nav-item"><i class="fa-solid fa-user-doctor"></i> Consultancy</a>
+        <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+        <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+        <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </div>
+    </nav>
 
-<!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-<!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
-<<aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <h3>User Menu</h3>
-    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-  </div>
+    <!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>User Menu</h3>
+        <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+      </div>
 
-  <div class="user-card">
-    <div class="avatar" id="avatar-initial">A</div>
-    <div class="user-info">
-      <h4 id="menu-display-name">Aditya</h4>
-      <span class="badge" style="color: #ffc107; font-weight: 600;">Pro Member</span>
-    </div>
-  </div>
+      <div class="user-card">
+        <div class="avatar" id="avatar-initial">A</div>
+        <div class="user-info">
+          <h4 id="menu-display-name">Aditya</h4>
+          <span class="badge" style="color: #ffc107; font-weight: 600;">Pro Member</span>
+        </div>
+      </div>
 
-  <div class="sidebar-menu">
-    <a href="profile.html" class="sidebar-item">
-      <i class="fa-solid fa-user"></i> My Profile
-    </a>
-    <a href="settings.html" class="sidebar-item">
-      <i class="fa-solid fa-gear"></i> Account Settings
-    </a>
-    <a href="notifications.html" class="sidebar-item">
-      <i class="fa-solid fa-bell"></i> Notifications
-    </a>
-    <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
-      <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
-    </button>
-    <a href="#" class="sidebar-item logout-link" onclick="handleLogout()" style="color: #f56565;">
-      <i class="fa-solid fa-right-from-bracket"></i> Logout
-    </a>
-  </div>
-</aside>
-    
-</nav>
+      <div class="sidebar-menu">
+        <a href="profile.html" class="sidebar-item">
+          <i class="fa-solid fa-user"></i> My Profile
+        </a>
+        <a href="settings.html" class="sidebar-item">
+          <i class="fa-solid fa-gear"></i> Account Settings
+        </a>
+        <a href="notifications.html" class="sidebar-item">
+          <i class="fa-solid fa-bell"></i> Notifications
+        </a>
+        <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
+          <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
+        </button>
+        <a href="#" class="sidebar-item logout-link" onclick="handleLogout()" style="color: #f56565;">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+      </div>
+    </aside>
+
     <main class="dashboard-wrapper">
         <div class="page-header">
-    <h1><span style="color: #f59e0b !important;">Premium Nutrition Plans</span></h1>
-    <p><span style=" color: #a1a1aa !important;">Fuel your body with customized meal protocols and macro strategies.</p>
-</div>
+            <h1><span style="color: #f59e0b !important;">Premium Nutrition Plans</span></h1>
+            <p><span style="color: #a1a1aa !important;">Fuel your body with customized meal protocols and macro strategies.</span></p>
+        </div>
 
         <div class="plans-grid">
             <!-- Plan 1 -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Bulking Diet Plan</h3>
+                    <h3><span style="color: #f59e0b !important;">Bulking Diet Plan</span></h3>
                     <p>Caloric Surplus Protocol for Serious Mass & Muscle Gains.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹699</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹699</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> 2,800 kcal / Daily Target</li>
                     <li><i class="fa-solid fa-check"></i> High Carbs & Protein (200g target)</li>
                     <li><i class="fa-solid fa-check"></i> Post-workout Shake Matrix</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="gain-pecs-delte-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 2 -->
             <div class="plan-card featured-plan">
                 <span class="badge">Most Popular</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Keto Shred Protocol</h3>
+                    <h3><span style="color: #f59e0b !important;">Keto Shred Protocol</span></h3>
                     <p>Ultra low-carb diet aimed at rapid body fat reduction.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹999</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
                     <li><i class="fa-solid fa-check"></i> 70% Healthy Fats ratio</li>
                     <li><i class="fa-solid fa-check"></i> Under 30g Net Carbs</li>
                     <li><i class="fa-solid fa-check"></i> Ketone Tracking Guide</li>
                 </ul>
-                <button class="buy-btn featured-btn">Subscribe Plan</button>
+                <button class="buy-btn featured-btn subscribe-btn" data-pdf="lean-muscle-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 3 -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Carb Cycle Diet</h3>
-                    <p>100% Vegan plan packed with complete plant proteins.</p>
+                    <h3><span style="color: #f59e0b !important;">Carb Cycle Diet</span></h3>
+                    <p>Alternating high and low-carb days to maximize fat loss while preserving muscle and training performance.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹699</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹699</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> Amino Acid Balanced Meals</li>
-                    <li><i class="fa-solid fa-check"></i> Micro-Nutrient Rich</li>
-                    <li><i class="fa-solid fa-check"></i> Soy-Free Alternatives</li>
+                    <li><i class="fa-solid fa-check"></i> High & Low Carb Day Schedules</li>
+                    <li><i class="fa-solid fa-check"></i> Glycogen Depletion & Refeed Days</li>
+                    <li><i class="fa-solid fa-check"></i> Targeted Workout Fueling</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="lean-muscle-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 4 -->
             <div class="plan-card">
+                <span class="badge">Most Popular</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Fat Loss Nutrition Plan</h3>
-                    <p>Meal timing blueprint paired with nutrient-dense eating windows.</p>
+                    <h3><span style="color: #f59e0b !important;">Fat Loss Nutrition Plan</span></h3>
+                    <p>Sustainable calorie-deficit blueprint designed to burn fat without sacrificing lean muscle mass.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹699</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹699</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> Fasting Window Schedules</li>
-                    <li><i class="fa-solid fa-check"></i> Autophagy Optimization</li>
-                    <li><i class="fa-solid fa-check"></i> Electrolyte Strategy</li>
+                    <li><i class="fa-solid fa-check"></i> Custom Calorie Deficit Target</li>
+                    <li><i class="fa-solid fa-check"></i> High-Protein Muscle Retention</li>
+                    <li><i class="fa-solid fa-check"></i> Hunger & Appetite Management</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="lean-muscle-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 5 -->
-            <div class="plan-card featured plan">
+            <div class="plan-card featured-plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Diabetes Nutrition PLan</h3>
-                    <p>Carb-cycling plan built for high endurance and intense training.</p>
+                    <h3><span style="color: #f59e0b !important;">Diabetes Nutrition Plan</span></h3>
+                    <p>Blood sugar stabilization blueprint using low-glycemic index foods and insulin sensitivity strategies.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹1499</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹1499</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> Intra-workout Carb Timings</li>
-                    <li><i class="fa-solid fa-check"></i> Rapid Recovery Protocols</li>
-                    <li><i class="fa-solid fa-check"></i> Custom Hydration Specs</li>
+                    <li><i class="fa-solid fa-check"></i> Low-Glycemic Index Meal Mapping</li>
+                    <li><i class="fa-solid fa-check"></i> Carbohydrate Counting & Timing</li>
+                    <li><i class="fa-solid fa-check"></i> Post-Meal Glucose Surge Control</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="muscular-8-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 6 -->
-            <div class="plan-card featured plan">
+            <div class="plan-card featured-plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">High Blood Pressure Nutrition Plan</h3>
-                    <p>Sustainable, non-restrictive fat loss system with zero energy crashes.</p>
+                    <h3><span style="color: #f59e0b !important;">High Blood Pressure Nutrition Plan</span></h3>
+                    <p>Sodium-conscious DASH diet structure designed to support vascular health and lower blood pressure.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹1499</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹1499</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> High Volume Low Calorie</li>
-                    <li><i class="fa-solid fa-check"></i> Craving Management System</li>
-                    <li><i class="fa-solid fa-check"></i> Weekly Refeed Meals</li>
+                    <li><i class="fa-solid fa-check"></i> Potassium & Magnesium Rich Meals</li>
+                    <li><i class="fa-solid fa-check"></i> Low-Sodium & DASH Diet Framework</li>
+                    <li><i class="fa-solid fa-check"></i> Arterial Health & Circulation Boosters</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="muscular-8-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 7 -->
-            <div class="plan-card featured plan">
+            <div class="plan-card featured-plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">High Cholesterol Nutrition Plan</h3>
-                    <p>High-calorie eating structure without excessive fat accumulation.</p>
+                    <h3><span style="color: #f59e0b !important;">High Cholesterol Nutrition Plan</span></h3>
+                    <p>Heart-healthy nutritional framework focused on lowering LDL and raising HDL ratios.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹1499</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹1499</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> 3,500+ Daily kcal Blueprint</li>
-                    <li><i class="fa-solid fa-check"></i> Enzyme Digestibility Support</li>
-                    <li><i class="fa-solid fa-check"></i> Easy Prep Liquid Meals</li>
+                    <li><i class="fa-solid fa-check"></i> Soluble Fiber & Phytosterol Integration</li>
+                    <li><i class="fa-solid fa-check"></i> Saturated & Trans-Fat Reduction</li>
+                    <li><i class="fa-solid fa-check"></i> Omega-3 Fatty Acid Optimization</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="muscular-8-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 8 -->
-            <div class="plan-card featured plan">
+            <div class="plan-card featured-plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">PCOD Nutrition Plan</h3>
-                    <p>Heart-healthy dietary plan focused on long-term sustainability.</p>
+                    <h3><span style="color: #f59e0b !important;">PCOD Nutrition Plan</span></h3>
+                    <p>Hormone-balancing and anti-inflammatory meal protocols to manage insulin resistance and ovulation health.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹1499</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹1499</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> Rich in Omega-3 Fats</li>
+                    <li><i class="fa-solid fa-check"></i> Insulin-Sensitizing Complex Carbs</li>
                     <li><i class="fa-solid fa-check"></i> Anti-Inflammatory Foods</li>
-                    <li><i class="fa-solid fa-check"></i> Unprocessed Whole Foods</li>
+                    <li><i class="fa-solid fa-check"></i> Hormone & Ovulation Balance Support</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="muscular-8-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 9 -->
-            <div class="plan-card featured plan">
+            <div class="plan-card featured-plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Thyroid Nutrition Plan</h3>
-                    <p>Grain-free, dairy-free diet modeled on unprocessed nutrition.</p>
+                    <h3><span style="color: #f59e0b !important;">Thyroid Nutrition Plan</span></h3>
+                    <p>Metabolic support nutrition packed with micronutrients to optimize thyroid hormone production and energy.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹1499</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹1499</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> Grass-fed Meats & Seeds</li>
-                    <li><i class="fa-solid fa-check"></i> Zero Refined Sugars</li>
-                    <li><i class="fa-solid fa-check"></i> Gut Health Focus</li>
+                    <li><i class="fa-solid fa-check"></i> Selenium & Iodine-Optimized Foods</li>
+                    <li><i class="fa-solid fa-check"></i> Goitrogen-Managed Meal Preparation</li>
+                    <li><i class="fa-solid fa-check"></i> Metabolic Energy & Fatigue Management</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="muscular-8-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 10 -->
-            <div class="plan-card featured plan">
+            <div class="plan-card featured-plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Liver Nutrition Plan</h3>
-                    <p>Low Glycemic Index foods engineered for stable insulin response.</p>
+                    <h3><span style="color: #f59e0b !important;">Liver Nutrition Plan</span></h3>
+                    <p>Hepatic detox and fat-clearing protocol to reduce liver enzyme elevation and visceral fat accumulation.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹1499</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹1499</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> Low GI Meal Charts</li>
-                    <li><i class="fa-solid fa-check"></i> Blood Sugar Control</li>
-                    <li><i class="fa-solid fa-check"></i> Complex Fiber Focus</li>
+                    <li><i class="fa-solid fa-check"></i> Refined Sugar & Fructose Elimination</li>
+                    <li><i class="fa-solid fa-check"></i> Hepatic Antioxidant & Choline Focus</li>
+                    <li><i class="fa-solid fa-check"></i> Visceral Fat Reduction Protocols</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="muscular-8-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 11 -->
             <div class="plan-card">
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Peak Week Diet Plan</h3>
-                    <p>Designed specifically for gut sensitivities and auto-immune focus.</p>
+                    <h3><span style="color: #f59e0b !important;">Peak Week Diet Plan</span></h3>
+                    <p>High-protein, low-calorie rapid response plan for rapid body composition shifts while sparing lean muscle.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹999</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹999</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> 100% Allergen Safe</li>
-                    <li><i class="fa-solid fa-check"></i> Bloat Reduction Guide</li>
-                    <li><i class="fa-solid fa-check"></i> Substitutes Replacement List</li>
+                    <li><i class="fa-solid fa-check"></i> High-Biological Value Protein Focus</li>
+                    <li><i class="fa-solid fa-check"></i> Rapid Safety & Muscle Maintenance</li>
+                    <li><i class="fa-solid fa-check"></i> Structured Lean Phase Protocols</li>
                 </ul>
-                <button class="buy-btn">Subscribe Plan</button>
+                <button class="buy-btn subscribe-btn" data-pdf="gain-pecs-delte-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
 
             <!-- Plan 12 -->
             <div class="plan-card featured-plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Calorie Deficit Nutrition PLan</h3>
-                    <p>Fully bespoke meal design tailored directly by a dedicated dietitian.</p>
+                    <h3><span style="color: #f59e0b !important;">Calorie Deficit Nutrition Plan</span></h3>
+                    <p>Precision-tracked deficit system built to maximize energy levels while guaranteeing steady weight loss.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹1299</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹1299</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> Weekly Call Consultations</li>
-                    <li><i class="fa-solid fa-check"></i> Real-time Meal Adjustments</li>
-                    <li><i class="fa-solid fa-check"></i> Direct WhatsApp Support</li>
+                    <li><i class="fa-solid fa-check"></i> Flexible Macro Tracking Framework</li>
+                    <li><i class="fa-solid fa-check"></i> High-Volume, Low-Calorie Meals</li>
+                    <li><i class="fa-solid fa-check"></i> Metabolic Adaption Prevention</li>
                 </ul>
-                <button class="buy-btn featured-btn">Subscribe Plan</button>
+                <button class="buy-btn featured-btn subscribe-btn" data-pdf="lean-muscle-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
+
             <!-- Plan 13 -->
-            <div class="plan-card featured plan">
+            <div class="plan-card featured-plan">
                 <span class="badge">VIP</span>
                 <div class="plan-header">
-                    <h3><span style="color: #f59e0b !important;">Drug Rehab Nutrition PLan</h3>
-                    <p>Fully bespoke meal design tailored directly by a dedicated dietitian.</p>
+                    <h3><span style="color: #f59e0b !important;">Drug Rehab Nutrition Plan</span></h3>
+                    <p>Neurotransmitter and gut-healing nutrition designed to restore biochemical balance and reduce cravings.</p>
                 </div>
                 <div class="plan-price">
-                    <span class="amount">₹1499</span><span class="duration">/ month</span>
+                    <span class="price-amount">₹1499</span><span class="price-period">/ month</span>
                 </div>
                 <ul class="plan-features">
-                    <li><i class="fa-solid fa-check"></i> Weekly Call Consultations</li>
-                    <li><i class="fa-solid fa-check"></i> Real-time Meal Adjustments</li>
-                    <li><i class="fa-solid fa-check"></i> Direct WhatsApp Support</li>
+                    <li><i class="fa-solid fa-check"></i> Neurotransmitter Support (Dopamine/Serotonin)</li>
+                    <li><i class="fa-solid fa-check"></i> Gut-Microbiome & Nutrient Restoration</li>
+                    <li><i class="fa-solid fa-check"></i> Stable Energy & Craving Suppression</li>
                 </ul>
-                <button class="buy-btn featured-btn">Subscribe Plan</button>
+                <button class="buy-btn featured-btn subscribe-btn" data-pdf="muscular-8-plan.pdf" onclick="openSubscribeModal(this)">Subscribe Plan</button>
             </div>
         </div>
     </main>
-<footer class="app-footer">
-    <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
-</footer>
-<!-- Link external script file -->
-  <script src="script.js"></script>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
+    </footer>
+
+    <!-- UNIFIED SUBSCRIPTION CONFIRMATION MODAL (STEP 1 SYNCHRONIZED DESIGN) -->
+    <div id="sub-modal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-icon"><i class="fa-solid fa-crown"></i></div>
+        <h3 id="modal-plan-title">Confirm Plan Subscription</h3>
+        <p>You selected <strong id="selected-plan-name" style="color: #ffc107;">Plan</strong> for <span id="selected-plan-price" style="font-weight:700; color:#fff;">₹699</span>/month.</p>
+        
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeSubModal()">Cancel</button>
+          <button class="btn-confirm" onclick="processSubscription()">Download Plan PDF</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN PROJECT SCRIPT -->
+    <script src="script.js"></script>
+
+    <!-- EXPLICIT PAGE MODAL CONTROLLER -->
+    <script>
+      window.currentSelectedPlan = window.currentSelectedPlan || '';
+      window.currentPdfPath = window.currentPdfPath || '';
+
+      function openSubscribeModal(button) {
+        const planCard = button.closest('.plan-card');
+        if (!planCard) return;
+
+        const titleElem = planCard.querySelector('h3');
+        const priceElem = planCard.querySelector('.price-amount');
+
+        window.currentSelectedPlan = titleElem ? titleElem.innerText.trim() : 'Nutrition Plan';
+        const priceText = priceElem ? priceElem.innerText.trim() : '₹699';
+        
+        window.currentPdfPath = button.getAttribute('data-pdf') || 'lean-muscle-plan.pdf';
+
+        const nameTarget = document.getElementById('selected-plan-name');
+        const priceTarget = document.getElementById('selected-plan-price');
+        
+        if (nameTarget) nameTarget.innerText = window.currentSelectedPlan;
+        if (priceTarget) priceTarget.innerText = priceText;
+
+        const modal = document.getElementById('sub-modal');
+        if (modal) {
+          modal.classList.add('active');
+        }
+      }
+
+      function closeSubModal() {
+        const modal = document.getElementById('sub-modal');
+        if (modal) {
+          modal.classList.remove('active');
+        }
+      }
+
+      function processSubscription() {
+        localStorage.setItem('user_subscribed_plan', window.currentSelectedPlan);
+        closeSubModal();
+
+        if (window.currentPdfPath) {
+          const downloadAnchor = document.createElement('a');
+          downloadAnchor.href = window.currentPdfPath;
+          downloadAnchor.setAttribute('download', window.currentPdfPath);
+          document.body.appendChild(downloadAnchor);
+          downloadAnchor.click();
+          document.body.removeChild(downloadAnchor);
+        }
+      }
+    </script>
 </body>
 </html>

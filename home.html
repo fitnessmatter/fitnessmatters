@@ -31,6 +31,26 @@
     }
   });
 </script>
+<script>
+  // Declare function globally for onclick triggers
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+      sidebar.classList.toggle('active');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('user_authenticated');
+        window.location.href = 'register.html';
+      });
+    }
+  });
+</script>
 </head>
 <body>
 <nav class="navbar">
@@ -52,6 +72,7 @@
     <a href="home.html" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Overview</a>
     <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
     <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+    <a href="consultancy.html" class="nav-item"><i class="fa-solid fa-user-doctor"></i> Consultancy</a>
     <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
     <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
     <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
@@ -131,10 +152,9 @@
 
 <!-- End of dashboard-wrapper -->
   </div> 
-
-  <footer>
-  &copy; 2026 <span class="gold-text">Fitness Matters</span>. All rights reserved.
-</footer>
+ <footer class="app-footer" style="margin-top: 3rem;">
+    <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>

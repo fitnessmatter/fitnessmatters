@@ -1,231 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fitness Matters | Account Settings</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .settings-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .settings-card {
-      background-color: #1a2232;
-      border: 1px solid #2d3748;
-      border-radius: 12px;
-      padding: 30px;
-      margin-bottom: 25px;
-    }
-    .settings-group {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 0;
-      border-bottom: 1px solid #2d3748;
-    }
-    .settings-group:last-child {
-      border-bottom: none;
-    }
-    .settings-info h4 {
-      font-size: 1rem;
-      color: #ffffff;
-      margin-bottom: 4px;
-    }
-    .settings-info p {
-      font-size: 0.85rem;
-      color: #a0aec0;
-    }
-    .settings-control select {
-      background-color: #0f172a;
-      border: 1px solid #2d3748;
-      color: #ffffff;
-      padding: 8px 12px;
-      border-radius: 6px;
-      outline: none;
-    }
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 46px;
-      height: 24px;
-    }
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #2d3748;
-      transition: .3s;
-      border-radius: 24px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: .3s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: #ffc107;
-    }
-    input:checked + .slider:before {
-      transform: translateX(22px);
-      background-color: #121824;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- GLOBAL NAVBAR -->
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="nav-header">
-      <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-      <span class="brand-name">FITNESS<span>MATTERS</span></span>
+      <button class="hamburger-btn" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+      <div class="nav-brand">
+        <i class="fas fa-bolt brand-icon"></i>
+        <div class="brand-name">FITNESS<span>MATTERS</span></div>
+      </div>
     </div>
+
+    <!-- HORIZONTAL SCROLLABLE NAV (NO WRAPPING) -->
     <div class="nav-menu">
-      <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-      <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-      <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-      <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
-      <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
-      <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+      <a href="index.html" class="nav-item"><i class="fas fa-chart-pie"></i> Overview</a>
+      <a href="workouts.html" class="nav-item"><i class="fas fa-dumbbell"></i> Workouts</a>
+      <a href="nutrition.html" class="nav-item"><i class="fas fa-utensils"></i> Nutrition</a>
+      <a href="consultancy.html" class="nav-item"><i class="fas fa-user-tie"></i> Consultancy</a>
+      <a href="goals.html" class="nav-item"><i class="fas fa-bullseye"></i> Goals</a>
+      <a href="about.html" class="nav-item"><i class="fas fa-info-circle"></i> About</a>
+      <a href="contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact</a>
     </div>
   </nav>
 
   <!-- SIDEBAR DRAWER -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h3>User Menu</h3>
-      <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+      <h3>Account</h3>
+      <button class="close-btn" id="closeSidebarBtn">&times;</button>
     </div>
-    <div class="user-card">
-      <div class="avatar" id="avatar-initial">A</div>
-      <div class="user-info">
-        <h4 id="menu-display-name">Aditya</h4>
-        <span class="badge" style="color:#ffc107;">Pro Member</span>
-      </div>
-    </div>
+
     <div class="sidebar-menu">
-      <a href="profile.html" class="sidebar-item"><i class="fa-solid fa-user"></i> My Profile</a>
-      <a href="settings.html" class="sidebar-item active"><i class="fa-solid fa-gear"></i> Account Settings</a>
-      <a href="notifications.html" class="sidebar-item"><i class="fa-solid fa-bell"></i> Notifications</a>
-      <a href="#" id="logout-btn" class="sidebar-item logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      <!-- USER PROFILE -->
+      <a href="profile.html" class="sidebar-item">
+        <div class="user-card" style="display:flex; align-items:center; gap:0.75rem; width:100%;">
+          <div class="avatar" id="avatar-initial" style="background:var(--accent-color); color:#fff; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold;">FM</div>
+          <div class="user-info">
+            <h4 id="menu-display-name" style="margin:0; font-size:1rem; color:var(--text-primary);">Aditya Profile</h4>
+          </div>
+        </div>
+      </a>
+
+      <!-- ACCOUNT SETTINGS -->
+      <a href="settings.html" class="sidebar-item">
+        <i class="fas fa-cog"></i> <span>Account Settings</span>
+      </a>
+
+      <!-- NOTIFICATIONS -->
+      <a href="notifications.html" class="sidebar-item">
+        <i class="fas fa-bell"></i> <span>Notifications</span>
+      </a>
+
+      <!-- LIGHT / DARK MODE TOGGLE -->
+      <button class="sidebar-item" id="themeToggleBtn" style="background:none; border:none; width:100%; text-align:left; cursor:pointer; color:inherit; font:inherit; display:flex; align-items:center; gap:0.75rem; padding:0.75rem 0;">
+        <i class="fas fa-moon"></i> <span id="theme-text">Light Mode</span>
+      </button>
+
+      <hr style="border:none; border-top:1px solid var(--border-color); margin:1rem 0;" />
+
+      <!-- LOGOUT -->
+      <a href="#" class="sidebar-item logout-link" style="color:#ef4444;">
+        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+      </a>
     </div>
   </aside>
 
-  <!-- MAIN SETTINGS CONTENT -->
-  <main class="settings-container">
-    <div class="page-header" style="text-align: left; margin-bottom: 25px;">
-      <h1 style="color: #ffc107;">Account Settings</h1>
-      <p style="color: #a0aec0;">Configure measurement units, app preferences, and privacy controls</p>
+  <!-- MAIN CONTENT -->
+  <main class="dashboard-wrapper" style="max-width: 700px; margin: 1.5rem auto; padding: 0 1rem;">
+    <div class="page-header" style="text-align: left; margin-bottom: 1.5rem;">
+      <h1 style="color: var(--accent-color); font-size: 2rem; margin-bottom: 0.25rem;">Account Settings</h1>
+      <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">Configure measurement units, app preferences, and privacy controls</p>
     </div>
 
-    <!-- PREFERENCES CARD -->
-    <div class="settings-card">
-      <h3 style="color: #ffc107; margin-bottom: 15px;">Display & Units</h3>
+    <div style="display: flex; flex-direction: column; gap: 1.25rem;">
       
-      <div class="settings-group">
-        <div class="settings-info">
-          <h4>Weight Unit</h4>
-          <p>Choose your preferred metric for workout weights</p>
+      <!-- CARD 1: DISPLAY & UNITS -->
+      <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+        <h3 style="color: var(--accent-color); margin-top: 0; margin-bottom: 1.25rem; font-size: 1.1rem;">Display & Units</h3>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; gap: 1rem;">
+          <div>
+            <strong style="display: block; color: var(--text-primary); font-size: 0.95rem;">Weight Unit</strong>
+            <span style="color: var(--text-secondary); font-size: 0.8rem;">Choose your preferred metric for workout weights</span>
+          </div>
+          <select style="padding: 0.5rem 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-primary);">
+            <option>Kilograms (kg)</option>
+            <option>Pounds (lbs)</option>
+          </select>
         </div>
-        <div class="settings-control">
-          <select id="unit-weight" onchange="savePreferences()">
-            <option value="kg">Kilograms (kg)</option>
-            <option value="lbs">Pounds (lbs)</option>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+          <div>
+            <strong style="display: block; color: var(--text-primary); font-size: 0.95rem;">Distance Unit</strong>
+            <span style="color: var(--text-secondary); font-size: 0.8rem;">Select unit for tracking cardio and steps</span>
+          </div>
+          <select style="padding: 0.5rem 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-primary);">
+            <option>Kilometers (km)</option>
+            <option>Miles (mi)</option>
           </select>
         </div>
       </div>
 
-      <div class="settings-group">
-        <div class="settings-info">
-          <h4>Distance Unit</h4>
-          <p>Select unit for tracking cardio and steps</p>
-        </div>
-        <div class="settings-control">
-          <select id="unit-distance" onchange="savePreferences()">
-            <option value="km">Kilometers (km)</option>
-            <option value="miles">Miles (mi)</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <!-- PRIVACY & SECURITY CARD -->
-    <div class="settings-card">
-      <h3 style="color: #ffc107; margin-bottom: 15px;">Privacy & Security</h3>
-
-      <div class="settings-group">
-        <div class="settings-info">
-          <h4>Public Leaderboard Profile</h4>
-          <p>Allow other members to see your weekly goal score</p>
-        </div>
-        <div class="settings-control">
+      <!-- CARD 2: PRIVACY & SECURITY -->
+      <div class="stat-card" style="text-align: left; padding: 1.5rem;">
+        <h3 style="color: var(--accent-color); margin-top: 0; margin-bottom: 1.25rem; font-size: 1.1rem;">Privacy & Security</h3>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; gap: 1rem;">
+          <div>
+            <strong style="display: block; color: var(--text-primary); font-size: 0.95rem;">Public Leaderboard Profile</strong>
+            <span style="color: var(--text-secondary); font-size: 0.8rem;">Allow other members to see your weekly goal score</span>
+          </div>
           <label class="switch">
-            <input type="checkbox" id="setting-leaderboard" checked onchange="savePreferences()">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+          <div>
+            <strong style="display: block; color: var(--text-primary); font-size: 0.95rem;">Daily Hydration Reminders</strong>
+            <span style="color: var(--text-secondary); font-size: 0.8rem;">Receive sound notifications to log water intake</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked>
             <span class="slider"></span>
           </label>
         </div>
       </div>
 
-      <div class="settings-group">
-        <div class="settings-info">
-          <h4>Daily Hydration Reminders</h4>
-          <p>Receive sound notifications to log water intake</p>
-        </div>
-        <div class="settings-control">
-          <label class="switch">
-            <input type="checkbox" id="setting-hydration" checked onchange="savePreferences()">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
     </div>
   </main>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script src="auth.js"></script>
-  <script>
-    // Load Saved Preferences
-    document.addEventListener('DOMContentLoaded', () => {
-      const prefs = JSON.parse(localStorage.getItem('user_prefs') || '{}');
-      if (prefs.weight) document.getElementById('unit-weight').value = prefs.weight;
-      if (prefs.distance) document.getElementById('unit-distance').value = prefs.distance;
-      if (prefs.leaderboard !== undefined) document.getElementById('setting-leaderboard').checked = prefs.leaderboard;
-      if (prefs.hydration !== undefined) document.getElementById('setting-hydration').checked = prefs.hydration;
+  <footer class="app-footer">
+    <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
+  </footer>
 
-      const profile = JSON.parse(localStorage.getItem('user_profile') || '{}');
-      if (profile.fullname) {
-        document.getElementById('menu-display-name').innerText = profile.fullname;
-        document.getElementById('avatar-initial').innerText = profile.fullname.charAt(0).toUpperCase();
-      }
-    });
-
-    // Save Preferences Handler
-    function savePreferences() {
-      const prefs = {
-        weight: document.getElementById('unit-weight').value,
-        distance: document.getElementById('unit-distance').value,
-        leaderboard: document.getElementById('setting-leaderboard').checked,
-        hydration: document.getElementById('setting-hydration').checked
-      };
-      localStorage.setItem('user_prefs', JSON.stringify(prefs));
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

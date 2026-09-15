@@ -1,128 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Matters | About Us</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="style.css"
-<script src="auth-guard.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitnessMatters | About Us</title>
+  <link rel="stylesheet" href="style.css?v=4.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="light-mode">
 
-   <!-- GLOBAL NAVBAR WITH HAMBURGER -->
-<nav class="navbar">
-  <div class="nav-header">
-    <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
-    <div class="nav-brand">
-      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-      <span class="brand-name">FITNESS<span>MATTERS</span></span>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-header">
+      <button class="hamburger-btn" id="sidebarToggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+      <div class="nav-brand">
+        <i class="fas fa-bolt brand-icon"></i>
+        <span class="brand-name">FITNESS<span>MATTERS</span></span>
+      </div>
     </div>
-  </div>
-
-  <!-- MENU LINKS (Update the "active" class per page) -->
-  <div class="nav-menu">
-    <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-    <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-    <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-    <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
-    <a href="about.html" class="nav-item active"><i class="fa-solid fa-circle-info"></i> About</a>
-    <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
-  </div>
-</nav>
-
-<!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-
-<!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <h3>User Menu</h3>
-    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-  </div>
-
-  <div class="user-card">
-    <div class="avatar" id="avatar-initial">A</div>
-    <div class="user-info">
-      <h4 id="menu-display-name">Aditya</h4>
-      <span class="badge" style="color: #ffc107; font-weight: 600;">Pro Member</span>
+    <div class="nav-menu">
+      <a href="home.html" class="nav-item"><i class="fas fa-chart-pie"></i> Overview</a>
+      <a href="workouts.html" class="nav-item"><i class="fas fa-dumbbell"></i> Workouts</a>
+      <a href="nutrition.html" class="nav-item"><i class="fas fa-utensils"></i> Nutrition</a>
+      <a href="consultancy.html" class="nav-item"><i class="fas fa-user-tie"></i> Consultancy</a>
+      <a href="goals.html" class="nav-item"><i class="fas fa-bullseye"></i> Goals</a>
+      <a href="about.html" class="nav-item active"><i class="fas fa-info-circle"></i> About</a>
+      <a href="contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact</a>
     </div>
-  </div>
+  </nav>
 
-  <div class="sidebar-menu">
-    <a href="profile.html" class="sidebar-item">
-      <i class="fa-solid fa-user"></i> My Profile
-    </a>
-    <a href="settings.html" class="sidebar-item">
-      <i class="fa-solid fa-gear"></i> Account Settings
-    </a>
-    <a href="notifications.html" class="sidebar-item">
-      <i class="fa-solid fa-bell"></i> Notifications
-    </a>
-    <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
-      <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
-    </button>
-    <a href="#" class="sidebar-item logout-link" onclick="handleLogout()" style="color: #f56565;">
-      <i class="fa-solid fa-right-from-bracket"></i> Logout
-    </a>
-  </div>
-</aside> 
-</nav>
-    <main class="dashboard-wrapper">
-        <div class="page-header">
-    <h1 style="color: #f59e0b !important;">About Fitness Matters</h1>
-    <p>Learn more about our mission, coaches, and core training philosophy.</p>
-</div>
+  <!-- MAIN CONTAINER -->
+  <main class="dashboard-wrapper">
+    <header class="page-header">
+      <h1>About Fitness Matters</h1>
+      <p>Learn more about our mission, coaches, and core training philosophy.</p>
+    </header>
 
-        <section class="mission-section">
-  <h2>Our Mission</h2>
-  <p>At Fitness Matters, we believe optimal fitness requires an integrated approach. By combining custom workout protocols, precision nutrition planning, and realistic goal tracking, we equip athletes and everyday fitness enthusiasts with the tools they need to succeed.</p>
-
-  <div class="stats-container">
-    <div class="stat-box">
-      <h3>600+</h3>
-      <p>ACTIVE MEMBERS</p>
-    </div>
-    <div class="stat-box">
-      <h3>5+</h3>
-      <p>EXPERT COACHES</p>
-    </div>
-    <div class="stat-box">
-      <h3>98%</h3>
-      <p>SUCCESS RATE</p>
-    </div>
-  </div>
-</section>
-
-        <h2 style="text-align: center !important; width: 100% !important; display: block !important; margin: 30px auto 15px auto !important; color: #f59e0b !important;">
-    Why Choose Us
-</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-solid fa-dumbbell"></i></div>
-                <h4>Tailored Workouts</h4>
-                <p>Every training plan is structured by certified strength coaches to target hypertrophy, endurance, or functional strength.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-solid fa-utensils"></i></div>
-                <h4>Precision Nutrition</h4>
-                <p>Macro-balanced diets engineered to support fat loss, muscle growth, or specialized dietary requirements.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
-                <h4>Data-Driven Progress</h4>
-                <p>Track metrics, body composition changes, and personal records seamlessly using our goals dashboard.</p>
-            </div>
+    <!-- OUR MISSION SECTION -->
+    <section class="stat-card mission-card center-aligned-card">
+      <h2 class="section-title center-title"><i class="fas fa-bullseye"></i> Our Mission</h2>
+      <p class="mission-text">At Fitness Matters, we believe optimal fitness requires an integrated approach. By combining custom workout protocols, precision nutrition planning, and realistic goal tracking, we equip athletes and everyday fitness enthusiasts with the tools they need to succeed.</p>
+      
+      <!-- STATS GRID (HORIZONTAL 3-IN-A-ROW) -->
+      <div class="about-stats-grid">
+        <div class="about-stat-box">
+          <span class="stat-number">600+</span>
+          <span class="stat-label">ACTIVE MEMBERS</span>
         </div>
-    </main>
-<footer class="app-footer">
+        <div class="about-stat-box">
+          <span class="stat-number">5+</span>
+          <span class="stat-label">EXPERT COACHES</span>
+        </div>
+        <div class="about-stat-box">
+          <span class="stat-number">98%</span>
+          <span class="stat-label">SUCCESS RATE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US SECTION -->
+<div class="why-choose-us-container">
+  <h2 style="text-align: center; width: 100%; color: #a35d2d; margin-bottom: 1rem;">Why Choose Us</h2>
+
+  <div class="why-choose-list">
+    <!-- ITEM 1: TAILORED WORKOUTS -->
+    <div class="why-item-card">
+      <div class="why-icon-badge">
+        <i class="fas fa-dumbbell"></i>
+      </div>
+      <div class="why-content">
+        <h3>Tailored Workouts</h3>
+        <p>Every training plan is structured by certified strength coaches to target hypertrophy, endurance, or functional strength.</p>
+      </div>
+    </div>
+
+    <!-- ITEM 2: PRECISION NUTRITION -->
+    <div class="why-item-card">
+      <div class="why-icon-badge">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <div class="why-content">
+        <h3>Precision Nutrition</h3>
+        <p>Macro-balanced diets engineered to support fat loss, muscle growth, or specialized dietary requirements.</p>
+      </div>
+    </div>
+
+    <!-- ITEM 3: DATA-DRIVEN PROGRESS -->
+    <div class="why-item-card">
+      <div class="why-icon-badge">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div class="why-content">
+        <h3>Data-Driven Progress</h3>
+        <p>Track metrics, body composition changes, and personal records seamlessly using our goals portal.</p>
+      </div>
+    </div>
+  </div>
+</div>    </section>
+  </main>
+
+  <footer class="app-footer">
     <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
-</footer>
-<!-- Link external script file -->
-  <script src="script.js"></script>
+  </footer>
+
 </body>
 </html>

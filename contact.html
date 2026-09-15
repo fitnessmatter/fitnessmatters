@@ -1,129 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Matters | Contact Us</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css"
-      <script src="auth-guard.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitnessMatters | Contact Us</title>
+  <link rel="stylesheet" href="style.css?v=3.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="light-mode">
 
-    <!-- GLOBAL NAVBAR WITH HAMBURGER -->
-<nav class="navbar">
-  <div class="nav-header">
-    <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
-    <div class="nav-brand">
-      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
-      <span class="brand-name">FITNESS<span>MATTERS</span></span>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-header">
+      <button class="hamburger-btn" id="sidebarToggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+      <div class="nav-brand">
+        <i class="fas fa-bolt brand-icon"></i>
+        <span class="brand-name">FITNESS<span>MATTERS</span></span>
+      </div>
     </div>
-  </div>
-
-  <!-- MENU LINKS (Update the "active" class per page) -->
-  <div class="nav-menu">
-    <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
-    <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
-    <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
-    <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
-    <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
-    <a href="contact.html" class="nav-item active"><i class="fa-solid fa-envelope"></i> Contact</a>
-  </div>
-</nav>
-
-<!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-
-<!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <h3>User Menu</h3>
-    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-  </div>
-
-  <div class="user-card">
-    <div class="avatar" id="avatar-initial">A</div>
-    <div class="user-info">
-      <h4 id="menu-display-name">Aditya</h4>
-      <span class="badge" style="color: #ffc107; font-weight: 600;">Pro Member</span>
+    <div class="nav-menu">
+      <a href="home.html" class="nav-item"><i class="fas fa-chart-pie"></i> Overview</a>
+      <a href="workouts.html" class="nav-item"><i class="fas fa-dumbbell"></i> Workouts</a>
+      <a href="nutrition.html" class="nav-item"><i class="fas fa-utensils"></i> Nutrition</a>
+      <a href="consultancy.html" class="nav-item"><i class="fas fa-user-tie"></i> Consultancy</a>
+      <a href="goals.html" class="nav-item"><i class="fas fa-bullseye"></i> Goals</a>
+      <a href="about.html" class="nav-item"><i class="fas fa-info-circle"></i> About</a>
+      <a href="contact.html" class="nav-item active"><i class="fas fa-envelope"></i> Contact</a>
     </div>
-  </div>
+  </nav>
 
-  <div class="sidebar-menu">
-    <a href="profile.html" class="sidebar-item">
-      <i class="fa-solid fa-user"></i> My Profile
-    </a>
-    <a href="settings.html" class="sidebar-item">
-      <i class="fa-solid fa-gear"></i> Account Settings
-    </a>
-    <a href="notifications.html" class="sidebar-item">
-      <i class="fa-solid fa-bell"></i> Notifications
-    </a>
-    <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
-      <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
-    </button>
-    <a href="#" class="sidebar-item logout-link" onclick="handleLogout()" style="color: #f56565;">
-      <i class="fa-solid fa-right-from-bracket"></i> Logout
-    </a>
-  </div>
-</aside>
-    <main class="dashboard-wrapper">
-       <div class="page-header">
-    <h1 style="color: #f59e0b !important;">Get In Touch</h1>
-    <p>Have questions or feedback? Reach out to our team anytime.</p>
-</div>
-<div class="contact-methods">
-  <!-- Instagram -->
-  <a href="https://instagram.com/adi_6416" target="_blank" class="contact-item">
-    <i class="fa-brands fa-instagram"></i>
-    <span><span class="contact-label">Follow us on:</span> @adi_6416</span>
-  </a>
+  <!-- MAIN CONTAINER -->
+  <main class="dashboard-wrapper">
+    <header class="page-header" style="text-align: center;">
+      <h1>Get In Touch</h1>
+      <p>Have questions or feedback? Reach out to our team anytime.</p>
+    </header>
 
-  <!-- WhatsApp -->
-  <a href="https://wa.me/919405248583" target="_blank" class="contact-item">
-    <i class="fa-brands fa-whatsapp"></i>
-    <span><span class="contact-label">WhatsApp us on:</span> +91 9405248583</span>
-  </a>
-
-  <!-- Email -->
-  <a href="mailto:support@fitnessmatters.com" class="contact-item">
-    <i class="fa-solid fa-envelope"></i>
-    <span><span class="contact-label">Mail us on:</span> support@fitnessmatters.com</span>
-  </a>
-</div>
+    <!-- PROFESSIONAL COMPACT HORIZONTAL CONTACT CARDS -->
+<div class="contact-cards-wrapper" style="display: flex; flex-direction: row; justify-content: center; gap: 0.5rem; width: 100%; margin: 1.2rem 0; box-sizing: border-box;">
   
+  <!-- CARD 1: FOLLOW US -->
+  <a href="https://instagram.com/adi_6416" target="_blank" class="contact-card-box" style="flex: 1; min-width: 0; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 0.6rem 0.3rem; text-align: center; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s, border-color 0.2s;">
+    <div style="width: 28px; height: 28px; background: rgba(212, 160, 23, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem auto;">
+      <i class="fab fa-instagram" style="font-size: 0.85rem; color: #d4a017;"></i>
+    </div>
+    <h4 style="font-size: 0.7rem; font-weight: 600; color: #a35d2d; margin: 0 0 0.2rem 0; white-space: nowrap;">Follow us on</h4>
+    <p style="font-size: 0.6rem; color: #666666; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@adi_6416</p>
+  </a>
 
-            <div class="form-card">
-                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" class="form-input" placeholder="Enter your full name" required>
-                    </div>
+  <!-- CARD 2: WHATSAPP US -->
+  <a href="https://wa.me/919405248583" target="_blank" class="contact-card-box" style="flex: 1; min-width: 0; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 0.6rem 0.3rem; text-align: center; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s, border-color 0.2s;">
+    <div style="width: 28px; height: 28px; background: rgba(212, 160, 23, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem auto;">
+      <i class="fab fa-whatsapp" style="font-size: 0.85rem; color: #d4a017;"></i>
+    </div>
+    <h4 style="font-size: 0.7rem; font-weight: 600; color: #a35d2d; margin: 0 0 0.2rem 0; white-space: nowrap;">WhatsApp us on</h4>
+    <p style="font-size: 0.6rem; color: #666666; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">+91 9405248583</p>
+  </a>
 
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
-                    </div>
+  <!-- CARD 3: MAIL US -->
+  <a href="mailto:support@fitnessmatters.com" class="contact-card-box" style="flex: 1; min-width: 0; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 0.6rem 0.2rem; text-align: center; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s, border-color 0.2s;">
+    <div style="width: 28px; height: 28px; background: rgba(212, 160, 23, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem auto;">
+      <i class="fas fa-envelope" style="font-size: 0.85rem; color: #d4a017;"></i>
+    </div>
+    <h4 style="font-size: 0.7rem; font-weight: 600; color: #a35d2d; margin: 0 0 0.2rem 0; white-space: nowrap;">Mail us on</h4>
+    <p style="font-size: 0.55rem; color: #666666; margin: 0; word-break: break-all; line-height: 1.1;">support@fitnessmatters.com</p>
+  </a>
 
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" class="form-textarea" placeholder="How can we help you?" required></textarea>
-                    </div>
+</div>
+    <!-- MESSAGE FORM CONTAINER CARD -->
+    <div style="max-width: 700px; margin: 0 auto;">
+      <article class="plan-card stat-card" style="padding: 2rem;">
+        <h2 style="color: var(--accent-gold); font-size: 1.3rem; margin-bottom: 1.5rem; text-align: center;">Send Us A Message</h2>
+        <form id="contactForm">
+          <div class="form-group" style="margin-bottom: 1.2rem;">
+            <label for="userName" style="display: block; margin-bottom: 0.4rem; font-weight: 500;">Your Name</label>
+            <input type="text" id="userName" placeholder="Enter your full name" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-card); color: var(--text-primary);">
+          </div>
+          <div class="form-group" style="margin-bottom: 1.2rem;">
+            <label for="userEmail" style="display: block; margin-bottom: 0.4rem; font-weight: 500;">Email Address</label>
+            <input type="email" id="userEmail" placeholder="Enter your email" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-card); color: var(--text-primary);">
+          </div>
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="userMessage" style="display: block; margin-bottom: 0.4rem; font-weight: 500;">Message</label>
+            <textarea id="userMessage" rows="5" placeholder="How can we help you?" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-card); color: var(--text-primary); font-family: inherit; resize: vertical;"></textarea>
+          </div>
+          <button type="submit" class="buy-btn" style="width: 100%; padding: 0.8rem; font-size: 1rem; cursor: pointer;">Send Message</button>
+        </form>
+      </article>
+    </div>
+  </main>
 
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </main>
-<footer class="app-footer">
+  <footer class="app-footer" style="margin-top: 3rem;">
     <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
-</footer>
-<!-- Link external script file -->
-  <script src="script.js"></script>
+  </footer>
+
 </body>
 </html>
-

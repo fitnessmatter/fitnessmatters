@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Matters | 1-on-1 Fitness Consultancy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- FIREBASE SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="auth-guard.js"></script>
+</head>
+<body>
+
+    <!-- GLOBAL NAVBAR WITH HAMBURGER -->
+    <nav class="navbar">
+      <div class="nav-header">
+        <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-brand">
+          <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+          <span class="brand-name">FITNESS<span>MATTERS</span></span>
+        </div>
+      </div>
+
+      <!-- MENU LINKS -->
+      <div class="nav-menu">
+        <a href="home.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+        <a href="workouts.html" class="nav-item"><i class="fa-solid fa-dumbbell"></i> Workouts</a>
+        <a href="nutrition.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Nutrition</a>
+        <a href="consultancy.html" class="nav-item active"><i class="fa-solid fa-user-doctor"></i> Consultancy</a>
+        <a href="goals.html" class="nav-item"><i class="fa-solid fa-bullseye"></i> Goals</a>
+        <a href="about.html" class="nav-item"><i class="fa-solid fa-circle-info"></i> About</a>
+        <a href="contact.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </div>
+    </nav>
+
+    <!-- SLIDE-OUT SIDEBAR DRAWER OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- SLIDE-OUT SIDEBAR DRAWER CONTENT -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>User Menu</h3>
+        <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+      </div>
+
+      <div class="user-card">
+        <div class="avatar" id="avatar-initial">A</div>
+        <div class="user-info">
+          <h4 id="menu-display-name">Aditya</h4>
+          <span class="badge" style="color: #ffc107; font-weight: 600;">Pro Member</span>
+        </div>
+      </div>
+
+      <div class="sidebar-menu">
+        <a href="profile.html" class="sidebar-item">
+          <i class="fa-solid fa-user"></i> My Profile
+        </a>
+        <a href="settings.html" class="sidebar-item">
+          <i class="fa-solid fa-gear"></i> Account Settings
+        </a>
+        <a href="notifications.html" class="sidebar-item">
+          <i class="fa-solid fa-bell"></i> Notifications
+        </a>
+        <button class="sidebar-item" onclick="toggleDarkMode()" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;">
+          <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
+        </button>
+        <a href="#" class="sidebar-item logout-link" onclick="handleLogout()" style="color: #f56565;">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <main class="dashboard-wrapper">
+        <div class="page-header">
+            <h1><span style="color: #f59e0b !important;">1-on-1 Fitness & Health Consultancy</span></h1>
+            <p><span style="color: #a1a1aa !important;">4-Week Personalized Coaching Programs tailored directly by expert head trainers.</span></p>
+        </div>
+
+        <div class="plans-grid">
+            
+            <!-- Plan 1 -->
+            <div class="plan-card featured-plan">
+                <span class="badge">Basic Plan</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Customised Diet Plan</span></h3>
+                    <p>Tailored nutrition strategy designed around your lifestyle, preferences, and fitness goals.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹1500</span><span class="price-period">/ 4 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Customized Weekly Meal & Deficit Plan</li>
+                    <li><i class="fa-solid fa-check"></i> Direct 1-on-1 WhatsApp Chat Support</li>
+                    <li><i class="fa-solid fa-check"></i> Weekly Progress Reviews & Plan Adjustments</li>
+                    <li><i class="fa-solid fa-check"></i> Flexible Indian Home-Cooked Meal Options</li>
+                </ul>
+                <button class="buy-btn featured-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+
+            <!-- Plan 2 -->
+            <div class="plan-card">
+                  <span class="badge">Most Popular</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Customised Workout Plan</span></h3>
+                    <p>A structured, science-based protocol tailored to your fitness level, available equipments, and goals.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹1000</span><span class="price-period">/ 4 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Personalized Gym or Home Training Split</li>
+                    <li><i class="fa-solid fa-check"></i> Direct 1-on-1 WhatsApp Chat Support</li>
+                    <li><i class="fa-solid fa-check"></i> Weekly Form Checks & Progressive Overload Tracking</li>
+                    <li><i class="fa-solid fa-check"></i> Custom Warm-up, Mobility & Recovery Routines</li>
+                </ul>
+                <button class="buy-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+
+            <!-- Plan 3 -->
+            <div class="plan-card">
+                <span class="badge">Basic Plan</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Weight Gaining Plan</span></h3>
+                    <p>Hypertrophy and progressive overload coaching for lean weight gain without excess fat.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹3000</span><span class="price-period">/ 4 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Caloric Surplus & Macro Calculation</li>
+                    <li><i class="fa-solid fa-check"></i> Form-Check Video Analysis</li>
+                    <li><i class="fa-solid fa-check"></i> Custom 4-Week Hypertrophy Split</li>
+                    <li><i class="fa-solid fa-check"></i> Ergogenic Supplement Guidance</li>
+                </ul>
+                <button class="buy-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+
+            <!-- Plan 4 -->
+            <div class="plan-card">
+                <span class="badge">Basic Plan</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Fat Loss Plan</span></h3>
+                    <p>Glycemic control and fat loss consultation to improve blood sugar levels and energy.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹3,000</span><span class="price-period">/ 4 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Low-Glycemic Index Meal Structuring</li>
+                    <li><i class="fa-solid fa-check"></i> Daily Glucose Log Monitoring</li>
+                    <li><i class="fa-solid fa-check"></i> Post-Meal Walking & Resistance Protocols</li>
+                    <li><i class="fa-solid fa-check"></i> Doctor-Coordinated Plan Adjustments</li>
+                </ul>
+                <button class="buy-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+
+            <!-- Plan 5 -->
+            <div class="plan-card">
+                <span class="badge">Most Popular</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Online Personal Training Plan</span></h3>
+                    <p>Specialized metabolic support for individuals with Hypothyroidism / Hashimoto's.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹5000</span><span class="price-period">/ 4 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Thyroid-Friendly Anti-Inflammatory Meal Plan</li>
+                    <li><i class="fa-solid fa-check"></i> Fatigue Management & Sleep Protocol</li>
+                    <li><i class="fa-solid fa-check"></i> Non-Stress Cardio Routine</li>
+                    <li><i class="fa-solid fa-check"></i> Weekly T3/T4/TSH Progress Tracking</li>
+                </ul>
+                <button class="buy-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+
+            <!-- Plan 6 -->
+            <div class="plan-card">
+                <span class="badge">Most Popular</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Offline Personal Training Plan</span></h3>
+                    <p>Safe and effective post-pregnancy weight loss consultation prioritizing health and recovery.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹8000</span><span class="price-period">/ 4 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Lactation-Safe Nutritional Guidance</li>
+                    <li><i class="fa-solid fa-check"></i> Diastasis Recti & Core Rehab Routine</li>
+                    <li><i class="fa-solid fa-check"></i> Low-Impact Fat Loss Workouts</li>
+                    <li><i class="fa-solid fa-check"></i> Gentle Weekly Progress Checks</li>
+                </ul>
+                <button class="buy-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+
+            <!-- Plan 7 -->
+            <div class="plan-card">
+                <span class="badge">VIP Plan</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Enhanced Bodybuilding Plan</span></h3>
+                    <p>DASH-diet aligned weight reduction plan to lower blood pressure naturally.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹12000</span><span class="price-period">/ 6 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Sodium-Controlled High Potassium Nutrition</li>
+                    <li><i class="fa-solid fa-check"></i> Aerobic Capacity Conditioning</li>
+                    <li><i class="fa-solid fa-check"></i> Daily BP Log Monitoring</li>
+                    <li><i class="fa-solid fa-check"></i> Stress Management & Breathwork Protocol</li>
+                </ul>
+                <button class="buy-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+
+            <!-- Plan 8 -->
+            <div class="plan-card">
+                 <span class="badge">VIP Plan</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Customised PED'S Plans</span></h3>
+                    <p>Hepatic health consultation focused on clearing visceral fat and reducing liver enzymes.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹8000</span><span class="price-period">/ 4 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Fructose & Refined Sugar Detox Meal Plan</li>
+                    <li><i class="fa-solid fa-check"></i> Hepatic Support Micronutrients</li>
+                    <li><i class="fa-solid fa-check"></i> Visceral Fat Loss Exercise Blueprint</li>
+                    <li><i class="fa-solid fa-check"></i> LFT Biomarker Progress Tracking</li>
+                </ul>
+                <button class="buy-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+
+            <!-- Plan 9 -->
+            <div class="plan-card">
+                 <span class="badge">VIP Plan</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Post Cycle Therapy Plan</span></h3>
+                    <p>Coaching tailored for hormonal shifts, metabolic slowdown, and joint preservation.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹5000</span><span class="price-period">/ 2 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Phytoestrogen & Calcium-Rich Diets</li>
+                    <li><i class="fa-solid fa-check"></i> Joint-Safe Resistance Training</li>
+                    <li><i class="fa-solid fa-check"></i> Cortisol & Sleep Optimization</li>
+                    <li><i class="fa-solid fa-check"></i> Weekly 1-on-1 Support Calls</li>
+                </ul>
+                <button class="buy-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+
+            <!-- Plan 10 -->
+            <div class="plan-card">
+                 <span class="badge">VIP Plan</span>
+                <div class="plan-header">
+                    <h3><span style="color: #f59e0b !important;">Posing Plans</span></h3>
+                    <p>Efficient fat loss programs built around busy work hours, desk jobs, and travel schedules.</p>
+                </div>
+                <div class="plan-price">
+                    <span class="price-amount">₹2000</span><span class="price-period">/ 4 weeks</span>
+                </div>
+                <ul class="plan-features">
+                    <li><i class="fa-solid fa-check"></i> Quick Meal Prep Strategies for Office Hours</li>
+                    <li><i class="fa-solid fa-check"></i> 20-Min High Efficiency Workouts</li>
+                    <li><i class="fa-solid fa-check"></i> Restaurant & Travel Eating Hacks</li>
+                    <li><i class="fa-solid fa-check"></i> Flexible Weekly Check-in Scheduling</li>
+                </ul>
+                <button class="buy-btn subscribe-btn" onclick="openSubscribeModal(this)">Book Consultation</button>
+            </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 <span>Fitness Matters</span>. All rights reserved.</p>
+    </footer>
+
+    <!-- UNIFIED SUBSCRIPTION & TRIAL MODAL -->
+    <div id="sub-modal" class="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-icon"><i class="fa-solid fa-user-doctor"></i></div>
+        <h3 id="modal-plan-title">Book Consultation</h3>
+        <p>You selected <strong id="selected-plan-name" style="color: #ffc107;">Consultation Plan</strong> for <span id="selected-plan-price" style="font-weight:700; color:#fff;">₹3,000</span> / 4 weeks.</p>
+        
+        <div class="modal-actions" style="flex-direction: column; gap: 10px;">
+          <button class="btn-confirm" onclick="processTrialSubscription()" style="background-color: #22c55e; color: #fff; width: 100%;">
+            <i class="fa-solid fa-gift"></i> Start 7-Day Free Consultation Trial
+          </button>
+          
+          <button class="btn-confirm" onclick="processSubscription()" style="width: 100%;">
+            <i class="fa-solid fa-credit-card"></i> Pay ₹3,000 & Confirm Slot
+          </button>
+
+          <button class="btn-cancel" onclick="closeSubModal()" style="width: 100%; margin-top: 5px;">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN PROJECT SCRIPT -->
+    <script src="script.js"></script>
+
+    <!-- EXPLICIT PAGE MODAL CONTROLLER -->
+    <script>
+      window.currentSelectedPlan = window.currentSelectedPlan || '';
+
+      function openSubscribeModal(button) {
+        const planCard = button.closest('.plan-card');
+        if (!planCard) return;
+
+        const titleElem = planCard.querySelector('h3');
+        const priceElem = planCard.querySelector('.price-amount');
+
+        window.currentSelectedPlan = titleElem ? titleElem.innerText.trim() : 'Consultation Plan';
+        const priceText = priceElem ? priceElem.innerText.trim() : '₹3,000';
+
+        const nameTarget = document.getElementById('selected-plan-name');
+        const priceTarget = document.getElementById('selected-plan-price');
+        
+        if (nameTarget) nameTarget.innerText = window.currentSelectedPlan;
+        if (priceTarget) priceTarget.innerText = priceText;
+
+        const modal = document.getElementById('sub-modal');
+        if (modal) {
+          modal.classList.add('active');
+        }
+      }
+
+      function closeSubModal() {
+        const modal = document.getElementById('sub-modal');
+        if (modal) {
+          modal.classList.remove('active');
+        }
+      }
+
+      // 1. FREE TRIAL HANDLER -> Redirects to success.html
+      function processTrialSubscription() {
+        const fakePaymentId = "trial_consult_" + Math.floor(Math.random() * 1000000);
+        localStorage.setItem('user_subscribed_plan', window.currentSelectedPlan + " (7-Day Free Consultation)");
+        closeSubModal();
+
+        window.location.href = "success.html?plan=" + encodeURIComponent(window.currentSelectedPlan) + "&payment_id=" + fakePaymentId + "&type=trial";
+      }
+
+      // 2. DIRECT PAYMENT HANDLER -> Redirects to success.html
+      function processSubscription() {
+        const fakePaymentId = "pay_consult_" + Math.floor(Math.random() * 1000000);
+        localStorage.setItem('user_subscribed_plan', window.currentSelectedPlan);
+        closeSubModal();
+
+        window.location.href = "success.html?plan=" + encodeURIComponent(window.currentSelectedPlan) + "&payment_id=" + fakePaymentId;
+      }
+    </script>
+</body>
+</html>
